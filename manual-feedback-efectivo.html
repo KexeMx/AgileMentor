@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual de Feedback Efectivo · Guía práctica para líderes</title>
+<style>
+:root{
+  --tinta:#1B2140;
+  --tinta-suave:#4A5170;
+  --papel:#F3F1FD;
+  --carta:#FFFFFF;
+  --uva:#6C5CE7;
+  --uva-claro:#EDEAFE;
+  --menta:#12B886;
+  --menta-claro:#DFF6EE;
+  --mango:#F5A524;
+  --mango-claro:#FDF0DA;
+  --coral:#F2555A;
+  --coral-claro:#FDE5E6;
+  --cielo:#3B9AE1;
+  --cielo-claro:#E2F0FB;
+  --linea:#DCD8F0;
+  --r-l:26px;
+  --r-m:16px;
+  --r-s:10px;
+  --sombra:0 10px 0 -4px rgba(108,92,231,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4{font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.18;margin:0 0 .5em}
+h1{font-size:2.5rem;letter-spacing:-.02em}
+h2{font-size:1.9rem;letter-spacing:-.01em}
+h3{font-size:1.25rem}
+h4{font-size:1.02rem}
+p{margin:0 0 1em;max-width:72ch}
+ul,ol{max-width:72ch;padding-left:1.15em}
+li{margin-bottom:.45em}
+a{color:var(--uva)}
+strong{color:var(--tinta)}
+code{background:var(--uva-claro);border-radius:6px;padding:.1em .4em;font-size:.9em}
+
+/* Ejemplo desplegable */
+details.ej{border:none;background:none;margin:14px 0}
+details.ej > summary{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:99px;
+  background:var(--mango-claro);border:2px solid var(--mango);color:#9A6207;
+  font-weight:600;font-size:.88rem;cursor:pointer;transition:background .15s,transform .12s;
+}
+details.ej > summary:hover{background:#FBE3B4;transform:translateY(-1px)}
+details.ej > summary::before{content:"💡";font-size:1rem}
+details.ej[open] > summary{background:var(--mango);color:#fff;border-color:var(--mango)}
+details.ej[open] > summary::before{content:"💡"}
+details.ej > summary::after{content:"Ver ejemplo";display:none}
+details.ej .cuerpo{
+  margin-top:10px;padding:16px 18px;background:#fff;border:2px solid var(--mango);
+  border-radius:var(--r-m);font-size:.95rem;
+}
+details.ej .cuerpo p:last-child{margin-bottom:0}
+details.ej .cuerpo .malito{color:#B23438;border-left:4px solid var(--coral);padding-left:12px;margin-bottom:12px}
+details.ej .cuerpo .buenito{border-left:4px solid var(--menta);padding-left:12px}
+details.ej .etq{display:block;font-size:.78rem;font-weight:700;letter-spacing:.02em;margin-bottom:3px;color:var(--tinta-suave)}
+
+/* Ruta rapida */
+.ruta{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:18px 0}
+.ruta .via{background:#fff;border:2px solid var(--linea);border-radius:var(--r-l);padding:18px}
+.ruta .via h4{margin-top:0}
+.ruta .via ol{padding-left:1.1em;margin:0}
+.ruta .via li{font-size:.94rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chips button{
+  font:inherit;font-size:.86rem;font-weight:600;border-radius:99px;padding:7px 14px;cursor:pointer;
+  background:#fff;border:2px solid var(--linea);color:var(--tinta-suave);
+}
+.chips button.clave{background:var(--menta);border-color:var(--menta);color:#fff}
+.chips button:hover{transform:translateY(-1px)}
+nav.modulos button.clave::after{content:"";display:inline-block;width:7px;height:7px;border-radius:99px;background:var(--menta);margin-left:7px;vertical-align:middle}
+nav.modulos button.clave[aria-current="true"]::after{background:#fff}
+
+/* Referencias */
+.refs{list-style:none;padding:0}
+.refs li{background:#fff;border:2px solid var(--linea);border-radius:var(--r-m);padding:13px 16px;margin-bottom:10px}
+.refs .obra{font-weight:700}
+.refs .donde{display:block;font-size:.87rem;color:var(--tinta-suave);margin-top:4px}
+
+/* ---------- Cabecera ---------- */
+.portada{
+  background:
+    radial-gradient(circle at 12% 20%, rgba(245,165,36,.35) 0 22%, transparent 22.5%),
+    radial-gradient(circle at 88% 78%, rgba(18,184,134,.3) 0 18%, transparent 18.5%),
+    linear-gradient(140deg,#6C5CE7 0%, #8E7BF2 55%, #3B9AE1 100%);
+  color:#fff;padding:52px 22px 44px;text-align:center;position:relative;overflow:hidden;
+}
+.portada h1{color:#fff;margin-bottom:.35em}
+.portada p{margin:0 auto;max-width:56ch;color:rgba(255,255,255,.92)}
+.lema{
+  display:inline-block;margin-top:20px;background:rgba(255,255,255,.16);
+  border:2px dashed rgba(255,255,255,.5);border-radius:var(--r-l);
+  padding:10px 20px;font-size:.95rem;
+}
+.donut{display:block;margin:0 auto 18px}
+
+/* ---------- Navegación ---------- */
+nav.modulos{
+  position:sticky;top:0;z-index:40;background:rgba(243,241,253,.96);
+  backdrop-filter:blur(8px);border-bottom:2px solid var(--linea);
+  padding:10px 12px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;
+}
+nav.modulos button{
+  font:inherit;font-size:.88rem;font-weight:600;color:var(--tinta-suave);
+  background:var(--carta);border:2px solid var(--linea);border-radius:var(--r-l);
+  padding:7px 15px;margin-right:7px;cursor:pointer;transition:transform .12s, background .12s;
+}
+nav.modulos button:hover{transform:translateY(-2px)}
+nav.modulos button[aria-current="true"]{background:var(--uva);border-color:var(--uva);color:#fff}
+nav.modulos button:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--mango);outline-offset:2px}
+
+/* ---------- Barra de avance ---------- */
+.avance{
+  max-width:1000px;margin:22px auto 0;padding:0 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.avance .barra{flex:1 1 220px;height:14px;background:var(--carta);border:2px solid var(--linea);border-radius:99px;overflow:hidden}
+.avance .relleno{height:100%;width:0;background:linear-gradient(90deg,var(--menta),var(--mango));transition:width .45s ease}
+.avance .texto{font-size:.9rem;color:var(--tinta-suave);font-weight:600}
+
+/* ---------- Layout ---------- */
+main{max-width:1000px;margin:0 auto;padding:26px 20px 80px}
+section.modulo{display:none;animation:entra .3s ease}
+section.modulo.activo{display:block}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.chapa{
+  width:42px;height:42px;flex:none;border-radius:14px;display:grid;place-items:center;
+  font-weight:700;color:#fff;background:var(--uva);font-size:1.05rem;
+}
+.card{background:var(--carta);border:2px solid var(--linea);border-radius:var(--r-l);padding:24px;margin:20px 0;box-shadow:var(--sombra)}
+.card.menta{border-color:var(--menta);background:var(--menta-claro)}
+.card.mango{border-color:var(--mango);background:var(--mango-claro)}
+.card.coral{border-color:var(--coral);background:var(--coral-claro)}
+.card.uva{border-color:var(--uva);background:var(--uva-claro)}
+.card.cielo{border-color:var(--cielo);background:var(--cielo-claro)}
+.card h3{margin-top:0}
+
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+figure{margin:22px 0;text-align:center}
+figure svg{max-width:100%;height:auto}
+figcaption{font-size:.87rem;color:var(--tinta-suave);margin-top:8px}
+
+.cita{border-left:6px solid var(--mango);background:#fff;border-radius:0 var(--r-m) var(--r-m) 0;padding:14px 18px;margin:18px 0;font-style:italic}
+
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.95rem;background:#fff;border-radius:var(--r-m);overflow:hidden}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--linea);vertical-align:top}
+th{background:var(--uva);color:#fff;font-weight:600}
+tr:last-child td{border-bottom:none}
+.tabla-scroll{overflow-x:auto}
+
+/* ---------- Tarjetas volteables ---------- */
+.flipwrap{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.flip{perspective:1000px;background:none;border:none;padding:0;cursor:pointer;font:inherit;text-align:left;min-height:172px}
+.flip .cara{position:relative;transition:transform .5s;transform-style:preserve-3d;height:100%}
+.flip.volteada .cara{transform:rotateY(180deg)}
+.flip .frente,.flip .reverso{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r-m);
+  padding:16px;display:flex;flex-direction:column;justify-content:center;border:2px solid var(--linea);
+}
+.flip .frente{background:#fff}
+.flip .reverso{background:var(--uva);color:#fff;transform:rotateY(180deg);border-color:var(--uva);font-size:.92rem}
+.flip .frente strong{display:block;font-size:1.05rem;margin-bottom:4px}
+.flip .pista{font-size:.8rem;color:var(--tinta-suave)}
+
+/* ---------- Práctica ---------- */
+.practica{border:3px dashed var(--menta);border-radius:var(--r-l);padding:22px;margin:34px 0 10px;background:#fff}
+.practica > h3{display:flex;align-items:center;gap:10px;margin-top:0}
+.quiz{margin:16px 0}
+.quiz p.preg{font-weight:600;margin-bottom:10px}
+.opciones{display:grid;gap:8px}
+.opciones button{
+  font:inherit;text-align:left;background:var(--papel);border:2px solid var(--linea);
+  border-radius:var(--r-m);padding:11px 14px;cursor:pointer;transition:background .15s;
+}
+.opciones button:hover:not(:disabled){background:var(--uva-claro)}
+.opciones button:disabled{cursor:default;opacity:1}
+.opciones button.bien{background:var(--menta-claro);border-color:var(--menta)}
+.opciones button.mal{background:var(--coral-claro);border-color:var(--coral)}
+.retro{margin-top:10px;font-size:.93rem;padding:11px 14px;border-radius:var(--r-m);display:none}
+.retro.ver{display:block}
+.retro.bien{background:var(--menta-claro);border:2px solid var(--menta)}
+.retro.mal{background:var(--mango-claro);border:2px solid var(--mango)}
+
+.reescribe{margin:20px 0;background:var(--papel);border-radius:var(--r-m);padding:16px}
+.reescribe .malo{background:var(--coral-claro);border-left:5px solid var(--coral);padding:10px 14px;border-radius:0 var(--r-s) var(--r-s) 0;margin-bottom:12px}
+.reescribe textarea{
+  width:100%;min-height:96px;border:2px solid var(--linea);border-radius:var(--r-m);
+  padding:11px;font:inherit;font-size:.95rem;resize:vertical;background:#fff;color:var(--tinta);
+}
+details{margin-top:12px;background:#fff;border:2px solid var(--menta);border-radius:var(--r-m)}
+details summary{cursor:pointer;padding:11px 15px;font-weight:600;color:var(--menta);list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"▸ ";display:inline-block;transition:transform .2s}
+details[open] summary::before{content:"▾ "}
+details .cuerpo{padding:0 15px 15px}
+
+.btn{
+  font:inherit;font-weight:600;background:var(--uva);color:#fff;border:none;
+  border-radius:var(--r-l);padding:11px 22px;cursor:pointer;
+}
+.btn.fantasma{background:#fff;color:var(--uva);border:2px solid var(--uva)}
+.pie-nav{display:flex;justify-content:space-between;gap:12px;margin-top:38px;flex-wrap:wrap}
+
+.check{list-style:none;padding:0}
+.check li{display:flex;gap:11px;align-items:flex-start;background:#fff;border:2px solid var(--linea);border-radius:var(--r-m);padding:11px 14px;margin-bottom:9px}
+.check input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--menta)}
+
+footer{text-align:center;padding:26px 20px 40px;color:var(--tinta-suave);font-size:.87rem}
+
+@media (max-width:600px){
+  body{font-size:16px}
+  h1{font-size:1.95rem}
+  h2{font-size:1.45rem}
+  .portada{padding:38px 18px 34px}
+  .card,.practica{padding:17px}
+  main{padding:20px 14px 60px}
+}
+@media print{
+  nav.modulos,.pie-nav,.avance{display:none}
+  section.modulo{display:block!important}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<header class="portada">
+  <svg class="donut" width="86" height="86" viewBox="0 0 100 100" role="img" aria-label="Ilustración de una galleta con un mordisco">
+    <circle cx="50" cy="50" r="42" fill="#F5A524" stroke="#fff" stroke-width="4"/>
+    <path d="M92 50a42 42 0 0 1-30 40c8-12 6-24-2-30 10-2 14-8 12-16 8 0 16 2 20 6z" fill="#fff" opacity=".22"/>
+    <circle cx="36" cy="38" r="6" fill="#6C5CE7"/>
+    <circle cx="60" cy="34" r="5" fill="#12B886"/>
+    <circle cx="42" cy="62" r="5.5" fill="#F2555A"/>
+    <circle cx="66" cy="58" r="4.5" fill="#3B9AE1"/>
+  </svg>
+  <h1>Manual de Feedback Efectivo</h1>
+  <p>Nueve módulos para aprender, repasar y practicar la conversación más difícil (y más útil) del trabajo en equipo.</p>
+  <div class="lema">«El feedback es el desayuno de los campeones» — Ken Blanchard</div>
+</header>
+
+<nav class="modulos" id="nav" aria-label="Módulos del manual"></nav>
+
+<div class="avance">
+  <div class="barra"><div class="relleno" id="relleno"></div></div>
+  <div class="texto" id="avanceTexto">0 de 0 ejercicios resueltos</div>
+</div>
+
+<main id="main"></main>
+
+<footer>
+  Manual de Feedback Efectivo · Las fuentes y lecturas recomendadas están en el último módulo.
+</footer>
+
+<script>
+/* ============ CONTENIDO ============ */
+const MODULOS = [
+{
+  id:"m0", nav:"Inicio", chapa:"★", color:"var(--uva)",
+  titulo:"Cómo usar este manual",
+  html:`
+  <p>Cada módulo tiene tres partes: la <strong>idea</strong>, un <strong>esquema visual</strong> y una <strong>zona de práctica</strong>. La práctica es lo que hace que se te quede: son preguntas de opción múltiple y ejercicios donde reescribes un feedback mal dado.</p>
+  <div class="grid">
+    <div class="card menta"><h3>Para estudiar solo</h3><p>Un módulo por sesión, en orden. Los de teoría se leen en 10 minutos; los de práctica (7 al 13) piden entre 20 y 30 porque hay que escribir. No avances sin resolver la práctica: leer sobre feedback no enseña a darlo.</p></div>
+    <div class="card mango"><h3>Para facilitar en equipo</h3><p>Cada módulo da para una sesión de 45 minutos: 15 de exposición, 15 de escritura individual y 15 de comparar en voz alta. Los módulos 11 y 17 funcionan como taller completo.</p></div>
+    <div class="card cielo"><h3>Para consultar rápido</h3><p>Diez minutos antes de una conversación difícil: módulo 4 (fórmulas), módulo 11 (si esperas resistencia) o el checklist final.</p></div>
+  </div>
+  <div class="card menta" style="border-width:3px">
+    <h3>Si no tienes tiempo de leer todo</h3>
+    <p>Lo ideal es recorrer los 19 módulos en orden. Pero si vas contra reloj, hay ocho que sostienen la práctica: están marcados con un punto verde en la barra de navegación y son los que aparecen abajo en verde. Con esos ocho ya puedes dar y recibir feedback decentemente; el resto profundiza.</p>
+    <div class="chips" id="chipsRuta"></div>
+    <p style="font-size:.9rem;color:var(--tinta-suave);margin-bottom:0">Toca cualquiera para ir directo.</p>
+  </div>
+  <div class="ruta">
+    <div class="via">
+      <h4>Tengo 30 minutos</h4>
+      <p style="font-size:.92rem;color:var(--tinta-suave)">Lo mínimo para no hacer daño.</p>
+      <ol>
+        <li><strong>2 · Psicología</strong> — hablar de conductas, no de personas</li>
+        <li><strong>4 · Fórmulas</strong> — la ecuación, y ya con eso estructuras</li>
+        <li><strong>18 · Checklist</strong> — el filtro previo</li>
+      </ol>
+    </div>
+    <div class="via">
+      <h4>Tengo dos horas</h4>
+      <p style="font-size:.92rem;color:var(--tinta-suave)">La ruta esencial completa.</p>
+      <ol>
+        <li>Los tres anteriores</li>
+        <li><strong>6 · Radical Candor</strong> — el marco que ordena todo</li>
+        <li><strong>7 · Preparar</strong> — cómo llega la persona a la conversación</li>
+        <li><strong>9 · Recibir</strong> — la mitad que nadie practica</li>
+        <li><strong>12 · Seguimiento</strong> — donde se cae casi todo el feedback</li>
+      </ol>
+    </div>
+    <div class="via">
+      <h4>Soy Scrum Master o líder sin autoridad formal</h4>
+      <p style="font-size:.92rem;color:var(--tinta-suave)">Además de la ruta esencial.</p>
+      <ol>
+        <li><strong>10 · Hacia arriba</strong> — feedback al PO, a pares y a gerencia</li>
+        <li><strong>13 · Por escrito</strong> — Jira, Slack y revisiones de PR</li>
+        <li><strong>16 · Nuestro contexto</strong> — cómo aterriza aquí</li>
+      </ol>
+    </div>
+    <div class="via">
+      <h4>Voy a facilitar una sesión</h4>
+      <p style="font-size:.92rem;color:var(--tinta-suave)">Material listo para taller.</p>
+      <ol>
+        <li><strong>17 · Casos</strong> — cuatro situaciones completas</li>
+        <li><strong>8 · Pedir</strong> y <strong>11 · Cuando se rompe</strong> — dan mucho juego en grupo</li>
+        <li><strong>15 · Cambio</strong> — para entender a quién le hablas</li>
+      </ol>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Los tres bloques del manual</h3>
+    <ul>
+      <li><strong>Módulos 1 a 6 · Fundamentos.</strong> Qué es, por qué duele, con qué fórmulas se estructura, en qué tono se sirve y el marco de Radical Candor que ordena todo lo demás.</li>
+      <li><strong>Módulos 7 a 13 · El oficio.</strong> Preparar a la persona, pedir, recibir, dar hacia arriba y de lado, sostener la conversación cuando se descompone, darle seguimiento y escribirlo bien en Slack o en un PR. Aquí está la mayor parte de la práctica.</li>
+      <li><strong>Módulos 14 a 19 · Cultura y ejecución.</strong> Cómo se instala esto en un equipo, cómo reacciona la gente, cómo aterriza en nuestro contexto, casos completos, el checklist previo y las referencias.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Qué es el feedback, en una línea</h3>
+    <p>Es el retorno oportuno de información sobre lo que alguien hizo, con la intención deliberada de mejorar su rendimiento. No es desahogo, no es la evaluación anual y no es una opinión sobre quién es la persona.</p>
+  </div>`,
+  practica:{
+    quiz:[{
+      p:"¿Cuál de estas frases es feedback y no otra cosa?",
+      o:["«Necesito que le eches más ganas, se te nota desmotivado.»",
+         "«En la demo de ayer faltaron las métricas y el cliente no pudo aprobar. ¿Cómo lo viste tú?»",
+         "«Todo bien, sigue así.»",
+         "«El equipo anda comentando que no colaboras.»"],
+      ok:1,
+      bien:"Exacto: momento concreto, conducta observable, impacto y una pregunta que abre el diálogo.",
+      mal:"Fíjate en cuál menciona un hecho concreto y su consecuencia, en vez de juzgar, generalizar o repetir rumores."
+    }]
+  }
+},
+{
+  id:"m1", nav:"1 · Fundamentos", chapa:"1", color:"var(--menta)",
+  titulo:"Fundamentos y propósito",
+  html:`
+  <p>El feedback existe para cerrar la brecha entre lo que alguien hizo y lo que el equipo necesitaba. Es información, no veredicto: se entrega para que la otra persona pueda decidir mejor la próxima vez.</p>
+  <figure>
+    <svg viewBox="0 0 640 260" role="img" aria-label="Ciclo de valor del feedback: acción, observación, conversación y mejora continua">
+      <defs><marker id="fl" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#6C5CE7"/></marker></defs>
+      <rect x="20" y="24" width="230" height="72" rx="18" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+      <text x="135" y="56" text-anchor="middle" font-size="17" font-weight="bold" fill="#1B2140">Acción</text>
+      <text x="135" y="78" text-anchor="middle" font-size="13" fill="#4A5170">Alguien hace algo</text>
+
+      <rect x="390" y="24" width="230" height="72" rx="18" fill="#E2F0FB" stroke="#3B9AE1" stroke-width="3"/>
+      <text x="505" y="56" text-anchor="middle" font-size="17" font-weight="bold" fill="#1B2140">Observación</text>
+      <text x="505" y="78" text-anchor="middle" font-size="13" fill="#4A5170">Hechos, no interpretaciones</text>
+
+      <rect x="390" y="164" width="230" height="72" rx="18" fill="#FDF0DA" stroke="#F5A524" stroke-width="3"/>
+      <text x="505" y="196" text-anchor="middle" font-size="17" font-weight="bold" fill="#1B2140">Conversación</text>
+      <text x="505" y="218" text-anchor="middle" font-size="13" fill="#4A5170">Dos vías, con pregunta</text>
+
+      <rect x="20" y="164" width="230" height="72" rx="18" fill="#EDEAFE" stroke="#6C5CE7" stroke-width="3"/>
+      <text x="135" y="196" text-anchor="middle" font-size="17" font-weight="bold" fill="#1B2140">Mejora</text>
+      <text x="135" y="218" text-anchor="middle" font-size="13" fill="#4A5170">Acuerdo con seguimiento</text>
+
+      <path d="M255 60 H382" stroke="#6C5CE7" stroke-width="3" fill="none" marker-end="url(#fl)"/>
+      <path d="M505 101 V158" stroke="#6C5CE7" stroke-width="3" fill="none" marker-end="url(#fl)"/>
+      <path d="M385 200 H258" stroke="#6C5CE7" stroke-width="3" fill="none" marker-end="url(#fl)"/>
+      <path d="M135 159 V102" stroke="#6C5CE7" stroke-width="3" fill="none" marker-end="url(#fl)"/>
+    </svg>
+    <figcaption>El feedback no es un evento aislado: es un ciclo que se cierra con un acuerdo y vuelve a empezar.</figcaption>
+  </figure>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>El ciclo completo, en un caso:</strong></p><p>Un analista entrega el documento sin criterios de aceptación <em>(acción)</em>. Lo detectas al revisar el Jira, no por lo que te contó alguien <em>(observación)</em>. Se lo comentas ese mismo día con el documento abierto y le preguntas qué lo frenó <em>(conversación)</em>. Resulta que no sabía qué nivel de detalle esperaba desarrollo, acuerdan una plantilla y la revisan el jueves siguiente <em>(mejora)</em>. Al jueves el documento viene completo y se lo reconoces: el ciclo cerró y arranca otro.</p></div></details>
+  <div class="card">
+    <h3>Para qué sirve dentro de la organización</h3>
+    <ul>
+      <li><strong>Corrige desvíos a tiempo</strong>, antes de que la brecha se vuelva un costo irreparable.</li>
+      <li><strong>Reduce la incertidumbre</strong>: cada quien sabe qué se espera de él y dónde está parado.</li>
+      <li><strong>Previene conflictos</strong>: desactiva rumores y malentendidos antes de que erosionen el ambiente.</li>
+      <li><strong>Eleva la autocompetencia</strong>: reconocer los recursos de alguien fortalece su confianza.</li>
+      <li><strong>Fortalece al equipo</strong>: crea una red donde los pares se sostienen entre sí.</li>
+    </ul>
+  </div>
+
+  <h3>El feedback positivo también se da mal</h3>
+  <p>Casi todo lo que se escribe sobre feedback asume conversación correctiva, y por eso el reconocimiento se entrega en piloto automático. «Buen trabajo» no le sirve a nadie: no dice qué hizo bien, así que la persona no sabe qué repetir. La misma ecuación aplica, solo cambia el signo del impacto.</p>
+  <div class="grid">
+    <div class="card coral"><h4>Reconocimiento vacío</h4><p>«Buen trabajo con el release, eres un crack.»</p><p style="font-size:.9rem;color:var(--tinta-suave)">Se agradece y se olvida en diez minutos. No enseña nada.</p></div>
+    <div class="card menta"><h4>Reconocimiento con datos</h4><p>«En el release del jueves documentaste el rollback antes de subir. Cuando falló el nodo, soporte lo resolvió en 12 minutos sin buscarte. Eso es lo que quiero que hagamos siempre.»</p><p style="font-size:.9rem;color:var(--tinta-suave)">Nombra la conducta, el impacto y la convierte en estándar.</p></div>
+  </div>
+  <div class="card mango">
+    <h4>Tres errores frecuentes al reconocer</h4>
+    <ul>
+      <li><strong>Elogiar el talento y no la conducta.</strong> «Eres brillante» es nivel 3 del iceberg, igual que «eres flojo». Pone presión y no es replicable. Elogia lo que hizo, no lo que es.</li>
+      <li><strong>Reconocer solo el resultado.</strong> Si únicamente celebras cuando salen bien las cosas, enseñas al equipo a esconder los intentos fallidos. Reconoce también el proceso: la prueba que evitó un incidente, la pregunta incómoda que alguien se atrevió a hacer.</li>
+      <li><strong>Guardarlo para la evaluación.</strong> El elogio caduca igual que la corrección.</li>
+    </ul>
+  </div>
+  <div class="cita">Regla práctica: si tu reconocimiento cabe en un sticker, no es feedback. Si menciona qué hizo y qué provocó, sí lo es.</div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Reconocer el proceso, no solo el resultado:</strong></p><p class="buenito">«En la planeación dijiste que no te sentías seguro con la estimación del módulo de pagos y pediste un día para revisarlo. Nos incomodó a todos en el momento, pero evitó que nos comprometiéramos con una fecha imposible. Eso es exactamente lo que necesito que hagan cuando algo no cuadre.»</p><p style="font-size:.9rem;color:var(--tinta-suave)">Nota que aquí no hubo un resultado brillante que celebrar. Se reconoce la conducta que quieres que se repita.</p></div></details>`,
+  practica:{
+    quiz:[{
+      p:"Un líder guarda tres meses de observaciones para soltarlas todas en la evaluación semestral. ¿Qué principio rompe?",
+      o:["La oportunidad: el feedback pierde valor cuando llega tarde",
+         "La confidencialidad",
+         "La escucha activa",
+         "Ninguno, así se documenta mejor"],
+      ok:0,
+      bien:"Así es. Guardado tres meses ya no sirve para corregir nada; solo sirve para justificar una calificación.",
+      mal:"Piensa en el momento: ¿de qué le sirve a alguien enterarse en junio de algo que pudo ajustar en marzo?"
+    },{
+      p:"¿Cuál de estos reconocimientos le enseña algo a la persona?",
+      o:["«Eres el mejor del equipo, no sé qué haríamos sin ti.»",
+         "«Excelente trabajo esta semana.»",
+         "«En la revisión del martes trajiste el análisis de riesgos sin que nadie lo pidiera y eso nos ahorró una vuelta completa con el cliente.»",
+         "«Sigue así, vas muy bien.»"],
+      ok:2,
+      bien:"Nombra la conducta concreta y su efecto. La persona sabe exactamente qué repetir la próxima vez.",
+      mal:"Pregúntate qué podría repetir mañana quien recibe cada frase. Solo una lo dice."
+    }],
+    reescribe:[{
+      malo:"«Buen trabajo con el release, eres un crack.»",
+      guia:"Conviértelo en reconocimiento con datos: qué hizo exactamente y qué provocó. Evita elogiar el talento; elogia la conducta.",
+      sug:"«En el release del jueves dejaste documentado el rollback antes de subir a producción. Cuando falló el nodo, soporte lo ejecutó en 12 minutos sin tener que buscarte de madrugada. Quiero que eso se vuelva el estándar del equipo, ¿te late si lo presentas tú en la próxima retro?»"
+    }]
+  }
+},
+{
+  id:"m2", clave:true, nav:"2 · Psicología", chapa:"2", color:"var(--cielo)",
+  titulo:"Arquitectura psicológica: iceberg y escalera",
+  html:`
+  <h3>2.1 El iceberg del feedback</h3>
+  <p>El error más destructivo es hablar de la identidad de la persona en vez de su conducta. Solo la punta del iceberg es observable; todo lo que está bajo el agua es interpretación tuya.</p>
+  <figure>
+    <svg viewBox="0 0 620 420" role="img" aria-label="Iceberg del feedback: arriba comportamientos observables; bajo el agua actitudes, valores y creencias">
+      <rect x="0" y="150" width="620" height="270" fill="#E2F0FB"/>
+      <path d="M310 20 L410 150 H210 Z" fill="#fff" stroke="#3B9AE1" stroke-width="3"/>
+      <path d="M210 150 L120 400 H500 L410 150 Z" fill="#CFE6F8" stroke="#3B9AE1" stroke-width="3"/>
+      <path d="M0 150 H620" stroke="#3B9AE1" stroke-width="4" stroke-dasharray="12 8"/>
+      <text x="310" y="112" text-anchor="middle" font-size="15" font-weight="bold" fill="#1B2140">Comportamientos</text>
+      <text x="310" y="132" text-anchor="middle" font-size="13" fill="#4A5170">Lo que se ve y se mide</text>
+      <text x="12" y="143" font-size="13" font-weight="bold" fill="#3B9AE1">Aquí sí opera el feedback</text>
+      <text x="12" y="176" font-size="13" font-weight="bold" fill="#F2555A">Línea de flotación</text>
+      <text x="310" y="245" text-anchor="middle" font-size="15" font-weight="bold" fill="#1B2140">Actitudes y percepciones</text>
+      <text x="310" y="266" text-anchor="middle" font-size="12.5" fill="#4A5170">Ánimo, disposición, interpretación</text>
+      <text x="310" y="335" text-anchor="middle" font-size="15" font-weight="bold" fill="#1B2140">Valores y creencias</text>
+      <text x="310" y="356" text-anchor="middle" font-size="12.5" fill="#4A5170">Identidad, historia, moral íntima</text>
+      <text x="310" y="386" text-anchor="middle" font-size="12.5" font-style="italic" fill="#F2555A">Tocar esta zona activa la defensa</text>
+    </svg>
+    <figcaption>Regla de oro: si no lo puedes grabar en video, no es un comportamiento observable.</figcaption>
+  </figure>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><div class="malito"><span class="etq">Así no</span>«Se te nota desconectado del proyecto, como que ya no te late.»</div><div class="buenito"><span class="etq">Así sí</span>«En las últimas dos planeaciones no propusiste ninguna estimación y cuando te pregunté directo dijiste "lo que ustedes decidan".»</div><p style="margin-top:12px;font-size:.9rem;color:var(--tinta-suave)">La segunda frase se puede confirmar o desmentir con la grabación. La primera solo se puede discutir.</p></div></details>
+  <div class="grid">
+    <div class="card coral"><h4>Ataca la identidad</h4><p>«Eres un flojo.» → Nivel 2 y 3. El cerebro entra en defensa y la conversación termina antes de empezar.</p></div>
+    <div class="card menta"><h4>Describe la conducta</h4><p>«He notado que en las últimas tres reuniones llegaste 15 minutos tarde.» → Nivel 1. Un hecho no se discute, se explica.</p></div>
+  </div>
+
+  <h3>2.2 La escalera de inferencia</h3>
+  <p>La mente sube esta escalera en segundos, sin avisar. Prepararse para dar feedback es bajar a propósito hasta el primer escalón.</p>
+  <figure>
+    <svg viewBox="0 0 660 330" role="img" aria-label="Escalera de inferencia de cinco pasos, de la realidad objetiva a las conclusiones">
+      <g font-size="13.5">
+        <rect x="20" y="270" width="330" height="46" rx="12" fill="#DFF6EE" stroke="#12B886" stroke-width="2.5"/>
+        <text x="36" y="292" font-weight="bold" fill="#1B2140">1 · Realidad objetiva</text>
+        <text x="36" y="309" fill="#4A5170">Registro de asistencia de la sesión</text>
+
+        <rect x="80" y="208" width="330" height="46" rx="12" fill="#E2F0FB" stroke="#3B9AE1" stroke-width="2.5"/>
+        <text x="96" y="230" font-weight="bold" fill="#1B2140">2 · Comportamiento observado</text>
+        <text x="96" y="247" fill="#4A5170">No asistió a la sincronización de 9:30</text>
+
+        <rect x="140" y="146" width="340" height="46" rx="12" fill="#FDF0DA" stroke="#F5A524" stroke-width="2.5"/>
+        <text x="156" y="168" font-weight="bold" fill="#1B2140">3 · Emociones e inferencias</text>
+        <text x="156" y="185" fill="#4A5170">Molestia y suposición de mala fe</text>
+
+        <rect x="200" y="84" width="340" height="46" rx="12" fill="#FDE5E6" stroke="#F2555A" stroke-width="2.5"/>
+        <text x="216" y="106" font-weight="bold" fill="#1B2140">4 · Opiniones y juicios</text>
+        <text x="216" y="123" fill="#4A5170">«Seguro se durmió por desinterés»</text>
+
+        <rect x="260" y="22" width="360" height="46" rx="12" fill="#F2555A" stroke="#C7383D" stroke-width="2.5"/>
+        <text x="276" y="44" font-weight="bold" fill="#fff">5 · Conclusiones y creencias</text>
+        <text x="276" y="61" fill="#FFE3E4">«Es mal compañero y no le importa el equipo»</text>
+      </g>
+    </svg>
+    <figcaption>Del escalón 1 al 5 hay dos segundos de distancia mental y una relación laboral de diferencia.</figcaption>
+  </figure>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>La misma situación, subiendo la escalera:</strong></p><ul style="margin:0"><li><strong>1 · Realidad:</strong> el commit tiene fecha del viernes 22:40.</li><li><strong>2 · Conducta:</strong> subió el cambio fuera de horario y sin revisión de nadie.</li><li><strong>3 · Inferencia:</strong> «lo hizo tarde para que nadie lo revisara».</li><li><strong>4 · Juicio:</strong> «se está saltando el proceso a propósito».</li><li><strong>5 · Conclusión:</strong> «no se puede confiar en él».</li></ul><p style="margin-top:12px">Al preguntar en el escalón 2 resulta que soporte le pidió el hotfix a las 22:00 por una caída en producción, y sí avisó: en un canal que tú no sigues. Del escalón 3 en adelante todo era invención.</p></div></details>
+  <div class="card uva">
+    <h3>La parábola del río</h3>
+    <p>Un puente colapsa y Lorena necesita cruzar para ver a su prometido Jorge. El barquero Simbad le pide pasar la noche con él a cambio del viaje. Su amiga Norma le niega ayuda. Lorena acepta, cruza y se lo confiesa a Jorge, que la repudia. Pedro, al enterarse, golpea a Jorge y a Simbad.</p>
+    <p>Cada persona que escucha la historia señala un culpable distinto. Después se sabe que Lorena y Simbad solo cenaron y conversaron, y que Norma era prima de Simbad.</p>
+    <p><strong>La lección:</strong> cuando damos feedback sin verificar hechos, la escalera nos inventa villanos para rellenar los huecos de información.</p>
+  </div>`,
+  practica:{
+    quiz:[{
+      p:"«Se nota que ya no te importa el proyecto.» ¿En qué nivel del iceberg está esta frase?",
+      o:["Nivel 1: comportamiento observable","Nivel 2 y 3: actitud e identidad","Es un hecho, si el equipo lo comenta","Nivel 1, porque describe lo que se ve"],
+      ok:1,
+      bien:"Correcto. «Que te importe» no se observa: se infiere. Es un juicio sobre la actitud disfrazado de observación.",
+      mal:"Pregúntate: ¿podrías grabar en video «que no le importe»? Si no, no es conducta."
+    },{
+      p:"Tu compañero no respondió tu mensaje en dos días. ¿Cuál es el escalón 1 de la escalera?",
+      o:["Está evitando el tema","Me está faltando al respeto","El mensaje del lunes no tiene respuesta hasta hoy","No le interesa el proyecto"],
+      ok:2,
+      bien:"Ese es el dato verificable. Todo lo demás es hipótesis que aún no has comprobado.",
+      mal:"Busca lo que podrías demostrar con una captura de pantalla. Lo demás ya es interpretación."
+    }],
+    reescribe:[{
+      malo:"«Eres un desorganizado, siempre entregas todo al aventón.»",
+      guia:"Bájalo al nivel 1 del iceberg: momento concreto, conducta observable, impacto.",
+      sug:"«En las últimas dos entregas del sprint el documento llegó sin la sección de pruebas [conducta] y QA tuvo que devolverlo dos veces [impacto]. ¿Qué está pasando en tu flujo antes de entregar?»"
+    }]
+  }
+},
+{
+  id:"m3", nav:"3 · Las 4 A's", chapa:"3", color:"var(--coral)",
+  titulo:"El código rector: las 4 A's de Netflix y las reglas de oro",
+  html:`
+  <p>Netflix cambió las evaluaciones anuales —tardías, costosas y desmotivantes— por una cultura continua sostenida en cuatro principios: dos para quien da el feedback y dos para quien lo recibe.</p>
+  <figure>
+    <svg viewBox="0 0 640 340" role="img" aria-label="Las cuatro A's de Netflix: aim to assist, actionable, appreciate, accept or discard">
+      <rect x="14" y="14" width="300" height="140" rx="20" fill="#FDE5E6" stroke="#F2555A" stroke-width="3"/>
+      <text x="34" y="46" font-size="15" font-weight="bold" fill="#F2555A">A1 · Aim to assist</text>
+      <text x="34" y="70" font-size="13.5" fill="#1B2140">Intención de ayudar</text>
+      <text x="34" y="94" font-size="12.5" fill="#4A5170">Con empatía y propósito:</text>
+      <text x="34" y="112" font-size="12.5" fill="#4A5170">explica el beneficio real para</text>
+      <text x="34" y="130" font-size="12.5" fill="#4A5170">la persona o el equipo.</text>
+
+      <rect x="326" y="14" width="300" height="140" rx="20" fill="#FDF0DA" stroke="#F5A524" stroke-width="3"/>
+      <text x="346" y="46" font-size="15" font-weight="bold" fill="#C87F0A">A2 · Actionable</text>
+      <text x="346" y="70" font-size="13.5" fill="#1B2140">Accionable</text>
+      <text x="346" y="94" font-size="12.5" fill="#4A5170">Centrado en qué puede hacer</text>
+      <text x="346" y="112" font-size="12.5" fill="#4A5170">distinto quien lo recibe,</text>
+      <text x="346" y="130" font-size="12.5" fill="#4A5170">a partir de ahora.</text>
+
+      <rect x="14" y="180" width="300" height="140" rx="20" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+      <text x="34" y="212" font-size="15" font-weight="bold" fill="#0E9A72">A3 · Appreciate</text>
+      <text x="34" y="236" font-size="13.5" fill="#1B2140">Apreciar y escuchar</text>
+      <text x="34" y="260" font-size="12.5" fill="#4A5170">Baja el escudo del ego y</text>
+      <text x="34" y="278" font-size="12.5" fill="#4A5170">escucha sin lanzar</text>
+      <text x="34" y="296" font-size="12.5" fill="#4A5170">justificaciones automáticas.</text>
+
+      <rect x="326" y="180" width="300" height="140" rx="20" fill="#EDEAFE" stroke="#6C5CE7" stroke-width="3"/>
+      <text x="346" y="212" font-size="15" font-weight="bold" fill="#5443D6">A4 · Accept or discard</text>
+      <text x="346" y="236" font-size="13.5" fill="#1B2140">Aceptar o descartar</text>
+      <text x="346" y="260" font-size="12.5" fill="#4A5170">Agradeces siempre; la decisión</text>
+      <text x="346" y="278" font-size="12.5" fill="#4A5170">final de aplicarlo es</text>
+      <text x="346" y="296" font-size="12.5" fill="#4A5170">soberanía de quien lo recibe.</text>
+
+      <text x="320" y="172" text-anchor="middle" font-size="12" font-weight="bold" fill="#4A5170">▲ AL DAR · AL RECIBIR ▼</text>
+    </svg>
+  </figure>
+  <div class="grid">
+    <div class="card coral"><h4>Sin las dos primeras A</h4><p>«La forma en que te hurgas los dientes frente a clientes es insoportable.»</p></div>
+    <div class="card menta"><h4>Con intención de ayudar y acción clara</h4><p>«Si evitas limpiarte los dientes frente a clientes externos proyectarás un perfil más profesional y cuidamos la confianza en la cuenta.»</p></div>
+  </div>
+  <div class="tabla-scroll">
+  <table>
+    <thead><tr><th>Sí hacer</th><th>Evitar</th></tr></thead>
+    <tbody>
+      <tr><td>Elogiar en público, corregir en privado</td><td>Corregir en público o exhibir a la persona</td></tr>
+      <tr><td>Darlo de forma inmediata y oportuna</td><td>Postergarlo meses hasta la evaluación</td></tr>
+      <tr><td>Basarse en hechos y datos observables</td><td>Apoyarse en rumores o suposiciones</td></tr>
+      <tr><td>Conversar en dos vías, con escucha activa</td><td>Monologar e imponer sin escuchar</td></tr>
+      <tr><td>Reforzar también fortalezas y aciertos</td><td>Hablar exclusivamente de fallas</td></tr>
+      <tr><td>Decir la verdad aunque incomode</td><td>Dar feedback bajo enojo o desborde emocional</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="cita">Cuidado con el sándwich: si los elogios solo existen para amortiguar el golpe, la persona aprende a desconfiar de cualquier elogio tuyo y el mensaje central se diluye.</div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><div class="malito"><span class="etq">Así no</span>«Oye, qué bien te salió la demo, de verdad. Nada más el tema del ambiente que se cayó, pero bueno. Y en general vas muy bien, eh, muy contento con tu trabajo.»</div><div class="buenito"><span class="etq">Así sí</span>«Quiero comentarte dos cosas de la demo. La primera: el ambiente se cayó a media presentación porque se levantó sin el último despliegue, y el cliente vio el error en pantalla. Necesito que validemos el ambiente una hora antes. La segunda, aparte: la forma en que explicaste el flujo de aprobación fue muy clara, el cliente lo entendió a la primera. Esa parte no la cambies.»</div><p style="margin-top:12px;font-size:.9rem;color:var(--tinta-suave)">En la segunda versión el elogio no amortigua nada: está separado, es específico y se sostiene solo.</p></div></details>`,
+  practica:{
+    quiz:[{
+      p:"Recibes un feedback que te parece injusto. Según las 4 A's, ¿qué haces primero?",
+      o:["Explicar de inmediato por qué está equivocado","Agradecer y escuchar completo antes de decidir qué tomas","Aceptarlo todo para no generar conflicto","Pedir que te lo mande por escrito"],
+      ok:1,
+      bien:"Appreciate primero, decidir después. Escuchar no es aceptar: la decisión de aplicarlo sigue siendo tuya.",
+      mal:"Recuerda el orden: primero bajar el escudo del ego (A3), después decidir qué aplicas (A4)."
+    },{
+      p:"¿Cuál de estos feedbacks cumple con «Actionable»?",
+      o:["«Tus reportes son confusos.»","«Deberías ser más claro comunicando.»","«En el reporte semanal, pon el hallazgo principal en el primer párrafo en lugar de al final.»","«El equipo no entiende lo que escribes.»"],
+      ok:2,
+      bien:"Correcto: dice exactamente qué hacer distinto la próxima vez.",
+      mal:"Accionable significa que la persona sabe qué hacer diferente mañana, no solo qué está mal."
+    }],
+    reescribe:[{
+      malo:"«Tu presentación estuvo mal, se notó que no la preparaste.»",
+      guia:"Aplica A1 y A2: intención de ayudar explícita y una acción concreta para la próxima.",
+      sug:"«En la presentación al comité los datos financieros aparecieron hasta la lámina 12 y el comité tomó la decisión antes de llegar ahí. Si mueves la conclusión y las cifras a las primeras dos láminas, tu propuesta compite mucho mejor. ¿Cómo estructuraste el orden?»"
+    }]
+  }
+},
+{
+  id:"m4", clave:true, nav:"4 · Fórmulas", chapa:"4", color:"var(--mango)",
+  titulo:"Caja de herramientas: ecuación, GROW, MIMO y WRAP",
+  html:`
+  <h3>4.1 La ecuación del feedback</h3>
+  <p>La fórmula universal para abrir una conversación difícil sin que se vuelva personal.</p>
+  <figure>
+    <svg viewBox="0 0 660 150" role="img" aria-label="Ecuación del feedback: situación más comportamiento más impacto más pregunta">
+      <g font-size="13.5" text-anchor="middle">
+        <rect x="10" y="30" width="140" height="72" rx="18" fill="#E2F0FB" stroke="#3B9AE1" stroke-width="3"/>
+        <text x="80" y="60" font-weight="bold" font-size="15" fill="#1B2140">Situación</text>
+        <text x="80" y="82" font-size="12.5" fill="#4A5170">cuándo y dónde</text>
+        <text x="163" y="72" font-size="24" fill="#6C5CE7">+</text>
+        <rect x="178" y="30" width="150" height="72" rx="18" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+        <text x="253" y="60" font-weight="bold" font-size="15" fill="#1B2140">Comportamiento</text>
+        <text x="253" y="82" font-size="12.5" fill="#4A5170">la conducta medible</text>
+        <text x="341" y="72" font-size="24" fill="#6C5CE7">+</text>
+        <rect x="356" y="30" width="140" height="72" rx="18" fill="#FDF0DA" stroke="#F5A524" stroke-width="3"/>
+        <text x="426" y="60" font-weight="bold" font-size="15" fill="#1B2140">Impacto</text>
+        <text x="426" y="82" font-size="12.5" fill="#4A5170">la consecuencia</text>
+        <text x="509" y="72" font-size="24" fill="#6C5CE7">+</text>
+        <rect x="524" y="30" width="126" height="72" rx="18" fill="#EDEAFE" stroke="#6C5CE7" stroke-width="3"/>
+        <text x="587" y="60" font-weight="bold" font-size="15" fill="#1B2140">Pregunta</text>
+        <text x="587" y="82" font-size="12.5" fill="#4A5170">abre el diálogo</text>
+        <text x="330" y="132" font-size="13" font-style="italic" fill="#4A5170">Los tres primeros son datos. El cuarto convierte el monólogo en conversación.</text>
+      </g>
+    </svg>
+  </figure>
+  <div class="card cielo">
+    <p>«El martes durante la entrega del informe final <strong>[situación]</strong>, no se incluyeron las gráficas de soporte financiero <strong>[comportamiento]</strong>, y el comité no pudo aprobar la partida presupuestal <strong>[impacto]</strong>. ¿Cómo viste tú el proceso y qué dificultades encontraste? <strong>[pregunta]</strong>»</p>
+  </div>
+
+  <h3>4.2 Modelo G.R.O.W.</h3>
+  <figure>
+    <svg viewBox="0 0 620 300" role="img" aria-label="Modelo GROW: goal, reality, options, will">
+      <g font-size="13">
+        <circle cx="70" cy="55" r="30" fill="#6C5CE7"/><text x="70" y="63" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">G</text>
+        <text x="120" y="48" font-size="15" font-weight="bold" fill="#1B2140">Goal · Meta</text>
+        <text x="120" y="70" fill="#4A5170">¿Qué resultado o conducta queremos consolidar?</text>
+        <circle cx="70" cy="130" r="30" fill="#3B9AE1"/><text x="70" y="138" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">R</text>
+        <text x="120" y="123" font-size="15" font-weight="bold" fill="#1B2140">Reality · Realidad</text>
+        <text x="120" y="145" fill="#4A5170">¿Qué hechos ocurrieron y a quién impactaron?</text>
+        <circle cx="70" cy="205" r="30" fill="#12B886"/><text x="70" y="213" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">O</text>
+        <text x="120" y="198" font-size="15" font-weight="bold" fill="#1B2140">Options · Opciones</text>
+        <text x="120" y="220" fill="#4A5170">¿Qué caminos existen? Si no hubiera límites, ¿cuál?</text>
+        <circle cx="70" cy="275" r="30" fill="#F5A524"/><text x="70" y="283" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">W</text>
+        <text x="120" y="268" font-size="15" font-weight="bold" fill="#1B2140">Will · Voluntad</text>
+        <text x="120" y="290" fill="#4A5170">¿Cuál eliges, para cuándo y qué apoyo necesitas?</text>
+        <path d="M70 85 V100 M70 160 V175 M70 235 V245" stroke="#DCD8F0" stroke-width="4"/>
+      </g>
+    </svg>
+  </figure>
+  <div class="card mango"><p><strong>Nota crítica:</strong> si en la fase Will no aparece voluntad ni interés, el problema ya no es técnico. Es de motivación, propósito o encaje en el puesto, y se atiende con otra conversación.</p></div>
+
+  <h3>4.3 Método M.I.M.O.</h3>
+  <p>Ideal para retrospectivas y revisiones de proyecto: cuatro cuadrantes, nada más.</p>
+  <figure>
+    <svg viewBox="0 0 560 300" role="img" aria-label="Método MIMO: mantener, incorporar, mejorar, omitir">
+      <rect x="10" y="10" width="265" height="130" rx="18" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+      <text x="30" y="45" font-size="16" font-weight="bold" fill="#0E9A72">M · Mantener</text>
+      <text x="30" y="70" font-size="13" fill="#4A5170">Lo que aporta valor y funciona bien.</text>
+      <text x="30" y="92" font-size="13" fill="#4A5170">Debe seguir tal cual.</text>
+      <rect x="285" y="10" width="265" height="130" rx="18" fill="#E2F0FB" stroke="#3B9AE1" stroke-width="3"/>
+      <text x="305" y="45" font-size="16" font-weight="bold" fill="#2A7CB8">I · Incorporar</text>
+      <text x="305" y="70" font-size="13" fill="#4A5170">Prácticas que faltan y conviene</text>
+      <text x="305" y="92" font-size="13" fill="#4A5170">sumar desde el próximo sprint.</text>
+      <rect x="10" y="155" width="265" height="130" rx="18" fill="#FDF0DA" stroke="#F5A524" stroke-width="3"/>
+      <text x="30" y="190" font-size="16" font-weight="bold" fill="#C87F0A">M · Mejorar</text>
+      <text x="30" y="215" font-size="13" fill="#4A5170">Cosas valiosas que necesitan</text>
+      <text x="30" y="237" font-size="13" fill="#4A5170">calibrarse en calidad o frecuencia.</text>
+      <rect x="285" y="155" width="265" height="130" rx="18" fill="#FDE5E6" stroke="#F2555A" stroke-width="3"/>
+      <text x="305" y="190" font-size="16" font-weight="bold" fill="#D33F44">O · Omitir</text>
+      <text x="305" y="215" font-size="13" fill="#4A5170">Hábitos que restan tiempo,</text>
+      <text x="305" y="237" font-size="13" fill="#4A5170">duplican trabajo o dañan el clima.</text>
+    </svg>
+  </figure>
+
+  
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>M.I.M.O. aplicado a una retro real de sprint:</strong></p><ul style="margin:0"><li><strong>Mantener:</strong> la revisión de criterios de aceptación antes de estimar; nos evitó dos retrabajos.</li><li><strong>Incorporar:</strong> un punto de control a media semana con el equipo de datos, que siempre nos bloquea al final.</li><li><strong>Mejorar:</strong> la daily, que se está yendo a 40 minutos porque resolvemos bloqueos ahí mismo.</li><li><strong>Omitir:</strong> el reporte de avance en Excel que nadie abre desde que existe el tablero.</li></ul></div></details>
+  <h3>4.4 Feedback WRAP (Management 3.0)</h3>
+  <ol>
+    <li><strong>Describe el contexto:</strong> dónde y cuándo ocurrió.</li>
+    <li><strong>Lista observaciones:</strong> solo hechos, sin adjetivos calificativos.</li>
+    <li><strong>Expresa el sentimiento en primera persona:</strong> «me generó incertidumbre…».</li>
+    <li><strong>Explica el valor:</strong> por qué importa corregirlo para el cliente o el equipo.</li>
+    <li><strong>Ofrece sugerencias:</strong> vías posibles, sin imponer una solución única.</li>
+  </ol>
+
+  
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Los cinco pasos de WRAP, seguidos:</strong></p><p class="buenito">«En la sesión de definición del módulo de reportes del martes <em>(1 contexto)</em>, se cambió el alcance dos veces durante la misma reunión y salimos sin una versión acordada <em>(2 observaciones)</em>. Me quedé preocupado, porque es la tercera sesión sobre el mismo tema <em>(3 sentimiento)</em>. Si no cerramos alcance esta semana, desarrollo arranca a ciegas y el riesgo lo paga la fecha del cliente <em>(4 valor)</em>. Se me ocurre que congelemos la versión de hoy y lo que salga nuevo entre como cambio formal, o que hagamos una sesión final solo tú, el PO y yo. ¿Cuál te acomoda? <em>(5 sugerencias)</em>»</p></div></details>
+  <h3>4.5 Start, Stop, Continue</h3>
+  <div class="grid">
+    <div class="card menta"><h4>Start</h4><p>Conductas nuevas que convendría iniciar.</p></div>
+    <div class="card coral"><h4>Stop</h4><p>Acciones observables que estorban y deben cesar.</p></div>
+    <div class="card cielo"><h4>Continue</h4><p>Prácticas sobresalientes que hay que preservar como estándar.</p></div>
+  </div>`,
+  practica:{
+    flip:[
+      {f:"Ecuación del feedback",p:"¿Sus 4 partes?",r:"Situación + Comportamiento + Impacto + Pregunta abierta."},
+      {f:"G.R.O.W.",p:"¿Qué significa cada letra?",r:"Goal (meta), Reality (hechos), Options (alternativas), Will (compromiso)."},
+      {f:"M.I.M.O.",p:"¿Los 4 cuadrantes?",r:"Mantener, Incorporar, Mejorar, Omitir."},
+      {f:"WRAP",p:"¿Sus 5 pasos?",r:"Contexto, observaciones, sentimientos, valor y sugerencias."}
+    ],
+    quiz:[{
+      p:"En una retro alguien dice: «las dailies se alargan a 40 minutos porque resolvemos ahí los bloqueos». ¿En qué cuadrante MIMO cae la acción de sacar los bloqueos a otra sesión?",
+      o:["Mantener","Incorporar","Mejorar","Omitir"],
+      ok:2,
+      bien:"La daily aporta valor, solo hay que calibrarla. Mejorar es ajustar algo valioso, no eliminarlo.",
+      mal:"La daily sí sirve; lo que falla es su duración. Omitir sería cancelarla, y no es eso lo que pide el caso."
+    },{
+      p:"En una sesión GROW la persona no propone ninguna acción y dice que le da igual. ¿Qué señala eso?",
+      o:["Que faltó claridad en la fase Reality","Que el problema es de motivación o encaje, no técnico","Que hay que imponerle un plan","Que el modelo GROW no aplica a su rol"],
+      ok:1,
+      bien:"Exacto. Sin voluntad, ninguna herramienta de conversación resuelve; toca otra conversación distinta.",
+      mal:"Cuando falla la W, ya no estás ante un problema de método sino de motivación, propósito o encaje."
+    }],
+    reescribe:[{
+      malo:"«Otra vez llegaste tarde a la daily, ya es costumbre.»",
+      guia:"Arma la ecuación completa, incluida la pregunta final.",
+      sug:"«En las sesiones de esta semana, que arrancan 9:30 [situación], has entrado pasadas las 9:45 [comportamiento], y eso retrasa el arranque de los cuatro integrantes del equipo [impacto]. ¿Hay algo en tu rutina matutina que esté complicando esa hora? [pregunta]»"
+    }]
+  }
+},
+{
+  id:"m5", nav:"5 · Estilos", chapa:"5", color:"var(--uva)",
+  titulo:"Taxonomía visual de estilos de feedback",
+  html:`
+  <p>Inspirada en la tipología de Liz Fosslien: seis maneras de servir el mismo mensaje. Ninguna es mala en abstracto; lo que falla es usar la equivocada para la situación.</p>
+  <figure>
+    <svg viewBox="0 0 660 250" role="img" aria-label="Seis estilos de feedback representados como galletas">
+      <g>
+        <circle cx="90" cy="70" r="42" fill="#3B2A1E"/><rect x="52" y="60" width="76" height="20" fill="#fff"/>
+        <text x="90" y="132" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B2140">Oreo</text>
+        <text x="90" y="150" text-anchor="middle" font-size="11.5" fill="#4A5170">sándwich</text>
+
+        <circle cx="240" cy="70" r="42" fill="#F7C6D9"/><rect x="198" y="62" width="84" height="16" fill="#fff"/>
+        <text x="240" y="132" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B2140">Macaron</text>
+        <text x="240" y="150" text-anchor="middle" font-size="11.5" fill="#4A5170">sutil</text>
+
+        <circle cx="390" cy="70" r="42" fill="#1B2140"/><path d="M390 28a42 42 0 0 1 0 84z" fill="#fff"/>
+        <text x="390" y="132" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B2140">Black + White</text>
+        <text x="390" y="150" text-anchor="middle" font-size="11.5" fill="#4A5170">directo</text>
+
+        <circle cx="90" cy="192" r="34" fill="#D9A566"/><circle cx="76" cy="182" r="5" fill="#5A3A1E"/><circle cx="100" cy="196" r="5" fill="#5A3A1E"/><circle cx="88" cy="176" r="4" fill="#5A3A1E"/>
+        <text x="175" y="182" font-size="14" font-weight="bold" fill="#1B2140">Oatmeal Raisin</text>
+        <text x="175" y="200" font-size="11.5" fill="#4A5170">equilibrado</text>
+
+        <circle cx="330" cy="192" r="34" fill="#F7E7A1"/><circle cx="318" cy="184" r="3.5" fill="#F2555A"/><circle cx="342" cy="196" r="3.5" fill="#12B886"/><circle cx="330" cy="204" r="3.5" fill="#6C5CE7"/>
+        <text x="376" y="182" font-size="14" font-weight="bold" fill="#1B2140">Sugar Cookie</text>
+        <text x="376" y="200" font-size="11.5" fill="#4A5170">complaciente</text>
+
+        <circle cx="558" cy="192" r="34" fill="#EFE3CE" stroke="#C9B79A" stroke-width="2"/>
+        <text x="600" y="182" font-size="14" font-weight="bold" fill="#1B2140">Dough</text>
+        <text x="600" y="200" font-size="11.5" fill="#4A5170">crudo</text>
+      </g>
+    </svg>
+  </figure>
+  <div class="grid">
+    <div class="card"><h4>Oreo</h4><p>Positivo, correctivo, positivo. Útil con perfiles nuevos o sensibles. Riesgo: si abusas, el elogio se lee como pretexto y el mensaje se pierde.</p></div>
+    <div class="card"><h4>Macaron</h4><p>Diplomático y elegante alrededor de un ajuste diminuto. Perfecto para detalles de forma o protocolo.</p></div>
+    <div class="card"><h4>Black + White</h4><p>Quirúrgico y conciso. Muy eficaz en crisis y entre perfiles sénior que valoran el tiempo.</p></div>
+    <div class="card"><h4>Oatmeal Raisin</h4><p>Base honesta y productiva, con correcciones repartidas de forma natural en toda la conversación.</p></div>
+    <div class="card coral"><h4>Sugar Cookie</h4><p>Puro azúcar. Por miedo a incomodar se oculta la verdad y la persona se queda sin guía. Amable por fuera, inútil por dentro.</p></div>
+    <div class="card coral"><h4>Dough</h4><p>Crudo, impulsivo, sin procesar. Destruye la seguridad psicológica y activa la respuesta de huida o ataque.</p></div>
+  </div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>El mismo mensaje en cuatro estilos.</strong> Situación: un tester dejó pasar un caso de borde que llegó a producción.</p><ul style="margin:0"><li><strong>Black + White:</strong> «El caso de saldo negativo no estaba en el plan de pruebas y llegó a producción. Necesito que lo agreguemos hoy a la suite de regresión.»</li><li><strong>Oreo:</strong> «Tu cobertura de los flujos principales estuvo muy completa. El caso de saldo negativo se nos fue y llegó a producción, hay que sumarlo a regresión. En general el plan tiene mucho mejor estructura que el del sprint pasado.»</li><li><strong>Sugar Cookie:</strong> «Nada, todo bien, cosas que pasan, ni te preocupes.» <em>(el tester nunca se entera de qué corregir)</em></li><li><strong>Dough:</strong> «¿Cómo se te fue algo tan obvio?» <em>(la próxima vez oculta el hallazgo)</em></li></ul></div></details>`,
+  practica:{
+    quiz:[{
+      p:"Producción caída, el líder técnico necesita corregir un procedimiento en plena crisis. ¿Qué estilo pide la situación?",
+      o:["Oreo","Sugar Cookie","Black + White","Dough"],
+      ok:2,
+      bien:"En crisis, rodeos cuestan minutos de indisponibilidad. Directo, concreto y respetuoso.",
+      mal:"En una caída no hay tiempo para envolver el mensaje; tampoco para soltarlo sin filtro."
+    },{
+      p:"«Todo excelente, de verdad, muy bien, tal vez algún detallito por ahí pero nada.» ¿Qué estilo es?",
+      o:["Macaron: sutil y preciso","Sugar Cookie: dulce y sin sustancia","Oatmeal Raisin","Black + White"],
+      ok:1,
+      bien:"Sugar Cookie. No miente por maldad, pero deja a la persona sin nada accionable.",
+      mal:"El Macaron sí nombra el detalle a pulir, aunque con delicadeza. Aquí no se nombra nada."
+    }]
+  }
+},
+{
+  id:"m17", clave:true, nav:"6 · Radical Candor", chapa:"6", color:"var(--coral)",
+  titulo:"Radical Candor: el marco que ordena todo lo demás",
+  html:`
+  <p>Kim Scott escribió <em>Radical Candor</em> después de dirigir equipos en Google y Apple, y su aporte es simple: casi todos los errores al dar feedback vienen de fallar en uno de dos ejes independientes. <strong>Preocuparte personalmente</strong> por la persona y <strong>confrontar directamente</strong> el problema. Cuando fallas en uno, caes en un cuadrante con nombre propio.</p>
+  <figure>
+    <svg viewBox="0 0 520 500" role="img" aria-label="Matriz de Radical Candor con sus cuatro cuadrantes">
+      <rect x="60" y="40" width="200" height="200" rx="14" fill="#FDF0DA" stroke="#F5A524" stroke-width="3"/>
+      <text x="160" y="118" text-anchor="middle" font-size="15" font-weight="bold" fill="#C87F0A">Empatía ruinosa</text>
+      <text x="160" y="146" text-anchor="middle" font-size="12.5" fill="#4A5170">Te importa la persona</text>
+      <text x="160" y="164" text-anchor="middle" font-size="12.5" fill="#4A5170">pero no dices la verdad</text>
+      <text x="160" y="192" text-anchor="middle" font-size="12" font-style="italic" fill="#4A5170">«No quiero que se sienta mal»</text>
+
+      <rect x="264" y="40" width="200" height="200" rx="14" fill="#DFF6EE" stroke="#12B886" stroke-width="4"/>
+      <text x="364" y="112" text-anchor="middle" font-size="16" font-weight="bold" fill="#0E9A72">Franqueza radical</text>
+      <text x="364" y="142" text-anchor="middle" font-size="12.5" fill="#4A5170">Te importa la persona</text>
+      <text x="364" y="160" text-anchor="middle" font-size="12.5" fill="#4A5170">y le dices la verdad</text>
+      <text x="364" y="190" text-anchor="middle" font-size="12" font-style="italic" fill="#4A5170">Aquí quieres estar</text>
+
+      <rect x="60" y="244" width="200" height="200" rx="14" fill="#EDEAFE" stroke="#6C5CE7" stroke-width="3"/>
+      <text x="160" y="316" text-anchor="middle" font-size="15" font-weight="bold" fill="#5443D6">Insinceridad</text>
+      <text x="160" y="336" text-anchor="middle" font-size="15" font-weight="bold" fill="#5443D6">manipuladora</text>
+      <text x="160" y="364" text-anchor="middle" font-size="12.5" fill="#4A5170">Ni te importa</text>
+      <text x="160" y="382" text-anchor="middle" font-size="12.5" fill="#4A5170">ni confrontas</text>
+      <text x="160" y="410" text-anchor="middle" font-size="12" font-style="italic" fill="#4A5170">Política y grilla</text>
+
+      <rect x="264" y="244" width="200" height="200" rx="14" fill="#FDE5E6" stroke="#F2555A" stroke-width="3"/>
+      <text x="364" y="316" text-anchor="middle" font-size="15" font-weight="bold" fill="#D33F44">Agresividad</text>
+      <text x="364" y="336" text-anchor="middle" font-size="15" font-weight="bold" fill="#D33F44">molesta</text>
+      <text x="364" y="364" text-anchor="middle" font-size="12.5" fill="#4A5170">Confrontas de frente</text>
+      <text x="364" y="382" text-anchor="middle" font-size="12.5" fill="#4A5170">pero sin cuidar a nadie</text>
+      <text x="364" y="410" text-anchor="middle" font-size="12" font-style="italic" fill="#4A5170">«Es que soy muy directo»</text>
+
+      <path d="M262 462 V26" stroke="#1B2140" stroke-width="2.5"/>
+      <path d="M46 242 H478" stroke="#1B2140" stroke-width="2.5"/>
+      <text x="262" y="18" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B2140">Me importa la persona ↑</text>
+      <text x="262" y="484" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B2140">↓ No me importa</text>
+      <text x="486" y="238" text-anchor="end" font-size="13" font-weight="bold" fill="#1B2140">Confronto directo →</text>
+      <text x="46" y="238" font-size="13" font-weight="bold" fill="#1B2140">← No confronto</text>
+    </svg>
+    <figcaption>Los dos ejes son independientes: cuidar a alguien no te obliga a callarte, y ser directo no te obliga a ser cruel.</figcaption>
+  </figure>
+
+  <h3>El cuadrante que más daño hace no es el que crees</h3>
+  <p>La intuición dice que el peligro está en la agresividad. Scott sostiene lo contrario: el error más frecuente y más costoso en líderes es la <strong>empatía ruinosa</strong>, porque se siente amable mientras ocurre. Callas para no incomodar, la persona no se entera de nada, y meses después la conversación que tienes que tener ya no es de feedback sino de despido o de salida del proyecto.</p>
+  <div class="card mango">
+    <p>Es exactamente el <strong>Sugar Cookie</strong> del módulo 5, visto desde arriba: puro azúcar, cero sustancia. Con un nombre que deja claro a quién le hace daño. No es amabilidad, es dejar a alguien sin la información que necesitaba para corregir a tiempo.</p>
+  </div>
+  <div class="card coral">
+    <h4>Y la trampa contraria</h4>
+    <p>«Es que yo soy muy directo» es la coartada favorita de la agresividad molesta. Ser directo es la mitad del marco, no el marco completo. Si la otra persona no percibe que te importa, la franqueza no se recibe como ayuda sino como golpe, y el eje horizontal solo cuenta si el vertical existe.</p>
+  </div>
+
+  <h3>Tres ideas prácticas del libro</h3>
+  <div class="grid">
+    <div class="card menta">
+      <h4>Pide antes de dar</h4>
+      <p>Si eres el líder, el orden importa: primero pide feedback sobre ti, después dalo. Pedirlo demuestra que el riesgo es compartido y que aguantas la respuesta. Dar sin haber pedido nunca instala una cultura, instala una jerarquía.</p>
+    </div>
+    <div class="card cielo">
+      <h4>Se mide en el oído, no en la boca</h4>
+      <p>La franqueza radical no es una cualidad de lo que dijiste sino de cómo se recibió. Si la persona salió sintiéndose atacada, fue agresividad molesta aunque tu intención fuera otra. La intención no califica: califica el efecto.</p>
+    </div>
+    <div class="card uva">
+      <h4>Humilde, útil, inmediato, en persona</h4>
+      <p>Humilde porque puedes estar equivocado, útil porque debe servirle a quien lo recibe, inmediato porque caduca, y en persona: la crítica en privado, el reconocimiento en público.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h4>Cómo entrar al cuadrante correcto</h4>
+    <p>Los dos ejes se construyen con acciones distintas y no se sustituyen entre sí:</p>
+    <ul>
+      <li><strong>Para el eje vertical (me importa):</strong> conoce qué quiere la persona a dos años, no solo este sprint. Pregunta por lo que le cuesta. Reconoce en público. Que exista relación antes de que exista la corrección.</li>
+      <li><strong>Para el eje horizontal (confronto):</strong> di la cosa incómoda en la primera oportunidad, en dos o tres frases, sin preámbulo de tres minutos. El preámbulo largo es la señal de que estás resbalando hacia la empatía ruinosa.</li>
+    </ul>
+    <p>Si eres jefe y sientes que estás siendo demasiado duro, Scott apunta que casi siempre estás en el punto correcto y a la otra persona le llega más suave de lo que crees, porque tu posición amortigua menos de lo que imaginas.</p>
+  </div>
+  <div class="cita">Tu obligación con quien trabaja contigo no es que se sienta cómodo hoy. Es que dentro de un año siga siendo empleable, y que la información que necesitaba para lograrlo le haya llegado a tiempo.</div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>La misma situación en los cuatro cuadrantes.</strong> Un desarrollador presenta soluciones técnicamente correctas pero nunca las explica en términos de negocio, y por eso el comité le rechaza las propuestas.</p><ul style="margin:0"><li><strong>Empatía ruinosa:</strong> «No te preocupes, el comité a veces es así.» <em>(nunca se entera de qué depende su promoción)</em></li><li><strong>Agresividad molesta:</strong> «Es que no sabes vender nada, así nunca te van a aprobar algo.»</li><li><strong>Insinceridad manipuladora:</strong> le dices que estuvo bien, y aparte comentas con otro líder que no da para el siguiente nivel.</li><li><strong>Franqueza radical:</strong> «Tu propuesta era la técnicamente más sólida de las tres y aun así se rechazó. Lo que vi es que dedicaste ocho de diez láminas a la arquitectura y ninguna al costo o al riesgo, y eso es lo único que el comité está evaluando. Te lo digo porque es lo que te está frenando para llevar iniciativas tú solo, y quiero que las lleves. ¿Le entramos juntos a rearmar la de la próxima quincena?»</li></ul></div></details>`,
+  practica:{
+    flip:[
+      {f:"Los dos ejes",p:"¿Cuáles son?",r:"Me importa personalmente (vertical) y confronto directamente (horizontal). Independientes entre sí."},
+      {f:"Empatía ruinosa",p:"¿Qué es y por qué es la más común?",r:"Te importa la persona pero callas la verdad. Se siente amable mientras ocurre, y por eso es el error más frecuente en líderes."},
+      {f:"Agresividad molesta",p:"¿Cuál es su coartada típica?",r:"«Es que yo soy muy directo.» Confrontas sin que la persona perciba que te importa."},
+      {f:"¿Dónde se mide?",p:"¿En quién se califica la franqueza radical?",r:"En el oído de quien escucha, no en la boca de quien habla. La intención no califica; el efecto sí."}
+    ],
+    quiz:[{
+      p:"Un líder evita decirle a su analista que su documentación no sirve, porque «acaba de entrar y no lo quiero desanimar». Seis meses después no lo puede promover. ¿En qué cuadrante estuvo?",
+      o:["Franqueza radical","Empatía ruinosa","Agresividad molesta","Insinceridad manipuladora"],
+      ok:1,
+      bien:"Le importaba la persona y por eso mismo calló. El resultado es que le quitó seis meses de oportunidad de mejorar.",
+      mal:"Fíjate en los dos ejes por separado: sí le importaba la persona, lo que faltó fue confrontar."
+    },{
+      p:"«Te lo digo sin filtros porque así soy yo: ese diseño es un desastre.» ¿Qué falta?",
+      o:["Nada, es franqueza radical","Falta el eje de confrontar","Falta el eje de que la persona perciba que te importa","Falta que sea por escrito"],
+      ok:2,
+      bien:"Confrontar sin cuidar es agresividad molesta. Ser directo es la mitad del marco, no el marco completo.",
+      mal:"Confrontar sí está, y de sobra. Revisa el eje vertical."
+    },{
+      p:"Diste un feedback con buena intención y la persona salió sintiéndose atacada. Según Scott, ¿qué fue?",
+      o:["Franqueza radical, porque tu intención era ayudar","Agresividad molesta, porque se mide en el oído de quien escucha","Empatía ruinosa","Depende de si tenías razón en el contenido"],
+      ok:1,
+      bien:"El marco se califica por el efecto, no por la intención. Es incómodo y es justo el punto del libro.",
+      mal:"La intención no entra en la medición. Lo que cuenta es cómo se recibió."
+    },{
+      p:"Eres nuevo liderando un equipo y quieres instalar cultura de feedback. ¿Por dónde empiezas?",
+      o:["Dando feedback a cada quien en su uno a uno","Pidiendo feedback sobre ti y demostrando que aguantas la respuesta","Capacitando al equipo en las fórmulas","Anunciando la nueva política en la daily"],
+      ok:1,
+      bien:"Pedir primero reparte el riesgo y demuestra con hechos que la conversación es de dos vías.",
+      mal:"Dar primero, sin haber pedido nunca, instala jerarquía y no cultura. El orden es parte del método."
+    }],
+    reescribe:[{
+      titulo:"Ejercicio · salir de la empatía ruinosa",
+      malo:"Llevas dos meses sin decirle a un analista que sus documentos llegan sin criterios de aceptación. Cuando por fin lo tocas dices: «oye, no es nada grave, de verdad, vas muy bien, nada más un detallito chiquito si tienes chance, cuando puedas, de los criterios esos, pero de verdad no es urgente ni nada».",
+      guia:"Mantén el eje de que te importa, pero confronta de verdad: quita el preámbulo, di la cosa en dos frases y liga el impacto al futuro de la persona, no solo al del proyecto.",
+      sug:"«Quiero decirte algo que debí decirte hace dos meses y es mi responsabilidad no haberlo hecho antes. Los documentos que has entregado llegan sin criterios de aceptación, y desarrollo termina completándolos a su criterio: eso ya nos costó dos retrabajos. Te lo digo porque es justo lo que te va a frenar para tomar análisis más grandes, y quiero que los tomes. ¿Qué necesitas para incluirlos, es tema de tiempo o de formato?»"
+    }]
+  }
+},
+{
+  id:"m18", nav:"7 · Preparar", chapa:"7", color:"var(--menta)", clave:true,
+  titulo:"Preparar a la persona antes de darle feedback",
+  html:`
+  <p>Casi todo el material de feedback te prepara a ti: revisa tus hechos, checa tu enojo, arma tu ecuación. Casi ninguno prepara a la otra persona, y ahí se pierden la mitad de las conversaciones. Alguien que entra sin saber de qué se trata entra a la defensiva por default, y ya empezaste perdiendo.</p>
+  <p>Preparar a la persona no es suavizar el mensaje. Es quitarle a su cerebro las tres preguntas que lo tienen en alerta —<em>¿de qué se trata?, ¿qué tan grave es?, ¿esto va a terminar mal?</em>— para que llegue con capacidad de escuchar.</p>
+  <figure>
+    <svg viewBox="0 0 640 200" role="img" aria-label="Tres momentos de preparación: el aviso, el arranque y el encuadre">
+      <rect x="12" y="30" width="196" height="140" rx="20" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+      <text x="110" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#0E9A72">Antes · el aviso</text>
+      <text x="110" y="92" text-anchor="middle" font-size="12.5" fill="#4A5170">Tema, duración y tono.</text>
+      <text x="110" y="112" text-anchor="middle" font-size="12.5" fill="#4A5170">Ni misterio ni</text>
+      <text x="110" y="132" text-anchor="middle" font-size="12.5" fill="#4A5170">«ahorita te digo».</text>
+      <rect x="222" y="30" width="196" height="140" rx="20" fill="#E2F0FB" stroke="#3B9AE1" stroke-width="3"/>
+      <text x="320" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#2A7CB8">Al abrir · el encuadre</text>
+      <text x="320" y="92" text-anchor="middle" font-size="12.5" fill="#4A5170">Para qué estamos aquí,</text>
+      <text x="320" y="112" text-anchor="middle" font-size="12.5" fill="#4A5170">qué NO es esta</text>
+      <text x="320" y="132" text-anchor="middle" font-size="12.5" fill="#4A5170">conversación.</text>
+      <rect x="432" y="30" width="196" height="140" rx="20" fill="#FDF0DA" stroke="#F5A524" stroke-width="3"/>
+      <text x="530" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#C87F0A">Durante · el permiso</text>
+      <text x="530" y="92" text-anchor="middle" font-size="12.5" fill="#4A5170">Preguntar si es buen</text>
+      <text x="530" y="112" text-anchor="middle" font-size="12.5" fill="#4A5170">momento y aceptar</text>
+      <text x="530" y="132" text-anchor="middle" font-size="12.5" fill="#4A5170">que la respuesta sea no.</text>
+    </svg>
+  </figure>
+
+  <h3>1 · El aviso: qué decir al agendar</h3>
+  <p>Una invitación de calendario que dice «Reunión» sin más, mandada a las 7 de la noche para el día siguiente, garantiza que la persona llegue con lo peor imaginado. El aviso lleva tres datos: <strong>de qué tema</strong>, <strong>cuánto va a durar</strong> y <strong>qué tipo de conversación es</strong>.</p>
+  <div class="grid">
+    <div class="card coral"><h4>Aviso que dispara alarmas</h4><p>«Necesito hablar contigo.» / «Mañana platicamos, hay un tema.» / Invitación sin título a las 9 de la noche.</p></div>
+    <div class="card menta"><h4>Aviso que prepara</h4><p>«Quiero platicar 20 minutos sobre cómo salió la entrega del módulo de reportes, para ver qué ajustamos entre los dos. Nada grave, pero sí quiero que lo veamos bien. ¿Te late mañana a las 10?»</p></div>
+  </div>
+  <div class="card mango">
+    <h4>Cuánta anticipación</h4>
+    <p>Suficiente para que llegue pensando, no tanta como para que llegue angustiado. Un par de horas o el día anterior funciona. Avisar el viernes algo que se hablará el lunes le arruina el fin de semana a alguien por nada.</p>
+    <p>Y si el tema es serio, dilo en el aviso. «Quiero hablar del incidente del jueves» es más humano que un misterio de doce horas, aunque suene más incómodo de escribir.</p>
+  </div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Tres avisos para el mismo tema</strong> (un analista entregó tarde y el cliente lo notó):</p><p class="malito"><span class="etq">Emboscada</span>Invitación de calendario: «Seguimiento». Sin descripción, mandada a las 22:10 para las 8:30 del día siguiente.</p><p class="malito"><span class="etq">Falso alivio</span>«Nada importante, cosita de nada, luego te cuento.» <em>Después resulta que sí era importante, y la persona aprende que tus avisos no significan nada.</em></p><p class="buenito"><span class="etq">Preparado</span>«¿Tienes 20 minutos mañana a las 10? Quiero que veamos lo de la entrega del martes y cómo lo comentó el cliente, para acordar qué hacemos distinto. Va en serio pero no es un tema de expediente; quiero escuchar tu versión también.»</p></div></details>
+
+  <h3>2 · El encuadre: los primeros treinta segundos</h3>
+  <p>El arranque define en qué modo escucha la persona el resto de la conversación. Un buen encuadre dice tres cosas: <strong>cuál es tu intención</strong>, <strong>qué no es esta conversación</strong> y <strong>que esperas que sea de dos vías</strong>.</p>
+  <div class="card cielo">
+    <p class="buenito">«Te pedí estos 20 minutos porque quiero que revisemos juntos cómo salió la entrega. Mi intención es que salgamos con un acuerdo, no que te lleves un regaño: esto no es una evaluación ni va a ningún expediente. Te voy a contar qué vi yo, y quiero escuchar qué viste tú, porque seguro hay contexto que no tengo.»</p>
+  </div>
+  <div class="card">
+    <h4>Lo que hace cada pieza</h4>
+    <ul>
+      <li><strong>Nombrar la intención</strong> responde «¿esto va a terminar mal?». Es la pregunta que más ruido hace.</li>
+      <li><strong>Decir qué no es</strong> desactiva la fantasía. Si de verdad no es un tema de expediente, dilo. Si sí lo es, no mientas: dilo también, y con eso la persona sabe dónde está parada.</li>
+      <li><strong>Anunciar que quieres escuchar</strong> cambia el modo de la persona de defensa a aportación, porque le das un papel activo desde el minuto cero.</li>
+    </ul>
+  </div>
+
+  <h3>3 · El permiso: preguntar si es buen momento</h3>
+  <p>Es el paso que más se salta y el más barato. «¿Es buen momento?» o «¿te puedo comentar algo del proceso?» tarda tres segundos y cambia la conversación de imposición a acuerdo. Si la respuesta es que no, respétala y agenda: alguien que acaba de salir de una junta pesada o que está resolviendo un incidente no va a procesar nada.</p>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Pedir permiso, y qué hacer si dicen que no:</strong></p><p class="buenito">«¿Tienes cabeza ahorita para algo de la planeación, o mejor lo vemos más tarde?»</p><p>— «La verdad ando resolviendo la caída de producción.»</p><p class="buenito">«Va, entonces lo dejamos. ¿Te agendo 15 minutos mañana a las 11?»</p><p style="margin-top:12px;font-size:.9rem;color:var(--tinta-suave)">Dos cosas importan aquí: que aceptes el no sin insistir, y que agendes en ese momento en vez de decir «luego lo vemos». El «luego» es como mueren la mitad de las conversaciones necesarias.</p></div></details>
+  <div class="card coral">
+    <h4>Preparar el terreno de forma continua</h4>
+    <p>La preparación más efectiva no ocurre el día de la conversación sino en los meses anteriores. Si alguien ya sabe que hablas de trabajo con normalidad, que también reconoces lo que sale bien y que nunca lo has exhibido, llega a la conversación difícil con confianza acumulada.</p>
+    <p>Si en cambio la única vez que lo buscas es cuando algo salió mal, tu nombre en el calendario ya es una mala noticia por sí solo, digas lo que digas en el aviso. Los uno a uno regulares, cortos y aburridos son la mejor preparación posible para el día que haya algo serio que decir.</p>
+  </div>
+
+  <h3>Preparar cuando el feedback viene de otros</h3>
+  <div class="card uva">
+    <p>Si vas a transmitir feedback recogido del equipo o del cliente, la persona necesita saber de entrada de dónde viene y con qué alcance, o se pasará la conversación tratando de adivinar quién dijo qué.</p>
+    <p class="buenito">«Esto sale de la retro y del comentario del cliente en la demo, y lo traigo yo porque me toca a mí. No vengo a decirte quién dijo qué; vengo a que veamos el patrón y qué hacemos con él.»</p>
+  </div>
+  <div class="cita">Una persona preparada escucha el contenido. Una persona emboscada escucha la amenaza, y ya no hay contenido que valga.</div>`,
+  practica:{
+    quiz:[{
+      p:"Son las 8 de la noche. Quieres hablar mañana de un tema serio. ¿Qué mandas?",
+      o:["Una invitación titulada «Reunión» sin descripción",
+         "Un mensaje que diga «mañana platicamos, hay un tema»",
+         "Una invitación que diga de qué tema es, cuánto dura y de qué tipo de conversación se trata",
+         "Nada, se lo dices llegando en la mañana"],
+      ok:2,
+      bien:"Los tres datos quitan las preguntas que mantienen a la persona en alerta toda la noche.",
+      mal:"El misterio no protege a nadie: hace que la persona llegue con lo peor imaginado y a la defensiva."
+    },{
+      p:"¿Cuál es la mejor preparación posible para una conversación difícil?",
+      o:["Un aviso muy bien redactado el día anterior",
+         "Meses de uno a uno regulares donde también se habla de lo que sale bien",
+         "Llevar el feedback por escrito",
+         "Tener a un tercero presente"],
+      ok:1,
+      bien:"Si tu nombre en el calendario solo aparece cuando algo salió mal, ningún aviso alcanza a compensarlo.",
+      mal:"El aviso ayuda, pero la confianza acumulada es lo que hace que la persona escuche en vez de defenderse."
+    },{
+      p:"Abres la conversación y dices: «esto no es un regaño ni va a ningún expediente». Pero sí es un tema que vas a documentar. ¿Qué haces?",
+      o:["Lo dices así de todos modos, para bajarle tensión",
+         "No dices nada sobre el alcance",
+         "Dices la verdad: que es un tema que sí vas a documentar y por qué",
+         "Lo documentas sin avisar"],
+      ok:2,
+      bien:"El encuadre solo sirve si es cierto. Mentir sobre el alcance destruye la confianza en cuanto se descubre, y siempre se descubre.",
+      mal:"Un encuadre falso es peor que ninguno: la persona se entera después y aprende que tus conversaciones tienen letra chica."
+    }],
+    reescribe:[{
+      titulo:"Ejercicio · el aviso",
+      malo:"Mensaje a las 21:40: «Oye, necesito hablar contigo mañana temprano. Es importante.»",
+      guia:"Incluye tema, duración y tipo de conversación. Que la persona pueda dormir.",
+      sug:"«Oye, ¿tienes 20 minutos mañana a las 10? Quiero que revisemos juntos lo que pasó con el despliegue del jueves: qué vimos cada quien y qué ajustamos para el siguiente. No es un tema de regaño, es para que no se repita. Si te queda mejor otra hora, dime.»"
+    }]
+  }
+},
+{
+  id:"m7", clave:true, nav:"8 · Pedir", chapa:"8", color:"var(--cielo)",
+  titulo:"Cómo pedir feedback (y que sirva de algo)",
+  html:`
+  <p>Nadie te da feedback útil si preguntas mal. «¿Cómo lo hice?» es la peor pregunta posible: es tan amplia que la respuesta cortés («bien, bien») siempre es la más fácil, y la otra persona no tiene que arriesgar nada.</p>
+  <p>Pedir feedback bien es hacerle el trabajo fácil a quien te lo va a dar. Tres movimientos:</p>
+  <figure>
+    <svg viewBox="0 0 640 210" role="img" aria-label="Tres movimientos para pedir feedback: acotar, dar permiso y facilitar">
+      <rect x="12" y="20" width="196" height="170" rx="20" fill="#E2F0FB" stroke="#3B9AE1" stroke-width="3"/>
+      <circle cx="110" cy="62" r="22" fill="#3B9AE1"/><text x="110" y="70" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">1</text>
+      <text x="110" y="108" text-anchor="middle" font-size="15" font-weight="bold" fill="#1B2140">Acota</text>
+      <text x="110" y="132" text-anchor="middle" font-size="12.5" fill="#4A5170">Una sola cosa, un solo</text>
+      <text x="110" y="150" text-anchor="middle" font-size="12.5" fill="#4A5170">momento concreto.</text>
+
+      <rect x="222" y="20" width="196" height="170" rx="20" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+      <circle cx="320" cy="62" r="22" fill="#12B886"/><text x="320" y="70" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">2</text>
+      <text x="320" y="108" text-anchor="middle" font-size="15" font-weight="bold" fill="#1B2140">Da permiso</text>
+      <text x="320" y="132" text-anchor="middle" font-size="12.5" fill="#4A5170">Deja claro que aguantas</text>
+      <text x="320" y="150" text-anchor="middle" font-size="12.5" fill="#4A5170">la respuesta incómoda.</text>
+
+      <rect x="432" y="20" width="196" height="170" rx="20" fill="#FDF0DA" stroke="#F5A524" stroke-width="3"/>
+      <circle cx="530" cy="62" r="22" fill="#F5A524"/><text x="530" y="70" text-anchor="middle" font-size="20" font-weight="bold" fill="#fff">3</text>
+      <text x="530" y="108" text-anchor="middle" font-size="15" font-weight="bold" fill="#1B2140">Facilita</text>
+      <text x="530" y="132" text-anchor="middle" font-size="12.5" fill="#4A5170">Ofrece un cambio posible</text>
+      <text x="530" y="150" text-anchor="middle" font-size="12.5" fill="#4A5170">para que solo confirmen.</text>
+    </svg>
+  </figure>
+  <div class="tabla-scroll">
+  <table>
+    <thead><tr><th>En vez de…</th><th>Pregunta esto</th></tr></thead>
+    <tbody>
+      <tr><td>¿Cómo lo hice?</td><td>De la sesión de ayer, ¿qué habrías hecho tú distinto en la parte de estimación?</td></tr>
+      <tr><td>¿Alguna sugerencia?</td><td>Si tuvieras que cambiarme una sola cosa de cómo facilito la retro, ¿cuál sería?</td></tr>
+      <tr><td>¿Todo bien con mi trabajo?</td><td>¿Qué es lo que más te cuesta de trabajar conmigo?</td></tr>
+      <tr><td>¿Te pareció clara la propuesta?</td><td>¿En qué punto de la propuesta te perdiste o tuviste que releer?</td></tr>
+      <tr><td>¿Qué opinas del reporte?</td><td>Si fueras el cliente, ¿qué pregunta harías que este reporte no contesta?</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="card menta">
+    <h4>La pregunta que casi siempre destraba</h4>
+    <p>«¿Qué es lo que más te cuesta de trabajar conmigo?» funciona porque asume que existe algo. Deja de pedir un juicio (que la otra persona puede negar por cortesía) y pide un dato que ya das por hecho.</p>
+    <p>Su versión más suave, útil con alguien que te reporta o que no te tiene confianza aún: «¿qué podría hacer yo para facilitarte el trabajo?».</p>
+  </div>
+  <div class="card coral">
+    <h4>El costo de pedirlo y no hacer nada</h4>
+    <p>Si alguien se arriesga a decirte algo incómodo y a las tres semanas nada cambió ni le comentaste qué hiciste con eso, no volverá a hacerlo. Y le contará a los demás que no valió la pena. Pedir feedback te obliga a cerrar el ciclo, aunque tu conclusión sea «lo pensé y decidí no cambiarlo, por esto».</p>
+  </div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Pedir y cerrar el ciclo, completo:</strong></p><p class="buenito"><span class="etq">Semana 1</span>«De la planeación de ayer: si tuvieras que cambiarme una sola cosa de cómo la llevé, ¿cuál sería?» — «Que cortas las discusiones muy rápido cuando ves que nos alargamos.»</p><p class="buenito" style="margin-top:10px"><span class="etq">Semana 3</span>«¿Te acuerdas que me dijiste que corto las discusiones muy rápido? Estuve poniendo atención y sí lo hago. En las últimas dos dejé correr el debate cinco minutos más antes de intervenir. ¿Cómo se sintió de tu lado?»</p><p style="margin-top:12px;font-size:.9rem;color:var(--tinta-suave)">Ese segundo mensaje es el que hace que te vuelvan a dar feedback. Sin él, la persona asume que habló al vacío.</p></div></details>`,
+  practica:{
+    quiz:[{
+      p:"Terminas de facilitar tu primera retro con un equipo nuevo. ¿Cuál es la mejor pregunta para el líder técnico?",
+      o:["¿Cómo estuvo la retro?",
+         "¿Alguna retroalimentación para mí?",
+         "Si tuvieras que cambiarme una sola cosa de cómo llevé la retro, ¿cuál sería?",
+         "¿Verdad que salió bien?"],
+      ok:2,
+      bien:"Acota a una cosa, asume que existe y le da permiso de decirlo. Es difícil escaparse con un «todo bien».",
+      mal:"Las preguntas amplias tienen una salida cortés fácil. Busca la que acota y da permiso al mismo tiempo."
+    },{
+      p:"Un compañero te da un feedback incómodo que decides no aplicar. ¿Qué haces?",
+      o:["Nada, la decisión es tuya y ahí queda","Le dices que lo pensaste y por qué decidiste otra cosa","Lo aplicas de todos modos para no desanimarlo","Le explicas de inmediato por qué está equivocado"],
+      ok:1,
+      bien:"Puedes descartar el contenido (A4), pero cerrar el ciclo es lo que hace que te lo vuelvan a dar.",
+      mal:"Descartar es válido; desaparecer no. Si no hay respuesta de vuelta, la persona aprende que no vale la pena hablarte."
+    }],
+    reescribe:[{
+      malo:"«Oye, cualquier feedback que tengas de mí es bienvenido, ¿eh? Con toda confianza.»",
+      guia:"Conviértelo en una petición acotada a un momento concreto, con permiso explícito y un cambio posible sobre la mesa.",
+      sug:"«En la sesión de planeación de ayer sentí que me extendí explicando el alcance y perdimos ritmo. ¿Tú cómo lo viste? Si te sirve de arranque: estoy considerando mandar el contexto por escrito antes y usar la sesión solo para dudas. Prefiero que me digas si eso empeora las cosas.»"
+    }]
+  }
+},
+{
+  id:"m8", clave:true, nav:"9 · Recibir", chapa:"9", color:"var(--uva)",
+  titulo:"Cómo recibir feedback sin descarrilar la conversación",
+  html:`
+  <p>Dar feedback es una habilidad; recibirlo es la que determina si alguien te lo volverá a dar. Y es la más difícil, porque el cerebro procesa la crítica como amenaza antes de procesarla como información.</p>
+  <figure>
+    <svg viewBox="0 0 640 250" role="img" aria-label="Los cuatro segundos entre el feedback y tu respuesta">
+      <rect x="16" y="30" width="140" height="80" rx="18" fill="#EDEAFE" stroke="#6C5CE7" stroke-width="3"/>
+      <text x="86" y="64" text-anchor="middle" font-size="14" font-weight="bold" fill="#1B2140">Te lo dicen</text>
+      <text x="86" y="86" text-anchor="middle" font-size="12" fill="#4A5170">segundo 0</text>
+
+      <rect x="186" y="30" width="270" height="80" rx="18" fill="#FDE5E6" stroke="#F2555A" stroke-width="3"/>
+      <text x="321" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#D33F44">La reacción automática</text>
+      <text x="321" y="80" text-anchor="middle" font-size="12.5" fill="#4A5170">«sí, pero…» · «es que tú también»</text>
+      <text x="321" y="98" text-anchor="middle" font-size="12.5" fill="#4A5170">explicar · justificar · silencio duro</text>
+
+      <rect x="486" y="30" width="140" height="80" rx="18" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+      <text x="556" y="58" text-anchor="middle" font-size="14" font-weight="bold" fill="#0E9A72">Lo que sirve</text>
+      <text x="556" y="80" text-anchor="middle" font-size="12" fill="#4A5170">preguntar primero</text>
+
+      <path d="M160 70 H182" stroke="#4A5170" stroke-width="3"/>
+      <path d="M460 70 H482" stroke="#4A5170" stroke-width="3"/>
+      <rect x="186" y="150" width="270" height="72" rx="18" fill="#FDF0DA" stroke="#F5A524" stroke-width="3"/>
+      <text x="321" y="178" text-anchor="middle" font-size="14" font-weight="bold" fill="#C87F0A">Los 4 segundos</text>
+      <text x="321" y="200" text-anchor="middle" font-size="12.5" fill="#4A5170">Respira. No es un ataque, es un dato.</text>
+      <path d="M321 145 V115" stroke="#F5A524" stroke-width="3" stroke-dasharray="6 5"/>
+    </svg>
+    <figcaption>Todo el trabajo de recibir feedback ocurre en el hueco entre lo que escuchaste y lo primero que dices.</figcaption>
+  </figure>
+  <div class="card uva">
+    <h3>La secuencia que funciona</h3>
+    <ol>
+      <li><strong>Escucha completo.</strong> Sin interrumpir, aunque a la mitad ya sepas que hay un error de hecho.</li>
+      <li><strong>Pregunta antes de responder.</strong> «¿Me das un ejemplo concreto?» «¿Cuándo lo notaste?» «¿Qué habrías hecho tú en ese momento?» Preguntar te da tiempo y a la vez convierte un juicio vago en algo accionable.</li>
+      <li><strong>Repite lo que entendiste.</strong> «Entonces lo que ves es que en las juntas con cliente hablo yo casi todo y el equipo no aparece. ¿Es eso?»</li>
+      <li><strong>Agradece antes de decidir.</strong> El agradecimiento no significa que estás de acuerdo. Significa que reconoces el riesgo que la persona corrió.</li>
+      <li><strong>Decide después, no ahí.</strong> «Déjame pensarlo y te digo qué voy a hacer» es una respuesta legítima y madura.</li>
+    </ol>
+  </div>
+  <h3>Las cuatro salidas de emergencia (y por qué fallan)</h3>
+  <div class="grid">
+    <div class="card coral"><h4>Justificar</h4><p>«Es que ese día tuve tres juntas encimadas.» Puede ser cierto y aun así el impacto ocurrió. Explicar el contexto está bien <em>después</em> de reconocer el hecho, no en lugar de.</p></div>
+    <div class="card coral"><h4>Contraatacar</h4><p>«Pues tú tampoco avisas.» Convierte información en pleito y garantiza que nadie te diga nada la próxima vez.</p></div>
+    <div class="card coral"><h4>Minimizar</h4><p>«Sí, sí, no pasa nada, ya lo veo.» Cierra la conversación sin haber entendido, y quien te habló se queda con la sensación de no haber sido escuchado.</p></div>
+    <div class="card coral"><h4>Sobre-aceptar</h4><p>«Tienes toda la razón, soy un desastre.» Suena humilde pero obliga a la otra persona a consolarte, y el tema real se pierde. Además te lleva al nivel 3 del iceberg, contigo mismo.</p></div>
+  </div>
+  <div class="card menta">
+    <h4>Cuando el feedback es vago o injusto</h4>
+    <p>No lo aceptes ni lo pelees: pídele datos. «Cuando dices que no colaboro, ¿en qué situación lo viste?». Si aparece un ejemplo concreto, ya tienes con qué trabajar. Si no aparece ninguno, la conversación se acomoda sola sin que tuvieras que defenderte.</p>
+    <p>Y si el feedback está factualmente equivocado, corrígelo con datos y sin cargar emoción: «revisé el registro y la entrega salió el jueves; puede que el correo no haya llegado. ¿Lo revisamos juntos?».</p>
+  </div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Convertir un juicio vago en algo accionable, preguntando:</strong></p><p class="malito"><span class="etq">Te dicen</span>«Es que se siente que el equipo no está alineado contigo.»</p><p class="buenito"><span class="etq">Preguntas</span>«¿En qué momento reciente se notó? […] ¿Y qué habrías esperado que yo hiciera ahí?»</p><p style="margin-top:12px">Después de dos preguntas resulta ser algo muy concreto: en la última planeación tomaste la decisión de bajar el alcance sin consultarlo con los dos desarrolladores más senior. Eso ya se puede trabajar. «No estar alineado» no.</p></div></details>`,
+  practica:{
+    flip:[
+      {f:"Primer movimiento",p:"¿Qué hago apenas recibo feedback?",r:"Escuchar completo y preguntar por un ejemplo concreto. Preguntar antes que responder."},
+      {f:"Appreciate",p:"¿Agradecer implica estar de acuerdo?",r:"No. Agradeces el riesgo que corrió la persona; después decides qué aplicas."},
+      {f:"Feedback vago",p:"¿Qué hago si no me dan hechos?",r:"Pedir la situación concreta: «¿en qué momento lo viste?». Sin ejemplo no hay nada que trabajar."},
+      {f:"Feedback equivocado",p:"¿Lo dejo pasar?",r:"No: corriges con datos, sin carga emocional, y ofreces revisarlo juntos."}
+    ],
+    quiz:[{
+      p:"Tu PO te dice: «siento que no le das prioridad a lo que pide negocio». Lo primero que dices es…",
+      o:["«Sí le doy prioridad, lo que pasa es que deuda técnica también cuenta.»",
+         "«¿En qué caso reciente lo notaste?»",
+         "«Tienes razón, perdón, lo voy a corregir.»",
+         "«Eso lo tendrías que hablar con el líder técnico.»"],
+      ok:1,
+      bien:"Pedir el caso concreto baja la conversación al nivel 1 del iceberg y te da los cuatro segundos que necesitas.",
+      mal:"Justificar, sobre-aceptar y derivar cierran la conversación. Preguntar la abre y te da tiempo."
+    },{
+      p:"¿Cuál de estas respuestas NO es una salida de emergencia?",
+      o:["«Es que ese día tuve tres juntas encimadas.»",
+         "«Pues tú tampoco avisas cuando cambias el alcance.»",
+         "«Déjame pensarlo y el viernes te digo qué voy a hacer.»",
+         "«Sí, sí, ya lo veo, no te preocupes.»"],
+      ok:2,
+      bien:"Tomarte tiempo para decidir es maduro, no evasivo, siempre que sí regreses con una respuesta.",
+      mal:"Revisa cuál de las cuatro no cierra la conversación ni la desvía: hay una que se compromete a volver."
+    }],
+    reescribe:[{
+      malo:"Te dicen: «en las juntas con cliente hablas tú todo el tiempo y el equipo no aparece». Tu respuesta automática: «es que si no hablo yo, se hace un silencio incómodo y el cliente se desespera».",
+      guia:"Rehazla con la secuencia: pregunta, parafrasea, agradece y pospón la decisión.",
+      sug:"«A ver si te entendí: ves que en las juntas con cliente termino llevando yo casi toda la voz y el equipo queda invisible. ¿En cuál de las últimas se notó más? […] Gracias por decírmelo, no lo tenía visto así. Déjame revisar la grabación de la del martes y en la próxima uno a uno te digo qué voy a cambiar.»"
+    }]
+  }
+},
+{
+  id:"m9", nav:"10 · Hacia arriba", chapa:"10", color:"var(--coral)",
+  titulo:"Feedback hacia arriba y de lado (sin autoridad formal)",
+  html:`
+  <p>Casi todo el material de feedback está escrito en modo jefe hacia colaborador. Pero un Scrum Master o un líder técnico rara vez tiene autoridad formal: das feedback a pares, a un Product Owner, a un líder de otra área, a veces a tu propio jefe. El método no cambia, pero el encuadre sí.</p>
+  <figure>
+    <svg viewBox="0 0 620 280" role="img" aria-label="Tres direcciones del feedback: hacia arriba, lateral y hacia abajo">
+      <rect x="200" y="14" width="220" height="66" rx="18" fill="#FDE5E6" stroke="#F2555A" stroke-width="3"/>
+      <text x="310" y="42" text-anchor="middle" font-size="15" font-weight="bold" fill="#D33F44">Hacia arriba</text>
+      <text x="310" y="64" text-anchor="middle" font-size="12.5" fill="#4A5170">Riesgo percibido: alto</text>
+
+      <rect x="14" y="106" width="180" height="66" rx="18" fill="#E2F0FB" stroke="#3B9AE1" stroke-width="3"/>
+      <text x="104" y="134" text-anchor="middle" font-size="15" font-weight="bold" fill="#2A7CB8">Lateral</text>
+      <text x="104" y="156" text-anchor="middle" font-size="12.5" fill="#4A5170">Sin jerarquía que respalde</text>
+
+      <rect x="426" y="106" width="180" height="66" rx="18" fill="#EDEAFE" stroke="#6C5CE7" stroke-width="3"/>
+      <text x="516" y="134" text-anchor="middle" font-size="15" font-weight="bold" fill="#5443D6">Lateral</text>
+      <text x="516" y="156" text-anchor="middle" font-size="12.5" fill="#4A5170">Otra área, otras metas</text>
+
+      <circle cx="310" cy="139" r="46" fill="#F5A524"/>
+      <text x="310" y="134" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">TÚ</text>
+      <text x="310" y="152" text-anchor="middle" font-size="11" fill="#fff">sin autoridad</text>
+
+      <rect x="200" y="200" width="220" height="66" rx="18" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+      <text x="310" y="228" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E9A72">Hacia abajo</text>
+      <text x="310" y="250" text-anchor="middle" font-size="12.5" fill="#4A5170">El único caso que cubren los manuales</text>
+
+      <path d="M310 88 V96 M310 182 V194 M198 139 H258 M362 139 H420" stroke="#4A5170" stroke-width="3"/>
+    </svg>
+  </figure>
+
+  <h3>Hacia arriba: habla de impacto, no de conducta</h3>
+  <p>Señalar la conducta de tu jefe suena a insubordinación aunque no lo sea. Señalar el efecto en el trabajo es información que necesita. Es el mismo hecho, contado desde el otro lado.</p>
+  <div class="grid">
+    <div class="card coral"><h4>Suena a reclamo</h4><p>«Cambias de prioridad cada semana y así no se puede trabajar.»</p></div>
+    <div class="card menta"><h4>Suena a información operativa</h4><p>«En las últimas tres semanas entraron cuatro cambios de prioridad a sprint iniciado. El efecto es que cerramos 40% del compromiso y el equipo ya no cree en la planeación. ¿Cómo le hacemos para que lo urgente entre sin romper el sprint?»</p></div>
+  </div>
+  <ul>
+    <li><strong>Pide permiso primero.</strong> «¿Te puedo comentar algo que estoy viendo del proceso?» Baja la guardia y te da una respuesta clara sobre si es buen momento.</li>
+    <li><strong>Llega con propuesta, no con queja.</strong> Hacia arriba, el feedback sin opción se lee como problema tuyo, no como aporte.</li>
+    <li><strong>Habla del sistema antes que de la persona.</strong> «El proceso de cambios» incomoda menos que «tú cambias», y suele ser más exacto.</li>
+    <li><strong>Elige el canal.</strong> Nunca delante de su equipo ni delante del tuyo. Uno a uno, siempre.</li>
+  </ul>
+
+  <h3>Lateral: sin jerarquía, todo depende del encuadre</h3>
+  <p>Con un par no puedes apelar a la autoridad ni pedirle nada formalmente. Lo que sí tienes es una meta compartida, y ahí es donde se ancla la conversación.</p>
+  <div class="card cielo">
+    <h4>La fórmula lateral</h4>
+    <p><strong>Meta común + hecho + efecto en la meta común + pregunta.</strong></p>
+    <p>«Los dos queremos que la release del 15 salga limpia [meta común]. En los últimos tres PR los comentarios llegaron dos días después de abrirlos [hecho], y eso nos come el margen de pruebas [efecto]. ¿Qué te acomoda para revisar más rápido, o le buscamos otro esquema? [pregunta]»</p>
+  </div>
+
+  <h3>El caso específico del Scrum Master</h3>
+  <div class="card mango">
+    <p>Tu incomodidad más frecuente: <strong>ver algo que hay que decir, sin mandato para decirlo.</strong> Tres anclas que sí te corresponden y no dependen de jerarquía:</p>
+    <ul>
+      <li><strong>El acuerdo del equipo.</strong> «Acordamos que los PR se revisan en 24 horas» no es tu opinión, es el pacto del grupo. Tú solo lo recuerdas.</li>
+      <li><strong>El dato del tablero.</strong> Cuatro folios parados cinco días es un hecho, no un juicio. Que hable el tablero.</li>
+      <li><strong>El impacto en el compromiso del sprint.</strong> Es exactamente lo que el rol existe para cuidar.</li>
+    </ul>
+    <p>Y una distinción que ahorra conflictos: <strong>feedback al equipo ≠ feedback a una persona.</strong> Lo que es patrón del grupo se trata en retro; lo que es de una persona se trata en privado. Usar la retro para señalar a alguien de forma indirecta es corregir en público, con testigos y sin nombre. Todos entienden a quién le hablaste.</p>
+  </div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>El mismo problema, en el foro correcto.</strong> Situación: un desarrollador no actualiza el tablero y el equipo llega a ciegas a la daily.</p><p class="malito"><span class="etq">En retro, indirecto</span>«Hay compañeros que no están actualizando el tablero y eso nos afecta a todos.» <em>Los ocho saben de quién hablas. Uno se siente exhibido y los otros siete se sienten regañados sin deberla.</em></p><p class="buenito"><span class="etq">En privado, con la persona</span>«En las últimas dos semanas tus tarjetas no se movieron aunque el trabajo sí avanzó. ¿Qué te está estorbando del tablero?»</p><p class="buenito" style="margin-top:10px"><span class="etq">En retro, si sí es patrón del grupo</span>«Llevamos tres sprints llegando a la daily sin el tablero al día. ¿Qué nos está pasando con eso y qué cambiamos?»</p></div></details>`,
+  practica:{
+    quiz:[{
+      p:"Tu PO mete cambios a sprint iniciado por tercera vez. ¿Cuál es el mejor arranque?",
+      o:["«Necesito que respetes el sprint, así no funciona esto.»",
+         "«¿Te puedo comentar algo que estoy viendo del proceso de cambios? Van tres sprints con entradas a media carrera y estamos cerrando el 40% de lo comprometido.»",
+         "Lo comentas en la retro para que el equipo lo respalde.",
+         "Lo escalas con su jefe."],
+      ok:1,
+      bien:"Pide permiso, habla del proceso y trae el dato del impacto. Es información, no reclamo.",
+      mal:"Hacia arriba, el reclamo y la emboscada en grupo queman capital. El escalamiento va después de intentarlo uno a uno."
+    },{
+      p:"Un desarrollador de otro equipo no entrega su parte a tiempo y te bloquea. No es tu reporte ni tu par directo. ¿Dónde anclas la conversación?",
+      o:["En tu rol de Scrum Master, que te da autoridad sobre el proceso",
+         "En la meta compartida y el efecto concreto sobre ella",
+         "En que llevas tres semanas esperando y ya te cansaste",
+         "En que su líder debería estar supervisándolo mejor"],
+      ok:1,
+      bien:"Sin jerarquía, la meta común es la única palanca legítima, y además suele ser verdad.",
+      mal:"El rol no te da autoridad sobre otra área y el desahogo no mueve a nadie. Busca qué quieren los dos."
+    }],
+    reescribe:[{
+      titulo:"Ejercicio · feedback hacia arriba",
+      malo:"«Es imposible planear contigo. Cada que arrancamos algo llegas con otra urgencia y el equipo ya está harto.»",
+      guia:"Convierte conducta en impacto operativo, quita a «el equipo» como escudo, habla del proceso y cierra con propuesta y pregunta.",
+      sug:"«¿Tienes diez minutos para algo del proceso de cambios? En los últimos tres sprints entraron cuatro solicitudes con el sprint ya arrancado. El efecto medible es que cerramos alrededor del 40% de lo comprometido y la planeación dejó de ser confiable para estimar. Se me ocurren dos caminos: dejar un 20% del sprint libre para urgencias, o meter una compuerta rápida donde tú y yo decidimos qué sale para que algo entre. ¿Cuál ves más viable de tu lado?»"
+    }]
+  }
+},
+{
+  id:"m10", nav:"11 · Cuando se rompe", chapa:"11", color:"var(--mango)",
+  titulo:"Cuando la conversación se descompone",
+  html:`
+  <p>Ningún manual te prepara para el minuto tres, cuando la persona llora, se cierra, te contraataca o dice que sí a todo con la mirada apagada. Aquí no aplica una fórmula sino un principio: <strong>cuando aparece la emoción, el contenido se suspende.</strong> Nadie procesa información con el sistema de amenaza encendido.</p>
+  <figure>
+    <svg viewBox="0 0 640 190" role="img" aria-label="Regla de desescalada: primero la emoción, después el contenido">
+      <rect x="14" y="30" width="180" height="120" rx="20" fill="#FDE5E6" stroke="#F2555A" stroke-width="3"/>
+      <text x="104" y="72" text-anchor="middle" font-size="15" font-weight="bold" fill="#D33F44">Emoción alta</text>
+      <text x="104" y="98" text-anchor="middle" font-size="12.5" fill="#4A5170">Llanto, enojo,</text>
+      <text x="104" y="116" text-anchor="middle" font-size="12.5" fill="#4A5170">silencio, defensa</text>
+      <path d="M198 90 H262" stroke="#4A5170" stroke-width="3"/>
+      <rect x="268" y="30" width="180" height="120" rx="20" fill="#FDF0DA" stroke="#F5A524" stroke-width="3"/>
+      <text x="358" y="66" text-anchor="middle" font-size="15" font-weight="bold" fill="#C87F0A">Pausa</text>
+      <text x="358" y="92" text-anchor="middle" font-size="12.5" fill="#4A5170">Reconoce lo que ves,</text>
+      <text x="358" y="110" text-anchor="middle" font-size="12.5" fill="#4A5170">baja el ritmo,</text>
+      <text x="358" y="128" text-anchor="middle" font-size="12.5" fill="#4A5170">ofrece continuar después</text>
+      <path d="M452 90 H516" stroke="#4A5170" stroke-width="3"/>
+      <rect x="522" y="30" width="104" height="120" rx="20" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+      <text x="574" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#0E9A72">Contenido</text>
+      <text x="574" y="104" text-anchor="middle" font-size="12.5" fill="#4A5170">Ahora sí</text>
+    </svg>
+    <figcaption>Insistir con los datos mientras la emoción está arriba es la forma más rápida de perder la conversación completa.</figcaption>
+  </figure>
+  <h3>Cinco escenarios y qué decir</h3>
+  <div class="card">
+    <h4>1 · Llanto</h4>
+    <p>No pidas disculpas por el feedback (validarías que decirlo estuvo mal) ni sigas como si nada. Reconoce y baja el ritmo: <em>«veo que esto te está pegando. Tómate un momento, no hay prisa. ¿Prefieres que lo sigamos ahorita o nos vemos mañana?»</em>. Si la persona quiere seguir, sigue. Si no, agenda una fecha concreta en ese momento, no un «luego lo vemos».</p>
+  </div>
+  <div class="card">
+    <h4>2 · Contraataque: «es que tú también»</h4>
+    <p>Puede tener razón, y aun así son dos temas distintos. No los mezcles ni lo despaches: <em>«puede que tengas razón y quiero escucharlo, agendemos para eso. Ahorita quiero cerrar este punto porque afecta la entrega del viernes. ¿Te parece?»</em>. Después cumple lo de agendar, o le enseñaste que era una táctica para escaparte.</p>
+  </div>
+  <div class="card">
+    <h4>3 · Negación total: «eso nunca pasó»</h4>
+    <p>Aquí se nota si preparaste. Vuelve al hecho verificable, sin discutir la interpretación: <em>«revisemos juntos: el correo salió el jueves 14 y la entrega estaba comprometida para el martes 12. ¿Cómo lo ves tú?»</em>. Si no tienes el dato, reconócelo y reagenda con evidencia; nunca sostengas un hecho que no puedes mostrar.</p>
+  </div>
+  <div class="card">
+    <h4>4 · Silencio</h4>
+    <p>El silencio puede ser proceso o puede ser muro. Espera de verdad —cuenta cinco segundos completos, incomodan pero funcionan— y luego pregunta abierto: <em>«¿qué estás pensando?»</em> o <em>«¿qué parte no te cuadra?»</em>. Si sigue el muro, nómbralo sin acusar: <em>«siento que esto no está aterrizando como esperaba. ¿Prefieres pensarlo y lo retomamos el jueves?»</em>.</p>
+  </div>
+  <div class="card">
+    <h4>5 · El «sí, sí» que no cambia nada</h4>
+    <p>Es el más peligroso porque parece que salió bien. La aceptación demasiado rápida casi siempre significa que la persona quiere terminar la conversación. Aterrízalo: <em>«para asegurarme de que quedamos igual, ¿qué vas a hacer distinto la próxima vez y cómo lo vemos?»</em>. Si no puede describir la acción con sus palabras, no hubo acuerdo.</p>
+  </div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Una conversación que se descompone y se recupera:</strong></p><p>— «En las últimas dos entregas el documento llegó sin criterios de aceptación y QA lo devolvió.»</p><p>— «Pues si me dieran el contexto a tiempo no pasaría. Nadie me pasa nada y luego todo es culpa mía.» <em>(contraataque)</em></p><p class="buenito">— «Puede que ahí tengas razón y quiero verlo bien, agendemos mañana para el tema del contexto. Ahorita quiero cerrar este punto porque el cliente ya lo notó dos veces. ¿Te parece?»</p><p>— «…va.» <em>(silencio, brazos cruzados)</em></p><p class="buenito">— «Siento que esto no está cayendo bien y prefiero saberlo. ¿Qué parte no te cuadra?»</p><p>— «Que suena a que soy el único que la riega.»</p><p class="buenito">— «No es eso lo que quiero transmitir, y si sonó así me faltó decirlo mejor. Lo que quiero es que este documento deje de rebotar, porque te está costando a ti tiempo que ni siquiera es tuyo. ¿Le entramos juntos a la plantilla?»</p></div></details>
+  <div class="card coral">
+    <h4>Y si el que se descompone eres tú</h4>
+    <p>Si notas que subiste el tono, que estás repitiendo el mismo argumento o que te ganó la molestia, corta: <em>«prefiero que lo sigamos mañana, no quiero seguir con esto así»</em>. Suspender la conversación no es fracasar. Fracasar es terminarla con daño y sin acuerdo.</p>
+  </div>`,
+  practica:{
+    quiz:[{
+      p:"A la mitad del feedback la persona empieza a llorar. ¿Qué haces?",
+      o:["Pedir disculpas y decir que no era tan grave",
+         "Seguir con los datos para terminar rápido",
+         "Reconocer lo que ves, bajar el ritmo y ofrecer continuar ahora o en una fecha concreta",
+         "Terminar la reunión y no volver a tocar el tema"],
+      ok:2,
+      bien:"Ni retiras el mensaje ni lo empujas. Suspendes el contenido, atiendes la emoción y dejas el tema con fecha.",
+      mal:"Disculparte invalida el mensaje, insistir lo desperdicia y desaparecer deja el tema abierto. Hay una opción intermedia."
+    },{
+      p:"Le das feedback y responde «pues tú tampoco cumples tus compromisos». ¿Qué haces?",
+      o:["Lo aclaras en ese momento para que no quede la duda",
+         "Reconoces que puede ser un tema válido, lo agendas aparte y cierras el punto actual",
+         "Le dices que no es momento de hablar de ti",
+         "Aceptas y cambias de tema"],
+      ok:1,
+      bien:"Son dos conversaciones. Reconocer la suya sin fusionarla mantiene el foco y evita el pleito.",
+      mal:"Ni fundir los dos temas ni descartar el suyo. Se reconoce, se agenda y se cierra el punto original."
+    },{
+      p:"La persona acepta todo de inmediato: «sí, tienes toda la razón, ya lo corrijo». ¿Qué señal es?",
+      o:["Que el feedback fue muy claro","Posible cierre prematuro: conviene pedir que describa la acción concreta","Que no hace falta seguimiento","Que hay buena seguridad psicológica"],
+      ok:1,
+      bien:"La aceptación instantánea suele ser una forma de terminar la conversación. Si no puede decir qué hará distinto, no hubo acuerdo.",
+      mal:"Cuidado con leer la rapidez como comprensión. La prueba es que pueda describir la acción con sus propias palabras."
+    }],
+    reescribe:[{
+      titulo:"Ejercicio · desescalada",
+      malo:"La persona se queda callada, cruza los brazos y solo dice «ok». Tú respondes: «bueno, entonces quedamos en eso, ¿verdad? Perfecto, gracias.»",
+      guia:"Nombra lo que estás viendo sin acusar, abre una pregunta y deja una fecha concreta.",
+      sug:"«Siento que esto no está cayendo como yo esperaba y prefiero saberlo. ¿Qué parte no te cuadra? […] Si prefieres pensarlo, me parece bien: te propongo que lo retomemos el jueves después de la daily, y ahí me dices también qué estoy viendo mal yo.»"
+    }]
+  }
+},
+{
+  id:"m11", clave:true, nav:"12 · Seguimiento", chapa:"12", color:"var(--menta)",
+  titulo:"Seguimiento: qué pasa después de la conversación",
+  html:`
+  <p>La mayoría del feedback falla aquí. La conversación sale bien, ambos quedan satisfechos y nadie vuelve a tocar el tema. Tres semanas después nada cambió y la conclusión que saca todo el mundo es que el feedback no sirve.</p>
+  <figure>
+    <svg viewBox="0 0 640 180" role="img" aria-label="Línea de tiempo del seguimiento: conversación, primer avance, revisión y cierre">
+      <path d="M40 100 H600" stroke="#DCD8F0" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="60" cy="100" r="17" fill="#6C5CE7"/>
+      <text x="60" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B2140">Día 0</text>
+      <text x="60" y="140" text-anchor="middle" font-size="12" fill="#4A5170">Conversación</text>
+      <text x="60" y="157" text-anchor="middle" font-size="12" fill="#4A5170">y acuerdo</text>
+      <circle cx="240" cy="100" r="17" fill="#3B9AE1"/>
+      <text x="240" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B2140">Primera vez</text>
+      <text x="240" y="140" text-anchor="middle" font-size="12" fill="#4A5170">Reconoce el intento</text>
+      <text x="240" y="157" text-anchor="middle" font-size="12" fill="#4A5170">aunque sea imperfecto</text>
+      <circle cx="420" cy="100" r="17" fill="#12B886"/>
+      <text x="420" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B2140">2 semanas</text>
+      <text x="420" y="140" text-anchor="middle" font-size="12" fill="#4A5170">Revisión corta</text>
+      <text x="420" y="157" text-anchor="middle" font-size="12" fill="#4A5170">contra lo acordado</text>
+      <circle cx="590" cy="100" r="17" fill="#F5A524"/>
+      <text x="590" y="60" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B2140">Cierre</text>
+      <text x="590" y="140" text-anchor="middle" font-size="12" fill="#4A5170">Se resolvió</text>
+      <text x="590" y="157" text-anchor="middle" font-size="12" fill="#4A5170">o escala</text>
+    </svg>
+  </figure>
+  <div class="card menta">
+    <h3>El acuerdo tiene que ser verificable</h3>
+    <p>«Voy a comunicar mejor» no se puede revisar. «Voy a mandar el avance los martes antes de las 6» sí. Antes de cerrar la conversación, asegúrate de tener las tres piezas: <strong>qué se va a hacer distinto, cómo lo vamos a notar y cuándo lo revisamos.</strong></p>
+    <p>Y que lo diga la persona, no tú. Si tú dictas el acuerdo, estás dando una instrucción; si lo formula ella, hay compromiso.</p>
+  </div>
+  <div class="card cielo">
+    <h4>Reconoce el primer intento aunque salga a medias</h4>
+    <p>La primera vez que alguien hace el cambio es el momento más frágil. Si nadie lo nota, la conducta se apaga. Si además llega una corrección sobre la ejecución imperfecta, se apaga más rápido. Esa primera vez se reconoce y punto; el ajuste fino puede esperar a la siguiente.</p>
+  </div>
+
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Un acuerdo verificable, formulado por la persona:</strong></p><p class="malito"><span class="etq">Acuerdo que no se puede revisar</span>«Voy a estar más al pendiente de comunicar los avances.»</p><p class="buenito"><span class="etq">Acuerdo verificable</span>«Entonces subo el avance al tablero los martes y jueves antes de las 6, y si algo me bloquea lo pongo como comentario en la tarjeta el mismo día. Lo revisamos el jueves 12 en el uno a uno.»</p><p style="margin-top:12px"><strong>Qué:</strong> subir avance martes y jueves. <strong>Cómo se nota:</strong> movimiento en el tablero y comentarios de bloqueo. <strong>Cuándo:</strong> jueves 12.</p><p style="font-size:.9rem;color:var(--tinta-suave)">La diferencia clave no es la redacción: es que la segunda la dijo la persona, no tú.</p></div></details>
+  <h3>La segunda conversación: cuando no hubo cambio</h3>
+  <p>Es distinta de la primera, y confundirlas es un error caro. Repetir el mismo feedback con el mismo tono le enseña al equipo que tus conversaciones no tienen consecuencia.</p>
+  <div class="tabla-scroll">
+  <table>
+    <thead><tr><th>Primera conversación</th><th>Segunda conversación</th></tr></thead>
+    <tbody>
+      <tr><td>Habla del hecho</td><td>Habla del hecho <em>y del acuerdo incumplido</em></td></tr>
+      <tr><td>Explora causas abiertas</td><td>Busca el obstáculo real: ¿no puede, no sabe o no quiere?</td></tr>
+      <tr><td>Cierra con un acuerdo</td><td>Cierra con acuerdo, fecha y consecuencia explícita</td></tr>
+      <tr><td>Tono: exploratorio</td><td>Tono: serio, sin dejar de ser respetuoso</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="card mango">
+    <h4>Las tres causas y su tratamiento</h4>
+    <ul>
+      <li><strong>No sabe.</strong> Falta habilidad o claridad. Se resuelve con acompañamiento, ejemplo o capacitación, no con más feedback.</li>
+      <li><strong>No puede.</strong> Hay un obstáculo real: carga, dependencia, herramienta, algo personal. Tu trabajo es quitarlo, no insistir.</li>
+      <li><strong>No quiere.</strong> Entiende, puede y decide no hacerlo. Aquí el feedback ya cumplió su función y el tema cambia de naturaleza.</li>
+    </ul>
+  </div>
+  <div class="card coral">
+    <h4>Cuándo deja de ser feedback</h4>
+    <p>El feedback es una herramienta de desarrollo entre pares o con tu equipo. Deja de serlo, y pasa a ser un tema formal de desempeño, cuando se cumple alguna de estas:</p>
+    <ul>
+      <li>Es la tercera vez sobre lo mismo, con acuerdos explícitos incumplidos.</li>
+      <li>Hay impacto sostenido en el cliente, en la entrega o en el resto del equipo.</li>
+      <li>Se trata de conducta, no de desempeño: faltas de respeto, ambiente, integridad.</li>
+      <li>La persona manifiesta abiertamente que no lo va a cambiar.</li>
+    </ul>
+    <p>En ese punto documentas hechos y fechas, y lo llevas con tu jefe o con Recursos Humanos según corresponda. Seguir dando feedback ahí no es paciencia: es dejar el problema sin dueño. Y si tú no tienes autoridad formal sobre la persona, el escalamiento no es un fracaso tuyo, es el camino correcto.</p>
+  </div>`,
+  practica:{
+    quiz:[{
+      p:"Acuerdan que la persona «va a comunicar mejor los avances». ¿Qué falta?",
+      o:["Nada, el acuerdo es claro","Que sea verificable: qué, cómo se nota y cuándo se revisa","Ponerlo por escrito en un correo","Que lo firme"],
+      ok:1,
+      bien:"«Comunicar mejor» no se puede revisar en dos semanas. Sin las tres piezas no hay acuerdo, hay buena intención.",
+      mal:"El problema no es el formato sino que no se puede verificar. ¿Cómo sabrías el jueves si se cumplió?"
+    },{
+      p:"Tercera conversación sobre lo mismo, con dos acuerdos incumplidos y quejas del cliente. ¿Qué corresponde?",
+      o:["Dar el feedback otra vez con más empatía",
+         "Ignorarlo, cada quien es responsable de lo suyo",
+         "Documentar hechos y fechas y escalarlo como tema de desempeño",
+         "Comentarlo en la retro para que el equipo presione"],
+      ok:2,
+      bien:"El feedback ya cumplió su función. Insistir sin consecuencia desgasta tu credibilidad y deja el problema sin dueño.",
+      mal:"Repetir por cuarta vez y usar al grupo como presión son las dos salidas que empeoran las cosas."
+    },{
+      p:"La persona hace el cambio acordado por primera vez, pero le sale a medias. ¿Qué haces?",
+      o:["Reconoces el intento y guardas el ajuste para la próxima",
+         "Reconoces y de una vez corriges lo que faltó",
+         "No dices nada, era su obligación",
+         "Le pides que lo repita bien"],
+      ok:0,
+      bien:"El primer intento es frágil. Reconocerlo consolida la conducta; corregirla de inmediato la apaga.",
+      mal:"Un intento nuevo que recibe corrección o silencio rara vez tiene segunda vez."
+    }],
+    reescribe:[{
+      titulo:"Ejercicio · segunda conversación",
+      malo:"«Otra vez lo mismo, ya lo habíamos hablado. Necesito que de verdad le pongas atención esta vez.»",
+      guia:"Trae el acuerdo incumplido, indaga si es no sabe / no puede / no quiere, y cierra con fecha y consecuencia explícita.",
+      sug:"«Hace dos semanas acordamos que el avance del módulo se subiría al tablero los martes antes de las 6, y llevamos dos martes sin registro [hecho y acuerdo]. Antes de asumir cualquier cosa quiero entender qué está pasando: ¿es que el momento no funciona, que algo te está bloqueando, o que no le ves sentido al registro? […] Entonces movemos el corte al miércoles temprano y lo reviso yo mismo el jueves 12. Te lo digo claro: si al jueves seguimos sin registro, tengo que subirlo con Charly porque ya nos costó una fecha con el cliente.»"
+    }]
+  }
+},
+{
+  id:"m12", nav:"13 · Por escrito", chapa:"13", color:"var(--cielo)",
+  titulo:"Feedback escrito y asíncrono",
+  html:`
+  <p>Buena parte de tu feedback real no ocurre en una sala: ocurre en un comentario de Jira, en una revisión de PR, en un mensaje de Slack a las 8 de la noche. Y ahí cambian las reglas, porque se pierde el tono, no hay pregunta de vuelta inmediata y queda escrito para siempre, disponible para reenviarse a quien sea.</p>
+  <div class="card coral">
+    <h3>Qué no va por escrito, nunca</h3>
+    <ul>
+      <li>Feedback correctivo con carga emocional. Si lo escribiste molesto, no lo mandes: guárdalo y léelo mañana.</li>
+      <li>Temas de desempeño o conducta. Esos son cara a cara, y después se documentan.</li>
+      <li>Cualquier cosa que no quisieras que lea el jefe de esa persona, porque tarde o temprano la va a leer.</li>
+      <li>Corrección en canal público a una persona identificable. Es corregir en público, con historial permanente.</li>
+    </ul>
+    <p><strong>Regla simple:</strong> por escrito va lo específico y técnico; en persona va lo que toca a la persona. Si dudas, una llamada de cinco minutos resuelve lo que veinte mensajes empeoran.</p>
+  </div>
+  <h3>Cómo se escribe bien</h3>
+  <div class="grid">
+    <div class="card coral">
+      <h4>Comentario que genera pleito</h4>
+      <p><code>Esto está mal, hay que rehacerlo.</code></p>
+      <p style="font-size:.9rem;color:var(--tinta-suave)">Sin sujeto, sin motivo, sin salida. Quien lo lee completa el tono, y siempre lo completa peor.</p>
+    </div>
+    <div class="card menta">
+      <h4>Comentario que resuelve</h4>
+      <p><code>En este método la conexión no se cierra si truena la query, y en carga alta nos agotaría el pool. ¿Lo movemos a un try-with-resources o ves algún inconveniente?</code></p>
+      <p style="font-size:.9rem;color:var(--tinta-suave)">Hecho, impacto, propuesta y pregunta. La misma ecuación, en tres líneas.</p>
+    </div>
+  </div>
+  <div class="card cielo">
+    <h4>Seis reglas para el canal escrito</h4>
+    <ul>
+      <li><strong>Explícito con el tono.</strong> Lo que en voz alta es neutro, escrito se lee molesto. Di lo que quieres decir: «pregunta genuina, no reclamo».</li>
+      <li><strong>Separa lo obligatorio de lo opcional.</strong> Marca qué bloquea y qué es sugerencia. En revisiones de código, un prefijo tipo <code>bloqueante:</code> / <code>sugerencia:</code> / <code>duda:</code> ahorra discusiones enteras.</li>
+      <li><strong>Habla del trabajo, no de la persona.</strong> «Este método hace X» en vez de «hiciste mal X». Por escrito la diferencia pesa el doble.</li>
+      <li><strong>Termina siempre con pregunta.</strong> Es lo único que evita que se lea como sentencia y abre la vuelta que el canal no tiene.</li>
+      <li><strong>Cuenta los mensajes.</strong> Si el hilo pasa de tres idas y vueltas sin acuerdo, deja de escribir y llama. El hilo largo no es debate, es fricción acumulándose.</li>
+      <li><strong>Reconoce por escrito, en público.</strong> Aquí el canal escrito es mejor que la conversación: queda registro, lo ve el equipo y la persona lo puede volver a leer.</li>
+    </ul>
+  </div>
+  <div class="cita">Lo bueno del feedback escrito es que se puede editar antes de enviarse. Ese es todo el consejo: reléelo una vez preguntándote cómo lo leería alguien que hoy tuvo un mal día.</div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>El mismo mensaje, escrito a las 9 pm y reescrito a la mañana siguiente:</strong></p><p class="malito"><span class="etq">Como salió</span>«No entiendo cómo subieron a producción sin la prueba que acordamos LITERAL ayer. Esto no puede seguir pasando, mañana lo hablamos.»</p><p class="buenito"><span class="etq">Al día siguiente, en persona</span>«Quiero entender qué pasó anoche con el despliegue: acordamos correr la prueba de regresión antes de subir y no aparece en el pipeline. ¿Qué había en el contexto que no estoy viendo?»</p><p style="margin-top:12px;font-size:.9rem;color:var(--tinta-suave)">Resultó que soporte pidió el despliegue como urgente y autorizó saltarse el paso. El mensaje de las 9 pm habría acusado a la persona equivocada, por escrito y para siempre.</p></div></details>`,
+  practica:{
+    quiz:[{
+      p:"Descubres a las 9 de la noche que un desarrollador subió a producción sin la prueba acordada. ¿Qué haces?",
+      o:["Le escribes de inmediato en el canal del equipo para que quede claro",
+         "Le mandas un mensaje directo diciendo que lo tomas mañana en una llamada",
+         "Escribes todo el análisis por Slack esa misma noche",
+         "No dices nada"],
+      ok:1,
+      bien:"El canal público corrige en público y el mensaje largo nocturno se lee peor de lo que se escribió. Marca el tema y trátalo en voz.",
+      mal:"Es correctivo, con carga emocional y a destiempo: los tres criterios de lo que no va por escrito."
+    },{
+      p:"En una revisión de código, ¿cuál comentario cumple mejor?",
+      o:["«Esto no se hace así.»",
+         "«¿En serio vas a dejar esto?»",
+         "«bloqueante: aquí la conexión no se cierra si falla la query y en carga alta agotaría el pool. ¿Lo movemos a try-with-resources o ves algún inconveniente?»",
+         "«Ok pero yo lo hubiera hecho diferente.»"],
+      ok:2,
+      bien:"Marca la severidad, describe hecho e impacto, propone y pregunta. No hay nada que interpretar.",
+      mal:"Busca el que dice qué pasa, por qué importa, qué hacer y deja lugar a la respuesta."
+    }],
+    reescribe:[{
+      titulo:"Ejercicio · comentario en Jira",
+      malo:"<code>Este análisis no sirve, le falta todo el detalle de integración. Hay que rehacerlo antes del viernes.</code>",
+      guia:"Hecho, impacto, propuesta y pregunta. Marca qué bloquea. Habla del documento, no de quien lo escribió.",
+      sug:"<code>bloqueante: en el apartado de integración no viene el contrato de los dos servicios que consumimos, y sin eso desarrollo no puede estimar ni QA armar los casos. ¿Lo completamos entre hoy y mañana para no mover el compromiso del viernes, o hay algo pendiente de la otra área que te esté frenando? Si es lo segundo dime y yo lo persigo.</code>"
+    }]
+  }
+},
+{
+  id:"m13", nav:"14 · Cultura", chapa:"14", color:"var(--menta)",
+  titulo:"Cultura organizacional: Pixar, Valve y pulso continuo",
+  html:`
+  <h3>6.1 Braintrust (Pixar)</h3>
+  <p>Sesiones de pares creadas para erradicar la mediocridad mediante honestidad radical. La regla que las hace funcionar es una sola: se analiza la obra, nunca al autor.</p>
+  <figure>
+    <svg viewBox="0 0 620 210" role="img" aria-label="Enfoque correcto e incorrecto en una sesión Braintrust">
+      <rect x="180" y="12" width="260" height="52" rx="16" fill="#EDEAFE" stroke="#6C5CE7" stroke-width="3"/>
+      <text x="310" y="44" text-anchor="middle" font-size="15" font-weight="bold" fill="#1B2140">El problema en pantalla</text>
+      <path d="M240 66 L140 108 M380 66 L480 108" stroke="#6C5CE7" stroke-width="3"/>
+      <rect x="20" y="112" width="250" height="82" rx="16" fill="#DFF6EE" stroke="#12B886" stroke-width="3"/>
+      <text x="145" y="140" text-anchor="middle" font-size="14" font-weight="bold" fill="#0E9A72">Enfoque correcto</text>
+      <text x="145" y="166" text-anchor="middle" font-size="13" fill="#4A5170">«La escena 3 pierde ritmo</text>
+      <text x="145" y="184" text-anchor="middle" font-size="13" fill="#4A5170">narrativo.»</text>
+      <rect x="350" y="112" width="250" height="82" rx="16" fill="#FDE5E6" stroke="#F2555A" stroke-width="3"/>
+      <text x="475" y="140" text-anchor="middle" font-size="14" font-weight="bold" fill="#D33F44">Enfoque incorrecto</text>
+      <text x="475" y="166" text-anchor="middle" font-size="13" fill="#4A5170">«El director no tiene visión</text>
+      <text x="475" y="184" text-anchor="middle" font-size="13" fill="#4A5170">ni talento.»</text>
+    </svg>
+  </figure>
+  <ul>
+    <li><strong>Igualdad de pares:</strong> dentro de la sala no hay jerarquías ni títulos.</li>
+    <li><strong>Propuestas, no imposiciones:</strong> el grupo diagnostica; el dueño del proyecto decide la solución.</li>
+    <li><strong>La verdad incomoda:</strong> requiere madurez profesional y seguridad psicológica real.</li>
+  </ul>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Un Braintrust adaptado a una revisión de arquitectura:</strong></p><p>Seis personas, una hora, sin el jefe del área en la sala. El autor presenta 10 minutos y luego solo escucha y toma nota, sin defender. Cada quien señala un problema del diseño, no una solución preferida: «el servicio de notificaciones tiene un solo punto de falla», «no veo cómo se recupera si el consumidor se cae a media carga». Al final el autor decide qué atiende y qué no, y lo comparte por escrito en dos días.</p><p style="font-size:.9rem;color:var(--tinta-suave)">Las dos reglas que lo hacen funcionar: el autor no defiende durante la sesión, y el grupo no impone soluciones.</p></div></details>
+
+  <h3>6.2 El modelo Valve</h3>
+  <p>Sin gerentes formales y con escritorios sobre ruedas para que la gente se agrupe donde aporte más. Su evaluación se sostiene en dos pilares.</p>
+  <div class="grid">
+    <div class="card cielo"><h4>Peer reviews</h4><p>Revisiones anónimas entre pares, diseñadas para orientar el crecimiento profesional. Prescriptivas: dicen qué hacer distinto.</p></div>
+    <div class="card mango"><h4>Stack ranking por 4 métricas</h4><ul><li>Habilidad técnica: complejidad de lo que resuelve</li><li>Productividad: trabajo terminado, no horas extra</li><li>Contribución al grupo: mentoría y amplificar talento ajeno</li><li>Contribución al producto: aporte estratégico y criterio de usuario</li></ul></div>
+  </div>
+  <div class="card"><h4>Perfil «T-shaped»</h4><p>Amplitud generalista en el eje horizontal y una especialización profunda de clase mundial en el vertical.</p></div>
+
+  <h3>6.3 Pulso continuo y reconocimiento</h3>
+  <div class="grid">
+    <div class="card menta"><h4>Kudo Cards / Matter</h4><p>Reconocimiento entre pares, en privado o en canal abierto (Feedback Friday). Barato, rápido y sorprendentemente potente.</p></div>
+    <div class="card uva"><h4>Happyforce</h4><p>Medición diaria del índice de felicidad con integración a Slack o Teams, sobre indicadores de compromiso y bienestar.</p></div>
+  </div>`,
+  practica:{
+    quiz:[{
+      p:"En una revisión de arquitectura alguien dice: «esta propuesta no considera la carga en horas pico». Según Braintrust, esto es…",
+      o:["Un ataque personal al autor","Análisis del problema, que es exactamente lo que se busca","Feedback que debió darse en privado","Una imposición de solución"],
+      ok:1,
+      bien:"Habla de la propuesta, no de quien la hizo. Ese es el corazón del Braintrust.",
+      mal:"Revisa a quién señala la frase: ¿al diseño o a la persona?"
+    }],
+    reescribe:[{
+      malo:"«Este diseño está mal pensado, se ve que el equipo no sabe de escalabilidad.»",
+      guia:"Pásalo a enfoque Braintrust: ataca el problema, no a las personas, y deja la solución en manos del dueño.",
+      sug:"«En el diagrama, el servicio de consultas apunta a una sola instancia de base de datos y en horas pico esperamos tres veces el tráfico actual. Ahí veo el riesgo. ¿Qué alternativas ya evaluaron para ese punto?»"
+    }]
+  }
+},
+{
+  id:"m14", nav:"15 · Cambio", chapa:"15", color:"var(--cielo)",
+  titulo:"Gestión del cambio: cómo reaccionan las personas",
+  html:`
+  <p>Cuando instauras una cultura de feedback, la gente se acomoda en tres grupos. Tratar a los tres igual es la forma más rápida de que la iniciativa muera en el segundo mes.</p>
+  <figure>
+    <svg viewBox="0 0 620 260" role="img" aria-label="Movers, moveables e immoveables frente al cambio">
+      <g>
+        <circle cx="100" cy="60" r="26" fill="#12B886"/><path d="M88 60 l8 8 l16 -18" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <text x="145" y="52" font-size="16" font-weight="bold" fill="#0E9A72">Movers · campeones</text>
+        <text x="145" y="76" font-size="13" fill="#4A5170">Entusiastas y comprometidos. Difunden la cultura solos.</text>
+        <text x="145" y="96" font-size="13" font-style="italic" fill="#1B2140">Dales mentoría y rol de facilitador.</text>
+
+        <circle cx="100" cy="140" r="26" fill="#F5A524"/><text x="100" y="148" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff">?</text>
+        <text x="145" y="132" font-size="16" font-weight="bold" fill="#C87F0A">Moveables · indecisos</text>
+        <text x="145" y="156" font-size="13" fill="#4A5170">Observan en silencio. Necesitan prueba social.</text>
+        <text x="145" y="176" font-size="13" font-style="italic" fill="#1B2140">Dales práctica guiada y casos de éxito visibles.</text>
+
+        <circle cx="100" cy="220" r="26" fill="#F2555A"/><path d="M88 220 h24" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+        <text x="145" y="212" font-size="16" font-weight="bold" fill="#D33F44">Immoveables · resistentes</text>
+        <text x="145" y="236" font-size="13" fill="#4A5170">Escépticos, con dudas arraigadas o temores legítimos.</text>
+        <text x="145" y="256" font-size="13" font-style="italic" fill="#1B2140">Escúchalos sin etiquetarlos: su crítica suele ser útil.</text>
+      </g>
+    </svg>
+  </figure>
+  <div class="cita">El error clásico es gastar toda la energía peleando con los inamovibles. El movimiento se gana con los indecisos, y a los indecisos los convence ver que a los campeones les está funcionando.</div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Instalando feedback en un equipo de ocho:</strong></p><p>Dos desarrolladores adoptan el Start/Stop/Continue desde la primera retro y empiezan a usarlo entre ellos en los PR <em>(movers)</em>: les pides que lo cuenten ellos en la siguiente retro, no tú. Cuatro personas participan cuando se les pide y no más <em>(moveables)</em>: se enganchan hasta el tercer sprint, cuando ven que un cambio pedido en retro realmente se aplicó. Dos veteranos dicen que ya lo intentaron y no funcionó <em>(immoveables)</em>: en vez de insistir, les preguntas qué falló la vez pasada y resulta que nadie daba seguimiento a los acuerdos. Ese diagnóstico te sirve para no repetir el error, y uno de los dos termina siendo quien lleva el registro.</p></div></details>`,
+  practica:{
+    quiz:[{
+      p:"Un ingeniero sénior dice en la retro: «esto del feedback continuo es puro teatro, ya lo intentamos y no pasó nada». ¿Qué haces?",
+      o:["Lo ignoras para que no contamine al resto","Le pides que no participe","Escuchas qué falló la vez pasada sin etiquetarlo de resistente","Le adviertes que es obligatorio"],
+      ok:2,
+      bien:"Su crítica probablemente contiene el diagnóstico de por qué falló el intento anterior. Es información gratis.",
+      mal:"Etiquetar o excluir al escéptico confirma justo lo que teme y te quita la mejor fuente de diagnóstico."
+    }]
+  }
+},
+{
+  id:"m19", nav:"16 · Nuestro contexto", chapa:"16", color:"var(--mango)",
+  titulo:"Aterrizaje: cómo se ve todo esto en nuestro contexto",
+  html:`
+  <p>Todo el material de este manual viene de Netflix, Pixar, Valve y autores estadounidenses, y asume cosas que aquí no están dadas. No se trata de estereotipos sobre cómo somos: se trata de seis situaciones concretas que aparecen en nuestras empresas y que el material original no contempla, con el ajuste que sí funciona.</p>
+
+  <div class="card">
+    <h4>1 · La distancia jerárquica es mayor</h4>
+    <p>Netflix asume que puedes decirle cualquier cosa a tu jefe y que él lo agradecerá. Aquí eso no viene de fábrica: se construye. Mientras no exista, el feedback hacia arriba necesita permiso explícito («¿te puedo comentar algo del proceso?»), foco en el impacto operativo y una propuesta sobre la mesa. Nunca en público, nunca frente a su equipo.</p>
+  </div>
+
+  <div class="card">
+    <h4>2 · El rodeo es cortesía, no debilidad</h4>
+    <p>«Oye, nada más un detallito, no es nada, pero…» El preámbulo largo es una norma de cortesía real, no falta de carácter. El problema es que diluye el mensaje hasta que desaparece. La habilidad a desarrollar es ser directo sin sonar grosero, y se resuelve moviendo la calidez al principio y al final, dejando el centro limpio: saludo cálido, mensaje directo en dos frases, pregunta genuina. La calidez sigue ahí; el mensaje también.</p>
+  </div>
+
+  <div class="card coral">
+    <h4>3 · «No te lo tomes a mal» y «sin ofender»</h4>
+    <p>Anuncian que viene algo ofensivo y encienden la defensa antes de que digas el contenido. Es el equivalente verbal de decir «no te asustes». Cámbialos por lo que de verdad quieres transmitir: «te lo digo porque prefiero que lo sepas por mí», «esto lo digo con toda la intención de que salga bien».</p>
+  </div>
+
+  <div class="card">
+    <h4>4 · El cambio de tú a usted</h4>
+    <p>Es un termómetro gratis. Cuando alguien que te tutea empieza a hablarte de usted a media conversación, casi siempre significa que se tensó o que está poniendo distancia. No lo señales, pero úsalo como señal para bajar el ritmo y preguntar cómo va aterrizando. Funciona igual con el cambio de nombre de pila a apellido, o de «Alex» a «ingeniero».</p>
+  </div>
+
+  <div class="card">
+    <h4>5 · Corregir frente a terceros</h4>
+    <p>«Corrige en privado» choca con nuestra costumbre de resolverlo todo en la junta con quince personas conectadas. Si algo sale en la junta y necesita corrección personal, sácalo sin exhibir a nadie: «buen punto, déjame revisarlo con [nombre] y lo traemos cerrado». Nadie queda expuesto, el tema queda vivo y tú te ganas la conversación en privado.</p>
+    <p>Y en cámara apagada con quince personas, dar por hecho que alguien está de acuerdo porque no dijo nada es un error clásico. El silencio en junta grande no es consentimiento.</p>
+  </div>
+
+  <div class="card">
+    <h4>6 · La broma como vehículo</h4>
+    <p>Decir lo serio en tono de broma sirve para bajar tensión y falla por lo mismo: la persona nunca sabe si iba en serio, y si reacciona mal queda como que no aguanta nada. Si el tema importa, dilo en serio. La broma déjala para después del acuerdo, no en lugar del acuerdo.</p>
+  </div>
+  <div class="cita">El objetivo no es dejar de ser cálidos. Es que la calidez acompañe al mensaje en vez de reemplazarlo.</div>
+  <details class="ej"><summary>Ver ejemplo</summary><div class="cuerpo"><p><strong>Calidez al principio y al final, centro limpio:</strong></p><p class="buenito">«Oye, qué bueno que te alcanzo, ¿tienes diez minutos? <em>(calidez)</em> Te busco por lo del reporte del cliente: salió con las cifras del mes pasado y él ya lo notó. Necesito corregirlo hoy y entender qué falló en la validación. <em>(mensaje, dos frases, sin rodeo)</em> ¿Qué pasó ahí? […] Va, con eso me queda claro. Gracias por resolverlo tan rápido, y avísame si necesitas que yo empuje algo del lado de datos. <em>(calidez)</em>»</p><p style="margin-top:12px;font-size:.9rem;color:var(--tinta-suave)">Nunca dejó de ser amable y el mensaje llegó completo. Eso es lo que se busca.</p></div></details>`,
+  practica:{
+    quiz:[{
+      p:"En una junta con quince personas, un desarrollador dice algo técnicamente incorrecto que hay que corregir. ¿Qué haces?",
+      o:["Lo corriges ahí para que todos tengan el dato bueno",
+         "Lo dejas pasar y nunca lo tocas",
+         "Reconoces el punto, dices que lo revisan aparte y lo cierras con él en privado",
+         "Le escribes por chat privado durante la misma junta"],
+      ok:2,
+      bien:"Mantienes el tema vivo sin exhibir a nadie y te ganas la conversación en el canal correcto.",
+      mal:"Corregir ante quince personas es corregir en público; dejarlo pasar deja el dato malo circulando."
+    },{
+      p:"Vas a dar un feedback directo pero no quieres sonar cortante. ¿Dónde pones la calidez?",
+      o:["Repartida a lo largo del mensaje, suavizando cada frase",
+         "Al principio y al final, dejando el mensaje central limpio",
+         "En un chiste al inicio",
+         "En un «no te lo tomes a mal» antes de empezar"],
+      ok:1,
+      bien:"Así la calidez es real y el mensaje llega completo. Suavizar cada frase es como se diluye hasta desaparecer.",
+      mal:"Suavizar todo diluye el contenido, y las fórmulas de disculpa anticipada encienden la defensa antes de tiempo."
+    }],
+    reescribe:[{
+      titulo:"Ejercicio · directo sin sonar grosero",
+      malo:"«Oye, no te lo tomes a mal ni nada, y de verdad no es nada grave, pero fíjate que como que hubo un detallito con lo del reporte, o sea nada, pero pues si tienes chance cuando puedas échale un ojo, va? Sin presión eh.»",
+      guia:"Calidez al inicio y al final; el centro limpio y directo. Quita el «no te lo tomes a mal».",
+      sug:"«Oye, ¿tienes cinco minutos? Te lo comento porque prefiero que lo sepas por mí: el reporte que mandamos al cliente el martes traía las cifras del mes anterior, y él ya lo notó. Necesito que lo corrijamos hoy y que revisemos qué falló en la validación previa. ¿Qué pasó ahí, tuviste algún problema con la fuente de datos?»"
+    }]
+  }
+},
+{
+  id:"m15", nav:"17 · Casos", chapa:"17", color:"var(--coral)",
+  titulo:"Simulador de casos prácticos",
+  html:`
+  <p>Cuatro situaciones reales. Lee el contexto, escribe tu versión y luego compárala con la sugerida. No hay una única respuesta correcta: lo que se evalúa es que uses hechos, impacto y una pregunta.</p>`,
+  practica:{
+    reescribe:[
+      {
+        titulo:"Caso 1 · Expectativas del cliente no cumplidas",
+        malo:"Contexto: el equipo trabajó semanas en una oferta técnica. En la reunión el cliente expone necesidades totalmente distintas y la propuesta queda descalificada. Estás frustrado con el analista que levantó los requerimientos.",
+        guia:"Usa WRAP: contexto, observación, sentimiento en primera persona, valor y pregunta.",
+        sug:"«Ayer en la presentación con el cliente X [contexto], el alcance que llevamos no cubría su necesidad prioritaria [observación]. Me sentí desconcertado después de semanas de preparación [sentimiento]. Perdimos la oportunidad de cerrar en primera instancia [valor]. ¿Qué factores cambiaron en sus requerimientos y cómo ajustamos la validación previa? [sugerencia]»"
+      },
+      {
+        titulo:"Caso 2 · Duplicidad de tareas por falta de transparencia",
+        malo:"Contexto: trabajaste hasta la madrugada en un informe de 14 páginas y cancelaste un compromiso personal. Hoy descubres que tu par ya lo había terminado hace dos días y no lo avisó.",
+        guia:"Separa el impacto personal del impacto operativo y cierra con un acuerdo de proceso.",
+        sug:"«Esta mañana vi que el documento que preparé anoche ya estaba concluido desde hace dos días [situación y conducta]. Me generó frustración porque cancelé un compromiso personal para terminarlo [impacto personal] y además duplicamos horas hombre [impacto operativo]. Para los próximos entregables, ¿qué canal acordamos para actualizar el estatus en tiempo real? [acuerdo]»"
+      },
+      {
+        titulo:"Caso 3 · Impuntualidad en la daily",
+        malo:"Contexto: el equipo acordó reunirse a las 9:30. El colega que propuso ese horario llega sistemáticamente 15 minutos tarde y retrasa la alineación.",
+        guia:"Ecuación pura. Cuida no subir la escalera de inferencia hacia «no le importa».",
+        sug:"«En las sesiones de esta semana a las 9:30 [situación], has entrado pasadas las 9:45 [conducta observable]. Eso retrasa el arranque de los cuatro integrantes [impacto]. ¿Hay algún bloqueo en tu rutina matutina que esté complicando esa hora? [pregunta]»"
+      },
+      {
+        titulo:"Caso 4 · Desaprobación ejecutiva repentina",
+        malo:"Contexto: tras 4 horas de taller y consenso técnico, el CEO entra, rechaza el plan en 5 minutos sin explicar motivos y se retira. Tienes que dar feedback hacia arriba.",
+        guia:"Hacia arriba aplica lo mismo, con foco en el impacto operativo y una petición concreta y acotada.",
+        sug:"«Al cierre de la sesión de planeación [situación], mencionaste que el plan consensuado no era viable y pediste uno nuevo sin detallar los criterios de rechazo [conducta observable]. El equipo quedó sin claridad sobre el rumbo [impacto]. ¿Podemos agendar 15 minutos para entender qué restricciones de negocio cambiaron y reorientar el diseño? [acción concreta]»"
+      }
+    ]
+  }
+},
+{
+  id:"m16", clave:true, nav:"18 · Checklist", chapa:"18", color:"var(--mango)",
+  titulo:"Checklist de preparación",
+  html:`
+  <p>Diez minutos antes de la conversación, recorre este filtro. Si algo se queda sin marcar, todavía no es momento de tener la conversación.</p>
+  <ul class="check">
+    <li><input type="checkbox" id="c1"><label for="c1">¿Cuál es mi propósito real? ¿Busco construir o desahogarme?</label></li>
+    <li><input type="checkbox" id="c2"><label for="c2">¿Estoy en un estado emocional tranquilo?</label></li>
+    <li><input type="checkbox" id="c3"><label for="c3">¿Tengo hechos y comportamientos comprobables (nivel 1 del iceberg)?</label></li>
+    <li><input type="checkbox" id="c4"><label for="c4">¿Eliminé los adjetivos que califican personalidad o valores?</label></li>
+    <li><input type="checkbox" id="c5"><label for="c5">¿Soy parte del problema? ¿Qué me toca a mí de esto?</label></li>
+    <li><input type="checkbox" id="c6"><label for="c6">¿El espacio garantiza privacidad y confidencialidad?</label></li>
+    <li><input type="checkbox" id="c7"><label for="c7">¿Tengo formulada una pregunta abierta para escuchar su versión?</label></li>
+    <li><input type="checkbox" id="c8"><label for="c8">¿Definimos métricas claras y una fecha de seguimiento?</label></li>
+  </ul>
+  <div class="card uva">
+    <h3>Plantilla rápida para llenar antes de entrar</h3>
+    <p><strong>Situación:</strong> el ____ durante ____<br>
+    <strong>Comportamiento:</strong> ocurrió que ____<br>
+    <strong>Impacto:</strong> lo que provocó fue ____<br>
+    <strong>Pregunta:</strong> ¿cómo lo viste tú / qué dificultades encontraste?<br>
+    <strong>Seguimiento:</strong> revisamos el ____</p>
+  </div>
+  <div class="cita">Si al terminar la conversación la persona sabe exactamente qué hacer distinto mañana, funcionó. Si solo sabe que estás molesto, no fue feedback.</div>`,
+  practica:{
+    quiz:[{
+      p:"Estás enojado, tienes los datos y la sala libre. ¿Das el feedback ahora?",
+      o:["Sí, la inmediatez manda","No: el enojo contamina el mensaje; se pospone unas horas, no semanas","Sí, pero por escrito","Solo si hay testigos"],
+      ok:1,
+      bien:"Inmediato no significa impulsivo. Se busca el punto entre oportuno y sereno: el mismo día, no el mismo minuto.",
+      mal:"La inmediatez es un principio, pero cede ante el enojo. Bajo desborde emocional el mensaje se vuelve Dough."
+    }]
+  }
+},
+{
+  id:"m20", nav:"19 · Referencias", chapa:"§", color:"var(--tinta-suave)",
+  titulo:"Referencias y lecturas recomendadas",
+  html:`
+  <p>Todo lo que hay en este manual viene de algún lado. Si algún módulo te interesó, aquí está la fuente para ir más a fondo.</p>
+
+  <h3>Libros</h3>
+  <ul class="refs">
+    <li><span class="obra">Radical Candor</span> · Kim Scott (2017; edición revisada 2019)
+      <span class="donde">Origen del módulo 6 completo: los dos ejes, los cuatro cuadrantes y la idea de que la franqueza se mide en quien escucha. El libro más útil de esta lista si solo vas a leer uno.</span></li>
+    <li><span class="obra">No Rules Rules</span> · Reed Hastings y Erin Meyer (2020)
+      <span class="donde">Las 4 A's del módulo 3 y la cultura de feedback continuo de Netflix, incluido el abandono de las evaluaciones anuales.</span></li>
+    <li><span class="obra">Creativity, Inc.</span> · Ed Catmull (2014)
+      <span class="donde">Las Braintrust Meetings de Pixar del módulo 13 y la distinción entre atacar el problema y juzgar a las personas.</span></li>
+    <li><span class="obra">Crucial Conversations</span> · Patterson, Grenny, McMillan y Switzler
+      <span class="donde">Base de buena parte del módulo 11: qué hacer cuando la conversación se descompone, seguridad psicológica en el diálogo y cómo volver al contenido.</span></li>
+    <li><span class="obra">Thanks for the Feedback</span> · Douglas Stone y Sheila Heen (2014)
+      <span class="donde">El libro dedicado a recibir feedback, que es el módulo 9. De los mismos autores de <em>Difficult Conversations</em>.</span></li>
+    <li><span class="obra">The Fifth Discipline</span> · Peter Senge (1990)
+      <span class="donde">Popularizó la escalera de inferencia del módulo 2, originalmente formulada por Chris Argyris.</span></li>
+    <li><span class="obra">Management 3.0</span> · Jurgen Appelo (2010)
+      <span class="donde">El Feedback WRAP del módulo 4 y las Kudo Cards del módulo 13.</span></li>
+    <li><span class="obra">Coaching for Performance</span> · John Whitmore (1992)
+      <span class="donde">El modelo G.R.O.W. del módulo 4, aunque su origen es anterior y colectivo.</span></li>
+    <li><span class="obra">The One Minute Manager</span> · Ken Blanchard y Spencer Johnson (1982)
+      <span class="donde">De donde viene la frase que abre este manual y la idea del feedback breve e inmediato.</span></li>
+    <li><span class="obra">No Hard Feelings</span> · Liz Fosslien y Mollie West Duffy (2019)
+      <span class="donde">La tipología visual de estilos del módulo 5 (Oreo, Macaron, Sugar Cookie y compañía) viene de las ilustraciones de Fosslien sobre emociones en el trabajo.</span></li>
+  </ul>
+
+  <h3>Documentos y marcos</h3>
+  <ul class="refs">
+    <li><span class="obra">Valve Handbook for New Employees</span> (2012)
+      <span class="donde">Organización sin jerarquías, peer reviews, stack ranking por cuatro métricas y el perfil T-shaped del módulo 13. Es público y se lee en una tarde.</span></li>
+    <li><span class="obra">SBI (Situation–Behavior–Impact)</span> · Center for Creative Leadership
+      <span class="donde">El nombre formal de la ecuación del feedback del módulo 4. Si buscas material adicional, búscalo como SBI.</span></li>
+    <li><span class="obra">Proyecto Aristóteles</span> · Google (2015)
+      <span class="donde">La investigación que puso la seguridad psicológica como el factor número uno de los equipos efectivos. Complementa el trabajo de Amy Edmondson en <em>The Fearless Organization</em>.</span></li>
+    <li><span class="obra">Start, Stop, Continue</span>
+      <span class="donde">Dinámica de dominio público, ampliamente usada en retrospectivas ágiles.</span></li>
+    <li><span class="obra">Happyforce, Matter, Officevibe</span>
+      <span class="donde">Herramientas de pulso continuo y reconocimiento entre pares mencionadas en el módulo 13.</span></li>
+  </ul>
+
+  <h3>Sobre este material</h3>
+  <p>Manual de estudio armado para Scrum Masters y líderes técnicos. Los módulos 7 a 12 y 16 amplían el material original con situaciones que los marcos anteriores no cubren: preparar a la persona, pedir y recibir feedback, darlo sin autoridad formal, sostener la conversación cuando se descompone, darle seguimiento, escribirlo bien y aterrizarlo a nuestro contexto.</p>
+  <p>Los ejemplos y casos son ilustrativos y no corresponden a personas reales. Archivo único: funciona sin conexión y se puede reenviar tal cual.</p>`
+}
+];
+
+/* ============ RENDER ============ */
+const nav=document.getElementById('nav'), main=document.getElementById('main');
+let totalEjercicios=0, resueltos=new Set();
+
+MODULOS.forEach((m,i)=>{
+  const b=document.createElement('button');
+  b.textContent=m.nav; b.dataset.target=m.id;
+  if(m.clave) b.classList.add('clave');
+  b.onclick=()=>irA(i);
+  nav.appendChild(b);
+
+  const s=document.createElement('section');
+  s.className='modulo'; s.id=m.id;
+  s.innerHTML=`<div class="eyebrow"><span class="chapa" style="background:${m.color}">${m.chapa}</span><h2>${m.titulo}</h2></div>${m.html||''}`;
+  if(m.practica) s.appendChild(construirPractica(m));
+  const pie=document.createElement('div'); pie.className='pie-nav';
+  if(i>0){const a=document.createElement('button');a.className='btn fantasma';a.textContent='← '+MODULOS[i-1].nav;a.onclick=()=>irA(i-1);pie.appendChild(a);}else{pie.appendChild(document.createElement('span'));}
+  if(i<MODULOS.length-1){const a=document.createElement('button');a.className='btn';a.textContent=MODULOS[i+1].nav+' →';a.onclick=()=>irA(i+1);pie.appendChild(a);}
+  s.appendChild(pie);
+  main.appendChild(s);
+});
+
+function construirPractica(m){
+  const box=document.createElement('div'); box.className='practica';
+  box.innerHTML='<h3>🧪 Zona de práctica</h3>';
+  const p=m.practica;
+
+  if(p.flip){
+    const w=document.createElement('div'); w.className='flipwrap';
+    p.flip.forEach(f=>{
+      const b=document.createElement('button'); b.className='flip'; b.setAttribute('aria-label','Voltear tarjeta: '+f.f);
+      b.innerHTML=`<div class="cara"><div class="frente"><strong>${f.f}</strong><span class="pista">${f.p}</span><span class="pista" style="margin-top:auto">Toca para voltear</span></div><div class="reverso">${f.r}</div></div>`;
+      b.onclick=()=>b.classList.toggle('volteada');
+      w.appendChild(b);
+    });
+    const t=document.createElement('p'); t.style.fontWeight='600'; t.textContent='Tarjetas de repaso · toca para ver la respuesta';
+    box.appendChild(t); box.appendChild(w);
+  }
+
+  (p.quiz||[]).forEach((q,qi)=>{
+    totalEjercicios++;
+    const key=m.id+'-q'+qi;
+    const d=document.createElement('div'); d.className='quiz';
+    d.innerHTML=`<p class="preg">${q.p}</p>`;
+    const ops=document.createElement('div'); ops.className='opciones';
+    const retro=document.createElement('div'); retro.className='retro';
+    q.o.forEach((txt,oi)=>{
+      const b=document.createElement('button'); b.textContent=txt;
+      b.onclick=()=>{
+        [...ops.children].forEach(x=>x.disabled=true);
+        const ok=oi===q.ok;
+        b.classList.add(ok?'bien':'mal');
+        if(!ok) ops.children[q.ok].classList.add('bien');
+        retro.className='retro ver '+(ok?'bien':'mal');
+        retro.textContent=(ok?'✅ ':'💡 ')+(ok?q.bien:q.mal);
+        marcar(key);
+      };
+      ops.appendChild(b);
+    });
+    d.appendChild(ops); d.appendChild(retro); box.appendChild(d);
+  });
+
+  (p.reescribe||[]).forEach((r,ri)=>{
+    totalEjercicios++;
+    const key=m.id+'-r'+ri;
+    const d=document.createElement('div'); d.className='reescribe';
+    d.innerHTML=(r.titulo?`<h4>${r.titulo}</h4>`:'<h4>Reescribe este feedback</h4>')+
+      `<div class="malo">${r.malo}</div><p style="font-size:.9rem;color:var(--tinta-suave);margin-bottom:8px">${r.guia}</p>`;
+    const ta=document.createElement('textarea');
+    ta.placeholder='Escribe aquí tu versión…';
+    ta.setAttribute('aria-label','Tu versión del feedback');
+    ta.addEventListener('input',()=>{ if(ta.value.trim().length>25) marcar(key); },{once:false});
+    const det=document.createElement('details');
+    det.innerHTML=`<summary>Ver una versión sugerida</summary><div class="cuerpo">${r.sug}</div>`;
+    d.appendChild(ta); d.appendChild(det); box.appendChild(d);
+  });
+  return box;
+}
+
+function marcar(k){
+  if(resueltos.has(k))return;
+  resueltos.add(k); pintarAvance();
+}
+function pintarAvance(){
+  const pct=totalEjercicios?Math.round(resueltos.size/totalEjercicios*100):0;
+  document.getElementById('relleno').style.width=pct+'%';
+  document.getElementById('avanceTexto').textContent=
+    resueltos.size+' de '+totalEjercicios+' ejercicios resueltos'+(pct===100?' · ¡completo! 🎉':'');
+}
+function irA(i){
+  document.querySelectorAll('section.modulo').forEach(s=>s.classList.remove('activo'));
+  document.getElementById(MODULOS[i].id).classList.add('activo');
+  [...nav.children].forEach((b,bi)=>b.setAttribute('aria-current',bi===i?'true':'false'));
+  nav.children[i].scrollIntoView({block:'nearest',inline:'center'});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+// chips de la ruta esencial
+const cont=document.getElementById('chipsRuta');
+if(cont){
+  MODULOS.forEach((m,i)=>{
+    if(!m.clave) return;
+    const c=document.createElement('button');
+    c.className='clave'; c.textContent=m.nav;
+    c.onclick=()=>irA(i);
+    cont.appendChild(c);
+  });
+}
+irA(0); pintarAvance();
+</script>
+</body>
+</html>

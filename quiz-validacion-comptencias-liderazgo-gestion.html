@@ -1,0 +1,800 @@
+<title>Mapa de Perfil Ágil</title>
+<style>
+:root{
+  --tinta:#1B2140; --tinta-suave:#4A5170; --papel:#F3F1FD; --carta:#FFFFFF;
+  --uva:#6C5CE7; --uva-claro:#EDEAFE;
+  --menta:#12B886; --menta-oscuro:#0E9670; --menta-claro:#DFF6EE;
+  --mango:#F5A524; --mango-claro:#FDF0DA;
+  --coral:#F2555A; --coral-claro:#FDE5E6;
+  --cielo:#3B9AE1; --cielo-claro:#E2F0FB;
+  --linea:#DCD8F0;
+  --r-l:26px; --r-m:16px; --r-s:10px;
+  --sombra:0 10px 0 -4px rgba(108,92,231,.12);
+}
+*{box-sizing:border-box}
+body{background:var(--papel);color:var(--tinta);font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.62;-webkit-text-size-adjust:100%}
+h1,h2,h3,h4{font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.18;margin:0 0 .5em}
+h1{font-size:2.5rem;letter-spacing:-.02em} h2{font-size:1.9rem;letter-spacing:-.01em} h3{font-size:1.25rem} h4{font-size:1.02rem}
+p{margin:0 0 1em;max-width:72ch}
+ul,ol{max-width:72ch;padding-left:1.15em} li{margin-bottom:.45em}
+strong{color:var(--tinta)}
+[hidden]{display:none!important}
+
+.portada{
+  background:
+    radial-gradient(circle at 12% 20%, rgba(245,165,36,.35) 0 22%, transparent 22.5%),
+    radial-gradient(circle at 88% 78%, rgba(18,184,134,.3) 0 18%, transparent 18.5%),
+    linear-gradient(140deg,#6C5CE7 0%, #8E7BF2 55%, #3B9AE1 100%);
+  color:#fff;padding:52px 22px 44px;text-align:center;position:relative;overflow:hidden;
+}
+.portada h1{color:#fff;margin-bottom:.35em}
+.portada p{margin:0 auto;max-width:58ch;color:rgba(255,255,255,.92)}
+.lema{display:inline-block;margin-top:20px;background:rgba(255,255,255,.16);border:2px dashed rgba(255,255,255,.5);border-radius:var(--r-l);padding:10px 20px;font-size:.95rem}
+.dial{display:block;margin:0 auto 18px}
+
+main{max-width:1000px;margin:0 auto;padding:26px 20px 80px}
+.card{background:var(--carta);border:2px solid var(--linea);border-radius:var(--r-l);padding:24px;margin:20px 0;box-shadow:var(--sombra)}
+.card.menta{border-color:var(--menta);background:var(--menta-claro)}
+.card.mango{border-color:var(--mango);background:var(--mango-claro)}
+.card.coral{border-color:var(--coral);background:var(--coral-claro)}
+.card.uva{border-color:var(--uva);background:var(--uva-claro)}
+.card.cielo{border-color:var(--cielo);background:var(--cielo-claro)}
+.card h3{margin-top:0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.chapa{width:42px;height:42px;flex:none;border-radius:14px;display:grid;place-items:center;font-weight:700;color:#fff;background:var(--uva);font-size:1.05rem;font-family:"Trebuchet MS",sans-serif}
+.chapa.menta{background:var(--menta)} .chapa.mango{background:var(--mango)} .chapa.coral{background:var(--coral)} .chapa.cielo{background:var(--cielo)}
+.cita{border-left:6px solid var(--mango);background:#fff;border-radius:0 var(--r-m) var(--r-m) 0;padding:14px 18px;margin:18px 0;font-style:italic}
+
+.btn{font:inherit;font-weight:600;background:var(--uva);color:#fff;border:none;border-radius:var(--r-l);padding:12px 24px;cursor:pointer;transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn.fantasma{background:#fff;color:var(--uva);border:2px solid var(--uva)}
+.btn:focus-visible,.opcion:focus-visible,.rolbtn:focus-visible{outline:3px solid var(--mango);outline-offset:2px}
+.pie-nav{display:flex;justify-content:space-between;gap:12px;margin-top:30px;flex-wrap:wrap;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chip{font-size:.86rem;font-weight:600;border-radius:99px;padding:7px 14px;background:#fff;border:2px solid var(--linea);color:var(--tinta-suave)}
+.chip.uva{border-color:var(--uva);color:var(--uva);background:var(--uva-claro)}
+.chip.menta{border-color:var(--menta);color:#0B7A5A;background:var(--menta-claro)}
+.chip.mango{border-color:var(--mango);color:#9A6207;background:var(--mango-claro)}
+.chip.cielo{border-color:var(--cielo);color:#1E6DA5;background:var(--cielo-claro)}
+
+.avance{max-width:1000px;margin:22px auto 0;padding:0 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.avance .barra{flex:1 1 220px;height:14px;background:var(--carta);border:2px solid var(--linea);border-radius:99px;overflow:hidden}
+.avance .relleno{height:100%;width:0;background:linear-gradient(90deg,var(--menta),var(--mango));transition:width .45s ease}
+.avance .texto{font-size:.9rem;color:var(--tinta-suave);font-weight:600}
+
+.practica{border:3px dashed var(--menta);border-radius:var(--r-l);padding:26px;margin:24px 0;background:#fff}
+.etq-eje{display:inline-block;font-size:.8rem;font-weight:700;padding:6px 14px;border-radius:99px;background:var(--uva-claro);border:2px solid var(--uva);color:var(--uva);margin-bottom:14px}
+.preg{font-family:"Trebuchet MS","Segoe UI",sans-serif;font-size:1.55rem;line-height:1.2;font-weight:700;margin:0 0 22px;max-width:26ch}
+.opciones{display:grid;gap:9px}
+.opcion{font:inherit;text-align:left;background:var(--papel);border:2px solid var(--linea);border-radius:var(--r-m);padding:13px 16px;cursor:pointer;transition:background .15s,border-color .15s;display:flex;align-items:center;gap:13px;color:var(--tinta)}
+.opcion:hover{background:var(--uva-claro);border-color:var(--uva)}
+.opcion.sel{background:var(--menta-claro);border-color:var(--menta)}
+.opcion .k{width:28px;height:28px;flex:none;display:grid;place-items:center;border-radius:9px;background:#fff;border:2px solid var(--linea);font-weight:700;font-size:.85rem}
+.opcion.sel .k{background:var(--menta);border-color:var(--menta);color:#fff}
+
+.marcador{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
+.gran{font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:4.2rem;line-height:.9;color:var(--uva)}
+.gran small{font-size:1.3rem;color:var(--tinta-suave)}
+
+/* selector de rol */
+.roles{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 16px}
+.rolbtn{font:inherit;font-size:.88rem;font-weight:700;border-radius:99px;padding:9px 17px;cursor:pointer;background:#fff;border:2px solid var(--linea);color:var(--tinta-suave);transition:transform .12s}
+.rolbtn:hover{transform:translateY(-2px)}
+.rolbtn[aria-pressed="true"]{background:var(--uva);border-color:var(--uva);color:#fff}
+
+.leyenda{display:flex;gap:18px;flex-wrap:wrap;font-size:.85rem;font-weight:600;color:var(--tinta-suave);margin-bottom:6px}
+.leyenda span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:22px;height:4px;border-radius:3px;display:inline-block}
+.sw.disc{height:0;border-top:4px dashed var(--coral);width:24px}
+figure{margin:16px 0 0;text-align:center}
+svg.radar{max-width:100%;height:auto}
+.radar .g{fill:none;stroke:var(--linea);stroke-width:1.5}
+.radar .lbl{font-family:"Trebuchet MS","Segoe UI",sans-serif;font-size:12.5px;font-weight:700;fill:var(--tinta)}
+.radar .tk{font-size:10px;fill:var(--tinta-suave);font-weight:600}
+figcaption{font-size:.87rem;color:var(--tinta-suave);margin-top:10px}
+
+.tabla-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.95rem;background:#fff;border-radius:var(--r-m);overflow:hidden;min-width:560px}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--linea);vertical-align:top}
+th{background:var(--uva);color:#fff;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.n{text-align:right;width:1%;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600}
+.marca{display:inline-block;font-size:.8rem;font-weight:700;padding:4px 11px;border-radius:99px;white-space:nowrap;border:2px solid}
+.marca.ok{background:var(--menta-claro);border-color:var(--menta);color:#0B7A5A}
+.marca.med{background:var(--mango-claro);border-color:var(--mango);color:#9A6207}
+.marca.baja{background:var(--coral-claro);border-color:var(--coral);color:#B23438}
+
+/* diverging vs pares */
+.div-fila{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;margin-bottom:11px}
+@media(min-width:640px){.div-fila{grid-template-columns:190px minmax(0,1fr) 62px;gap:0 14px;align-items:center}}
+.div-nom{font-size:.92rem;font-weight:600;line-height:1.25}
+.div-track{position:relative;height:24px;background:var(--papel);border:2px solid var(--linea);border-radius:var(--r-s)}
+.div-cero{position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:var(--tinta-suave);opacity:.55}
+.div-marca{position:absolute;top:3px;bottom:3px;border-radius:4px}
+.div-marca.mas{background:var(--menta)} .div-marca.menos{background:var(--coral)}
+.div-val{font-size:.86rem;font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.div-val.mas{color:#0B7A5A} .div-val.menos{color:#B23438}
+.div-escala{display:flex;justify-content:space-between;font-size:.75rem;color:var(--tinta-suave);font-weight:600;margin-top:6px}
+@media(min-width:640px){.div-escala{margin-left:204px;margin-right:76px}}
+
+/* tarjetas de rol */
+.rolgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.rolcard{background:#fff;border:2px solid var(--linea);border-radius:var(--r-l);padding:18px;display:flex;flex-direction:column;gap:9px}
+.rolcard.top{border-width:3px;border-color:var(--menta);background:var(--menta-claro)}
+.rolcard h4{margin:0;font-size:1.06rem}
+.rolcard .pct{font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:2.5rem;line-height:1;color:var(--uva)}
+.rolcard.top .pct{color:var(--menta-oscuro)}
+.rolcard .med{height:12px;background:var(--papel);border:2px solid var(--linea);border-radius:99px;overflow:hidden}
+.rolcard .med i{display:block;height:100%;background:var(--uva);border-radius:99px}
+.rolcard.top .med i{background:var(--menta)}
+.rolcard p{font-size:.9rem;margin:0;color:var(--tinta-suave)}
+.rolcard .falta{font-size:.86rem;background:var(--papel);border-radius:var(--r-s);padding:9px 11px;line-height:1.45}
+.rolcard .falta b{display:block;font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--tinta-suave);margin-bottom:3px}
+
+/* escalera de madurez IA */
+.escalera{display:flex;flex-direction:column;gap:10px;margin:18px 0}
+.peldano{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start;background:#fff;border:2px solid var(--linea);border-radius:var(--r-m);padding:14px 16px;opacity:.55}
+.peldano .lvl{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:1.05rem;background:var(--papel);border:2px solid var(--linea);color:var(--tinta-suave)}
+.peldano h4{margin:0 0 3px}
+.peldano p{margin:0;font-size:.9rem;color:var(--tinta-suave)}
+.peldano.aqui{opacity:1;border-width:3px;border-color:var(--menta);background:var(--menta-claro);box-shadow:var(--sombra)}
+.peldano.aqui .lvl{background:var(--menta);border-color:var(--menta);color:#fff}
+.peldano.aqui p{color:var(--tinta)}
+.peldano.previo{opacity:.9}
+.tuaqui{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--menta);color:#fff;border-radius:99px;padding:3px 10px;margin-left:8px;vertical-align:middle}
+.iabox{display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-bottom:6px}
+.ianivel{font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:3rem;line-height:1;color:var(--menta-oscuro)}
+.ianivel small{display:block;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave);margin-top:4px}
+
+.barra-dato{position:relative;height:26px;background:var(--papel);border:2px solid var(--linea);border-radius:99px;overflow:hidden}
+.barra-dato i{display:block;height:100%;background:var(--uva);border-radius:99px}
+.barra-dato b{position:absolute;right:12px;top:0;line-height:22px;font-size:.85rem;font-variant-numeric:tabular-nums}
+.dato{display:grid;gap:6px;grid-template-columns:minmax(0,1fr);margin-bottom:15px}
+@media(min-width:660px){.dato{grid-template-columns:minmax(0,1fr) 190px;gap:0 20px;align-items:center}}
+.dato .txt{font-size:.95rem;line-height:1.4}
+.dato .txt em{font-style:normal;display:block;font-size:.8rem;color:var(--tinta-suave);margin-top:3px}
+
+footer{text-align:center;padding:26px 20px 40px;color:var(--tinta-suave);font-size:.87rem;max-width:900px;margin:0 auto}
+footer ol{display:inline-block;text-align:left;max-width:70ch;margin-top:8px}
+
+@media (max-width:600px){
+  body{font-size:16px} h1{font-size:1.95rem} h2{font-size:1.45rem}
+  .preg{font-size:1.3rem} .gran{font-size:3.2rem}
+  .portada{padding:38px 18px 34px} .card,.practica{padding:18px} main{padding:20px 14px 60px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{.pie-nav,.avance,.no-print{display:none!important}body{background:#fff}.card{box-shadow:none;break-inside:avoid}}
+</style>
+
+<header class="portada">
+  <svg class="dial" width="86" height="86" viewBox="0 0 100 100" role="img" aria-label="Radar de competencias con cuatro perfiles superpuestos">
+    <circle cx="50" cy="50" r="42" fill="#6C5CE7" stroke="#fff" stroke-width="4"/>
+    <circle cx="50" cy="50" r="29" fill="none" stroke="#fff" stroke-width="2" opacity=".4"/>
+    <circle cx="50" cy="50" r="16" fill="none" stroke="#fff" stroke-width="2" opacity=".4"/>
+    <polygon points="50,18 74,36 66,66 34,66 26,36" fill="#12B886" opacity=".85" stroke="#fff" stroke-width="2.5"/>
+    <circle cx="50" cy="18" r="5" fill="#F5A524" stroke="#fff" stroke-width="2"/>
+    <circle cx="66" cy="66" r="4.5" fill="#F2555A" stroke="#fff" stroke-width="2"/>
+    <circle cx="26" cy="36" r="4.5" fill="#3B9AE1" stroke="#fff" stroke-width="2"/>
+  </svg>
+  <h1>Mapa de Perfil Ágil</h1>
+  <p>Veintiséis preguntas para saber qué habilidades tienes hoy, cómo te comparas con otros Scrum Masters, y a cuál de los cuatro oficios del liderazgo ágil se parece más tu perfil. Incluye un corte aparte sobre madurez real en el uso de IA.</p>
+  <div class="lema">Scrum Master · Agile Coach · Project Manager · PMO</div>
+</header>
+
+<!-- ================== INTRO ================== -->
+<main id="intro">
+
+  <div class="card">
+    <div class="eyebrow"><span class="chapa cielo">4</span><h2 style="margin:0">Los cuatro perfiles</h2></div>
+    <div class="grid">
+      <div class="card menta" style="margin:8px 0 0">
+        <h3>Scrum Master</h3>
+        <p style="font-size:.94rem;margin-bottom:0"><strong>Vive en el equipo.</strong> Su fuerza es la facilitación y el desarrollo de las personas que tiene enfrente. Necesita poco músculo económico y mucha capacidad de hacer que un grupo funcione solo.</p>
+      </div>
+      <div class="card cielo" style="margin:8px 0 0">
+        <h3>Agile Coach</h3>
+        <p style="font-size:.94rem;margin-bottom:0"><strong>Vive en la organización.</strong> Trabaja sobre la cultura y el sistema, no sobre un equipo. Coaching profundo, gestión del cambio y credibilidad ante dirección son su terreno.</p>
+      </div>
+      <div class="card mango" style="margin:8px 0 0">
+        <h3>Project Manager</h3>
+        <p style="font-size:.94rem;margin-bottom:0"><strong>Vive en el compromiso.</strong> Responde por alcance, fecha y costo. Su músculo es negociar, gestionar dependencias y pronosticar con datos.</p>
+      </div>
+      <div class="card coral" style="margin:8px 0 0">
+        <h3>PMO / Delivery Lead</h3>
+        <p style="font-size:.94rem;margin-bottom:0"><strong>Vive en el portafolio.</strong> Define cómo se gestionan todos los proyectos. Gobierno, métricas, proceso y lectura económica son innegociables.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow"><span class="chapa mango">?</span><h2 style="margin:0">Cómo se usa</h2></div>
+    <div class="grid">
+      <div class="card menta" style="margin:8px 0 0">
+        <h3>Honestidad incómoda</h3>
+        <p style="margin-bottom:0">Cada frase describe una conducta, no una intención. Si dudas entre dos opciones, elige la de abajo. Un diagnóstico amable no sirve para nada.</p>
+      </div>
+      <div class="card mango" style="margin:8px 0 0">
+        <h3>Los últimos tres meses</h3>
+        <p style="margin-bottom:0">No tu mejor semana ni lo que planeas hacer. Responde por lo que efectivamente ocurrió en el trimestre que acaba de pasar.</p>
+      </div>
+      <div class="card cielo" style="margin:8px 0 0">
+        <h3>Contrasta con alguien más</h3>
+        <p style="margin-bottom:0">El mayor valor aparece cuando tu jefe o tu equipo responden lo mismo sobre ti. La diferencia entre ambas lecturas es el hallazgo.</p>
+      </div>
+    </div>
+    <div class="card coral" style="margin:18px 0 0">
+      <h3>El bloque de IA mide gobierno, no entusiasmo</h3>
+      <p style="margin-bottom:0">Las últimas seis preguntas son sobre inteligencia artificial, y están escritas a propósito para que <strong>abrir un chat y pedirle cosas no cuente como usar IA</strong>. Preguntan si está dentro de un flujo definido, si hay reglas de qué se puede pasar, si alguien verifica lo que sale, si queda evidencia y si puedes demostrar el efecto con números. Si contestas por entusiasmo en vez de por hechos, el resultado que sale no le sirve a nadie.</p>
+    </div>
+    <div class="cita">
+      <strong>Qué esperar.</strong> Nadie sale parejo, y no debería. Lo normal es una figura con picos: alto en lo que tu rol te obliga a practicar todos los días, hundido en lo que tu rol nunca te pide. Esa forma es el diagnóstico — no el promedio.
+    </div>
+    <div class="pie-nav">
+      <button class="btn" id="start">Empezar el diagnóstico</button>
+      <span style="font-size:.88rem;color:var(--tinta-suave)">26 preguntas · 8 minutos · nada se guarda ni se envía</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow"><span class="chapa coral">i</span><h2 style="margin:0">Fuentes y método</h2></div>
+    <p>Este instrumento mezcla tres tipos de información con distinto grado de solidez. Conviene que sepas cuál es cuál antes de interpretar tu resultado.</p>
+
+    <div class="card cielo" style="margin:14px 0 0">
+      <h3>Verificado · Cifras publicadas</h3>
+      <p style="margin-bottom:0">Los porcentajes de la sección «Dónde está el sector» están tomados literalmente de dos publicaciones: el <strong>18th State of Agile Report</strong> de Digital.ai, publicado el 28 de octubre de 2025 con cerca de 350 participantes, y el <strong>Pulse of the Profession 2018</strong> de PMI, su 10.ª encuesta global, con 5,402 encuestados. Cada barra indica de cuál viene.</p>
+    </div>
+
+    <div class="card mango" style="margin:14px 0 0">
+      <h3>Construido · Los perfiles de los cuatro oficios</h3>
+      <p style="margin-bottom:0">Los niveles que exige cada rol <strong>no provienen de ningún estándar publicado</strong>: no existe uno. Están construidos a partir de los tres lados del <strong>PMI Talent Triangle</strong> —Ways of Working, Power Skills y Business Acumen— y de las descripciones de puesto habituales de cada oficio. Son un mapa de dirección, no un umbral de contratación.</p>
+    </div>
+
+    <div class="card coral" style="margin:14px 0 0">
+      <h3>Estimado · La línea de «otros Scrum Masters»</h3>
+      <p style="margin-bottom:0">Es la capa más débil y así hay que tratarla. <strong>No existe ninguna encuesta pública que puntúe Scrum Masters competencia por competencia</strong>, de modo que esa línea es una estimación calibrada con los datos de arriba, no una media medida. Úsala como orientación de posición relativa; lo sólido son los porcentajes citados y la distancia entre tu figura y el perfil de cada oficio.</p>
+    </div>
+  </div>
+</main>
+
+<!-- ================== QUIZ ================== -->
+<div id="quiz" hidden>
+  <div class="avance">
+    <div class="barra"><div class="relleno" id="relleno"></div></div>
+    <div class="texto" id="avanceTexto">Pregunta 1 de 26</div>
+  </div>
+  <main>
+    <div class="practica">
+      <span class="etq-eje" id="eje">Facilitación ágil</span>
+      <p class="preg" id="preg">…</p>
+      <div class="opciones" id="opciones"></div>
+    </div>
+    <div class="pie-nav">
+      <button class="btn fantasma" id="back">← Anterior</button>
+      <span style="font-size:.88rem;color:var(--tinta-suave)">Elige una opción para avanzar</span>
+    </div>
+  </main>
+</div>
+
+<!-- ================== RESULTADO ================== -->
+<div id="results" hidden>
+  <main>
+
+    <div class="card uva">
+      <div class="marcador">
+        <div class="gran" id="score">0.0<small> / 5</small></div>
+        <div style="flex:1;min-width:250px">
+          <h2 style="margin:0 0 .2em" id="band">—</h2>
+          <p style="margin:0" id="arch">—</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow"><span class="chapa menta">◈</span><h2 style="margin:0">Tu figura</h2></div>
+      <p style="font-size:.95rem;color:var(--tinta-suave)">Elige un oficio para ver qué exige y dónde te queda corto o largo. La línea morada, la media de otros Scrum Masters, siempre está.</p>
+      <div class="roles" id="roles" role="group" aria-label="Perfil de rol a comparar"></div>
+      <div class="leyenda">
+        <span><i class="sw" style="background:var(--menta-oscuro)"></i> Tú</span>
+        <span><i class="sw" style="background:var(--uva)"></i> Media de Scrum Masters</span>
+        <span><i class="sw disc"></i> <span id="legRol">Perfil seleccionado</span></span>
+      </div>
+      <figure>
+        <svg class="radar" width="760" height="500" viewBox="0 0 760 500" role="img" aria-labelledby="rt">
+          <title id="rt">Radar de diez competencias: tu resultado, la media de otros Scrum Masters y el perfil del rol seleccionado.</title>
+          <polygon class="g" points="380.0,220.0 397.6,225.7 408.5,240.7 408.5,259.3 397.6,274.3 380.0,280.0 362.4,274.3 351.5,259.3 351.5,240.7 362.4,225.7"/>
+          <polygon class="g" points="380.0,190.0 415.3,201.5 437.1,231.5 437.1,268.5 415.3,298.5 380.0,310.0 344.7,298.5 322.9,268.5 322.9,231.5 344.7,201.5"/>
+          <polygon class="g" points="380.0,160.0 432.9,177.2 465.6,222.2 465.6,277.8 432.9,322.8 380.0,340.0 327.1,322.8 294.4,277.8 294.4,222.2 327.1,177.2"/>
+          <polygon class="g" points="380.0,130.0 450.5,152.9 494.1,212.9 494.1,287.1 450.5,347.1 380.0,370.0 309.5,347.1 265.9,287.1 265.9,212.9 309.5,152.9"/>
+          <polygon class="g" points="380.0,100.0 468.2,128.6 522.7,203.6 522.7,296.4 468.2,371.4 380.0,400.0 291.8,371.4 237.3,296.4 237.3,203.6 291.8,128.6"/>
+          <g class="g">
+            <line x1="380" y1="250" x2="380.0" y2="100.0"/><line x1="380" y1="250" x2="468.2" y2="128.6"/>
+            <line x1="380" y1="250" x2="522.7" y2="203.6"/><line x1="380" y1="250" x2="522.7" y2="296.4"/>
+            <line x1="380" y1="250" x2="468.2" y2="371.4"/><line x1="380" y1="250" x2="380.0" y2="400.0"/>
+            <line x1="380" y1="250" x2="291.8" y2="371.4"/><line x1="380" y1="250" x2="237.3" y2="296.4"/>
+            <line x1="380" y1="250" x2="237.3" y2="203.6"/><line x1="380" y1="250" x2="291.8" y2="128.6"/>
+          </g>
+          <text class="tk" x="386" y="223">1</text><text class="tk" x="386" y="163">3</text><text class="tk" x="386" y="104">5</text>
+          <polygon id="pRol" fill="none" stroke="#F2555A" stroke-width="3" stroke-dasharray="8 6" stroke-linejoin="round" points=""/>
+          <polygon id="pMed" fill="none" stroke="#6C5CE7" stroke-width="2.5" stroke-linejoin="round" points=""/>
+          <polygon id="pYou" fill="rgba(18,184,134,.22)" stroke="#0E9670" stroke-width="3" stroke-linejoin="round" points=""/>
+          <g id="dots" fill="#0E9670" stroke="#fff" stroke-width="2.5"></g>
+          <text class="lbl" x="380.0" y="73.0" text-anchor="middle">Facilitación ágil</text>
+          <text class="lbl" x="484.0" y="102.8" text-anchor="start">Coaching y<tspan x="484.0" dy="15">desarrollo</tspan></text>
+          <text class="lbl" x="548.3" y="191.3" text-anchor="start">Gestión del<tspan x="548.3" dy="15">cambio</tspan></text>
+          <text class="lbl" x="548.3" y="300.7" text-anchor="start">Trazabilidad<tspan x="548.3" dy="15">y gobierno</tspan></text>
+          <text class="lbl" x="484.0" y="389.2" text-anchor="start">Métricas<tspan x="484.0" dy="15">de flujo</tspan></text>
+          <text class="lbl" x="380.0" y="427.0" text-anchor="middle">Diseño de proceso</text>
+          <text class="lbl" x="276.0" y="389.2" text-anchor="end">Comunicación<tspan x="276.0" dy="15">con dirección</tspan></text>
+          <text class="lbl" x="211.7" y="300.7" text-anchor="end">Delegación<tspan x="211.7" dy="15">y relevos</tspan></text>
+          <text class="lbl" x="211.7" y="191.3" text-anchor="end">Negociación y<tspan x="211.7" dy="15">dependencias</tspan></text>
+          <text class="lbl" x="276.0" y="102.8" text-anchor="end">Visión<tspan x="276.0" dy="15">económica</tspan></text>
+        </svg>
+        <figcaption>Escala 0 a 5. Pasa el cursor sobre cada punto verde para ver tu valor exacto.</figcaption>
+      </figure>
+      <div class="tabla-scroll">
+        <table>
+          <thead><tr><th>Competencia</th><th style="text-align:right">Tú</th><th style="text-align:right">Media SM</th><th style="text-align:right" id="thRol">Rol</th><th>Lectura</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow"><span class="chapa uva">±</span><h2 style="margin:0">Tú frente a otros Scrum Masters</h2></div>
+      <p>Diferencia entre tu nivel y la media de quienes hacen tu mismo trabajo. A la derecha, donde vas por delante; a la izquierda, donde vas por detrás.</p>
+      <div id="diverg"></div>
+      <div class="div-escala"><span>−2.5</span><span>0</span><span>+2.5</span></div>
+      <div class="card cielo" style="margin-top:20px;margin-bottom:0">
+        <h3 id="peerTitle">Lectura</h3>
+        <p style="margin-bottom:0" id="peerTxt">—</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow"><span class="chapa cielo">%</span><h2 style="margin:0">Tu afinidad con cada oficio</h2></div>
+      <p>Qué porcentaje del perfil de cada rol ya cubres hoy. No es una nota: un 60 % en PMO y un 85 % en Scrum Master no significa que seas mejor o peor, significa que tu perfil se parece más a uno que a otro.</p>
+      <div class="rolgrid" id="afinidad"></div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow"><span class="chapa coral">→</span><h2 style="margin:0">Tu crecimiento hacia <span id="rolNombre">—</span></h2></div>
+      <p>Las tres brechas mayores respecto al oficio que seleccionaste arriba, con la primera acción de cada una. Cambia el rol en el selector y estas recomendaciones cambian.</p>
+      <div id="recos"></div>
+      <div class="card mango" style="margin-bottom:0">
+        <h3>El error típico</h3>
+        <p style="margin-bottom:0">Reforzar lo que ya haces bien porque se siente productivo. Si tu figura ya rebasa el perfil del rol en una competencia, ahí no hay retorno: cada hora invertida en tus puntas más altas es una hora que no cierra la brecha que sí te separa del oficio al que apuntas.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow"><span class="chapa menta">IA</span><h2 style="margin:0">Tu madurez en el uso de IA</h2></div>
+      <p>Este bloque no mide si usas IA: eso ya lo hace casi todo el mundo. Mide si tu uso está gobernado, verificado y demostrable, que es lo que separa una herramienta personal de una capacidad operativa.</p>
+      <div class="iabox">
+        <div class="ianivel" id="iaNivel">N0<small id="iaPuntos">0.0 de 4</small></div>
+        <div style="flex:1;min-width:250px">
+          <h3 style="margin:0 0 .2em" id="iaTitulo">—</h3>
+          <p style="margin:0" id="iaTexto">—</p>
+        </div>
+      </div>
+      <div class="escalera" id="escalera"></div>
+      <div class="card cielo" style="margin-bottom:0">
+        <h3>Por qué la vara está donde está</h3>
+        <p><strong>90 %</strong> de los profesionales de tecnología ya usa IA en el trabajo, según el reporte DORA 2025 de Google Cloud con cerca de 5,000 encuestados. Adoptar dejó de ser un diferenciador: es la línea base.</p>
+        <p>Lo que sí escasea es todo lo demás. Solo <strong>49 %</strong> tiene reglas de uso establecidas (Digital.ai, 18th State of Agile). <strong>30 %</strong> declara poca o ninguna confianza en el código que la IA genera, y el mismo reporte DORA encuentra relación positiva con la velocidad de entrega pero <strong>negativa con la estabilidad</strong>. Y en el corte financiero, solo <strong>6 %</strong> de las organizaciones consigue un impacto en EBIT de 5 % o más (McKinsey, encuesta global de mayo–junio de 2026, 1,719 encuestados en 97 países).</p>
+        <p style="margin-bottom:0">Traducido: si quedaste en nivel 0 o 1 estás donde está casi todo el mundo. A partir del nivel 3 empiezas a estar en una minoría con argumento demostrable, y eso pesa más en una conversación de rol que decir que usas IA todos los días.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow"><span class="chapa mango">%</span><h2 style="margin:0">Dónde está el sector</h2></div>
+      <p>Cifras publicadas, citadas textualmente. Sirven para ubicar la conversación en la que se mueve hoy tu oficio.</p>
+
+      <p style="font-size:.88rem;color:var(--tinta-suave);margin-bottom:6px"><strong>Digital.ai · 18th State of Agile Report</strong> — publicado el 28 de octubre de 2025, cerca de 350 participantes.</p>
+      <div class="dato">
+        <div class="txt">Reportan <strong>mayor escrutinio sobre el impacto de negocio y el ROI</strong> de lo ágil<em>Es la presión de fondo que redefine hoy los cuatro oficios</em></div>
+        <div class="barra-dato"><i style="width:76%"></i><b>76 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Se les pide <strong>hacer más con menos</strong><em>Desplazamiento de la agilidad hacia eficiencia y control de costo</em></div>
+        <div class="barra-dato"><i style="width:79%"></i><b>79 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Quieren <strong>mayor respaldo del liderazgo</strong><em>La influencia hacia arriba es hoy el cuello de botella declarado</em></div>
+        <div class="barra-dato"><i style="width:73%"></i><b>73 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Son <strong>responsables de conectar el trabajo ágil con resultados de negocio</strong><em>Menos de un tercio: por eso esa competencia diferencia tanto</em></div>
+        <div class="barra-dato"><i style="width:29%"></i><b>29 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Ya <strong>influyen en la planeación de producto y portafolio</strong><em>La puerta de entrada a los oficios de Agile Coach y PMO</em></div>
+        <div class="barra-dato"><i style="width:26%"></i><b>26 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Tienen <strong>reglas claras de uso</strong> para las herramientas de IA que ya adoptaron<em>La adopción subió de 68 % a 84 %; el gobierno se quedó atrás</em></div>
+        <div class="barra-dato"><i style="width:49%"></i><b>49 %</b></div>
+      </div>
+
+      <p style="font-size:.88rem;color:var(--tinta-suave);margin:26px 0 6px"><strong>DORA · State of AI-assisted Software Development 2025</strong> — Google Cloud, 23 de septiembre de 2025, cerca de 5,000 profesionales de tecnología y más de 100 horas de entrevistas.</p>
+      <div class="dato">
+        <div class="txt">Profesionales de tecnología que <strong>usan IA en su trabajo</strong><em>Adoptar ya no distingue a nadie: es la línea base</em></div>
+        <div class="barra-dato"><i style="width:90%"></i><b>90 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Que declaran <strong>poca o ninguna confianza</strong> en el código que genera la IA<em>Y aun así más del 80 % cree que le subió la productividad</em></div>
+        <div class="barra-dato"><i style="width:30%"></i><b>30 %</b></div>
+      </div>
+
+      <p style="font-size:.88rem;color:var(--tinta-suave);margin:26px 0 6px"><strong>McKinsey · Global Survey on the state of AI</strong> — trabajo de campo del 4 de mayo al 8 de junio de 2026, 1,719 encuestados en 97 países.</p>
+      <div class="dato">
+        <div class="txt">Organizaciones grandes que ya <strong>escalan agentes de IA</strong><em>Subió desde 27 % el año anterior</em></div>
+        <div class="barra-dato"><i style="width:40%"></i><b>40 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Que atribuyen <strong>algún impacto en EBIT</strong> al uso de IA<em>Atribuir algún impacto, no necesariamente medirlo</em></div>
+        <div class="barra-dato"><i style="width:37%"></i><b>37 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Que logran un <strong>impacto en EBIT de 5 % o más</strong><em>El dato que ordena la conversación: seis de cada cien</em></div>
+        <div class="barra-dato"><i style="width:6%"></i><b>6 %</b></div>
+      </div>
+
+      <p style="font-size:.88rem;color:var(--tinta-suave);margin:26px 0 6px"><strong>PMI · Pulse of the Profession 2018</strong> — 10.ª encuesta global de gestión de proyectos, 5,402 encuestados.</p>
+      <div class="dato">
+        <div class="txt">Proyectos que <strong>cumplen sus objetivos originales</strong><em>El otro 31 % es el terreno donde se justifica el oficio</em></div>
+        <div class="barra-dato"><i style="width:69%"></i><b>69 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Proyectos que <strong>sufren desviación de alcance</strong><em>Por eso negociación y dependencias pesan tanto en el perfil de PM</em></div>
+        <div class="barra-dato"><i style="width:52%"></i><b>52 %</b></div>
+      </div>
+      <div class="dato">
+        <div class="txt">Organizaciones de alto desempeño que priorizan el <strong>desarrollo de habilidades de liderazgo</strong><em>Contra 13 % en las de bajo desempeño</em></div>
+        <div class="barra-dato"><i style="width:79%"></i><b>79 %</b></div>
+      </div>
+      <div class="dato" style="margin-bottom:0">
+        <div class="txt">Organizaciones de alto desempeño que priorizan las <strong>habilidades estratégicas y de negocio</strong><em>Contra 11 % en las de bajo desempeño</em></div>
+        <div class="barra-dato"><i style="width:70%"></i><b>70 %</b></div>
+      </div>
+    </div>
+
+    <div class="pie-nav no-print">
+      <button class="btn" id="print">Guardar o imprimir</button>
+      <button class="btn fantasma" id="again">Volver a empezar</button>
+    </div>
+  </main>
+</div>
+
+<footer>
+  Instrumento indicativo de autodiagnóstico. No es una evaluación psicométrica validada ni sustituye un proceso formal de desempeño. Todo el cálculo ocurre en tu navegador; nada se transmite.
+  <ol>
+    <li><strong>Digital.ai — 18th State of Agile Report.</strong> Publicado el 28 de octubre de 2025. Cerca de 350 participantes. De aquí salen las cifras de 76 %, 79 %, 73 %, 29 %, 26 % y 49 %, además del dato de adopción de IA que pasó de 68 % a 84 %.</li>
+    <li><strong>PMI — Pulse of the Profession 2018</strong>, 10.ª encuesta global de gestión de proyectos. 5,402 encuestados: 4,455 practicantes, 447 directivos y 800 directores de PMO. De aquí salen 69 %, 52 %, y los contrastes 79 % contra 13 % y 70 % contra 11 %.</li>
+    <li><strong>DORA — 2025 DORA Report: State of AI-Assisted Software Development.</strong> Google Cloud, publicado el 23 de septiembre de 2025. Cerca de 5,000 profesionales de tecnología y más de 100 horas de entrevistas. De aquí salen 90 % y 30 %.</li>
+    <li><strong>McKinsey — Global Survey on the state of AI.</strong> Trabajo de campo del 4 de mayo al 8 de junio de 2026. 1,719 encuestados en 97 países. De aquí salen 40 %, 37 % y 6 %.</li>
+    <li><strong>PMI Talent Triangle</strong> — Ways of Working · Power Skills · Business Acumen. Marco usado para agrupar las diez competencias. Los niveles por oficio son una construcción propia sobre ese marco, no un estándar publicado.</li>
+  </ol>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+var AXES=[
+ {k:"facilitacion", n:"Facilitación ágil",          med:4.0},
+ {k:"coaching",     n:"Coaching y desarrollo",      med:3.2},
+ {k:"cambio",       n:"Gestión del cambio",         med:2.6},
+ {k:"trazabilidad", n:"Trazabilidad y gobierno",    med:2.8},
+ {k:"metricas",     n:"Métricas de flujo",          med:2.4},
+ {k:"proceso",      n:"Diseño de proceso",          med:2.2},
+ {k:"comunicacion", n:"Comunicación con dirección", med:3.0},
+ {k:"delegacion",   n:"Delegación y relevos",       med:2.8},
+ {k:"negociacion",  n:"Negociación y dependencias", med:2.8},
+ {k:"economico",    n:"Visión económica",           med:2.0}
+];
+
+var ROLES=[
+ {id:"sm",    n:"Scrum Master",  largo:"Scrum Master",
+  vive:"Vive en el equipo.",
+  perfil:[4.5,4.0,3.0,3.5,3.5,3.0,3.0,3.0,3.0,2.0]},
+ {id:"coach", n:"Agile Coach",   largo:"Agile Coach",
+  vive:"Vive en la organización.",
+  perfil:[4.5,5.0,5.0,3.0,4.0,4.0,4.5,4.0,4.0,3.0]},
+ {id:"pm",    n:"Project Manager", largo:"Project Manager",
+  vive:"Vive en el compromiso.",
+  perfil:[3.0,3.0,3.0,4.5,4.5,3.5,4.5,4.0,5.0,4.5]},
+ {id:"pmo",   n:"PMO / Delivery", largo:"PMO / Delivery Lead",
+  vive:"Vive en el portafolio.",
+  perfil:[2.5,3.0,4.0,5.0,5.0,5.0,5.0,4.5,4.5,5.0]}
+];
+
+var Q=[
+ {a:"facilitacion", t:"Mis ceremonias terminan con acuerdos concretos: dueño y fecha, no solo estatus."},
+ {a:"coaching",     t:"Dedico tiempo deliberado a conversaciones de desarrollo con cada persona de mi equipo."},
+ {a:"cambio",       t:"He conseguido que otra área adopte una práctica nueva sin tener autoridad sobre ella."},
+ {a:"trazabilidad", t:"Si abro cualquier tarea cerrada del último mes, encuentro evidencia de lo que se hizo."},
+ {a:"metricas",     t:"Puedo decir el tiempo de ciclo de mi equipo sin ponerme a calcularlo."},
+ {a:"proceso",      t:"El trabajo repetitivo de mi gestión está automatizado, no lo rehago cada semana."},
+ {a:"comunicacion", t:"Mis reportes a dirección dicen qué decisión necesito, no solo qué pasó."},
+ {a:"delegacion",   t:"Si me ausento dos semanas, mis ceremonias y reportes siguen ocurriendo sin mí."},
+ {a:"negociacion",  t:"Cuando me llega una fecha inviable, la negocio con datos en vez de absorberla."},
+ {a:"economico",    t:"Sé cuántas horas lleva consumidas cada proyecto contra lo estimado."},
+ {a:"facilitacion", t:"Mi equipo levanta y resuelve sus impedimentos sin esperar a que yo los detecte."},
+ {a:"coaching",     t:"Cuando alguien me trae un problema, le devuelvo preguntas antes que soluciones."},
+ {a:"cambio",       t:"Sé identificar quién se resiste a un cambio y por qué, y trabajo esa resistencia."},
+ {a:"trazabilidad", t:"El tiempo que registra mi equipo está atribuido al proyecto y cliente correctos."},
+ {a:"metricas",     t:"Cuando me preguntan cuándo estará algo, respondo con un rango basado en histórico."},
+ {a:"proceso",      t:"Mis herramientas y criterios están documentados para que otro pueda operarlos."},
+ {a:"comunicacion", t:"Cuando llevo un problema hacia arriba, llevo también la alternativa y su costo."},
+ {a:"delegacion",   t:"Hay al menos una persona formándose para hacer lo que hoy solo hago yo."},
+ {a:"negociacion",  t:"Cada dependencia externa de mi equipo tiene dueño con nombre y fecha comprometida."},
+ {a:"economico",    t:"Puedo explicar en dinero lo que cuesta el retrabajo de mi equipo."}
+];
+
+var QIA=[
+ {t:"El uso de IA en mi operación está dentro de un flujo de trabajo definido, no depende de que cada quien se acuerde de abrirla."},
+ {t:"Existen reglas escritas sobre qué información se puede y qué no se puede pasar a una herramienta de IA."},
+ {t:"Lo que produce la IA pasa por una verificación humana definida antes de usarse o entregarse."},
+ {t:"Queda evidencia de lo hecho con IA: qué se generó, quién lo revisó y qué se cambió."},
+ {t:"Puedo cuantificar qué ahorró o qué mejoró la IA en mi operación, con un número, no con una impresión."},
+ {t:"Si la IA se equivoca en algo que ya entregamos, sé cómo nos enteraríamos."}
+];
+
+var NIVELES=[
+ {c:"N0", t:"Exploración", d:"Uso suelto y personal, casi siempre en una ventana de chat. Es donde está la mayoría y no constituye una capacidad: si mañana te vas, no queda nada instalado."},
+ {c:"N1", t:"Uso individual", d:"Resuelves tareas propias con IA y te funciona, pero es tuyo y no de la operación. No hay reglas, ni verificación acordada, ni rastro de lo hecho."},
+ {c:"N2", t:"Práctica de equipo", d:"El equipo comparte criterios y formas de usarla. Ya es repetible, todavía no es gobernada: falta que la verificación y la evidencia sean obligatorias, no voluntarias."},
+ {c:"N3", t:"Integrada al flujo", d:"Está dentro del proceso, con verificación humana definida y rastro de lo generado. A partir de aquí puedes defender el uso ante una auditoría o ante un cliente."},
+ {c:"N4", t:"Gobernada y medida", d:"Reglas escritas, verificación obligatoria, evidencia trazable y efecto cuantificado. Es la minoría del sector y es un argumento de rol, no una anécdota de productividad."}
+];
+
+var OPTS=["Nunca","Rara vez","A veces","Casi siempre","Siempre"];
+
+var RECO={
+ facilitacion:["Cierra cada ceremonia con una tabla","Termina cada sesión leyendo en voz alta los acuerdos con dueño y fecha. Si no cabe en tres renglones, la sesión no produjo nada."],
+ coaching:["Cambia una respuesta por una pregunta","La próxima vez que alguien te traiga un problema resuelto por ti, devuélvelo con «¿qué opciones ves?». Incomoda al principio y es el músculo central del coaching."],
+ cambio:["Elige un solo cambio y mapea resistencias","Antes de empujar una práctica nueva, escribe quién gana y quién pierde con ella. El cambio no falla por mal diseño, falla por resistencias no atendidas."],
+ trazabilidad:["Audita diez folios cerrados","Toma diez tareas cerradas del último mes al azar y revisa si alguien externo entendería qué se hizo. El porcentaje que falle es tu punto de partida."],
+ metricas:["Mide una sola cosa: tiempo de ciclo","Empieza por el tipo de trabajo más frecuente de tu equipo. Con ocho semanas de datos ya puedes dar rangos en vez de fechas inventadas."],
+ proceso:["Automatiza lo que ya hiciste tres veces","Y documéntalo de forma que otro lo ejecute. Un proceso que solo tú sabes correr no es un proceso, es una dependencia."],
+ comunicacion:["Añade dos renglones a tus reportes","«Impacto» y «Decisión que necesito». Es el cambio más barato de esta lista y el que más rápido nota tu jefe."],
+ delegacion:["Cede una ceremonia este mes","Elige la de menor riesgo y no asistas. Lo que se rompa es exactamente lo que hoy solo vive en tu cabeza."],
+ negociacion:["Prepara un «sí, y esto cuesta»","La próxima fecha imposible: acéptala por escrito junto con las horas que implica y qué se desplaza. No es negarse; es hacer visible el precio."],
+ economico:["Saca horas contra estimado de un proyecto","Uno solo, el más grande. Esa primera lectura suele ser incómoda y es la conversación que abre la puerta a roles de gestión."]
+};
+
+var BANDS=[
+ {min:0,   t:"Base en construcción", d:"Estás formando el repertorio. Concentra todo en una competencia por trimestre: dispersarte aquí es la forma más rápida de no avanzar en ninguna."},
+ {min:2.0, t:"Practicante sólido",   d:"Sostienes la operación con criterio propio. El siguiente paso no es esforzarte más, sino volver repetible lo que hoy depende de que estés presente."},
+ {min:3.0, t:"Practicante avanzado", d:"Operas por encima de la media de tus pares. Lo que te abre otros oficios ya no es ejecución, sino traducir tu trabajo a decisiones y a números."},
+ {min:4.0, t:"Perfil de referencia", d:"Tu repertorio alcanza varios oficios a la vez. Tu tarea ahora es elegir cuál quieres profundizar en vez de sostenerlos todos."}
+];
+
+var ARCH={
+ EQUIPO:"Tu centro de gravedad está en el equipo: facilitación, coaching y desarrollo de personas. Es el corazón del oficio de Scrum Master y la base natural hacia Agile Coach.",
+ SISTEMA:"Tu centro de gravedad está en el sistema: proceso, trazabilidad y métricas. Es un perfil poco común entre Scrum Masters y la puerta más directa hacia PMO.",
+ NEGOCIO:"Tu centro de gravedad está en el negocio: dirección, negociación, dependencias y dinero. Es el perfil que más se acerca a Project Manager.",
+ MIXTO:"No tienes un centro de gravedad dominante. Eso te da versatilidad y te obliga a elegir deliberadamente qué oficio quieres profundizar."
+};
+var GRUPO={facilitacion:"EQUIPO",coaching:"EQUIPO",cambio:"EQUIPO",trazabilidad:"SISTEMA",metricas:"SISTEMA",proceso:"SISTEMA",comunicacion:"NEGOCIO",delegacion:"EQUIPO",negociacion:"NEGOCIO",economico:"NEGOCIO"};
+
+var TOTAL=Q.length+QIA.length;
+var ans=new Array(TOTAL).fill(null), i=0, vals=null, rolSel="coach";
+function $(id){return document.getElementById(id)}
+
+/* ---------- quiz ---------- */
+function renderQ(){
+  var esIA = i>=Q.length;
+  var q = esIA ? QIA[i-Q.length] : Q[i];
+  $("avanceTexto").textContent="Pregunta "+(i+1)+" de "+TOTAL;
+  $("relleno").style.width=Math.round(i/TOTAL*100)+"%";
+  var et=$("eje");
+  if(esIA){
+    et.textContent="Uso de IA · gobierno, no entusiasmo";
+    et.style.background="var(--menta-claro)"; et.style.borderColor="var(--menta)"; et.style.color="#0B7A5A";
+  } else {
+    for(var z=0;z<AXES.length;z++){ if(AXES[z].k===q.a){ et.textContent=AXES[z].n; break; } }
+    et.style.background="var(--uva-claro)"; et.style.borderColor="var(--uva)"; et.style.color="var(--uva)";
+  }
+  $("preg").textContent=q.t;
+  var box=$("opciones"); box.innerHTML="";
+  OPTS.forEach(function(label,v){
+    var b=document.createElement("button");
+    b.type="button";
+    b.className="opcion"+(ans[i]===v?" sel":"");
+    b.innerHTML='<span class="k">'+v+'</span><span>'+label+'</span>';
+    b.addEventListener("click",function(){
+      ans[i]=v;
+      if(i<TOTAL-1){ i++; renderQ(); window.scrollTo({top:0,behavior:"smooth"}); }
+      else { finish(); }
+    });
+    box.appendChild(b);
+  });
+  $("back").style.visibility = i===0 ? "hidden" : "visible";
+}
+
+/* ---------- geometría ---------- */
+function pt(v,idx){
+  var ang=(-90+idx*36)*Math.PI/180, r=150*v/5;
+  return (380+r*Math.cos(ang)).toFixed(1)+","+(250+r*Math.sin(ang)).toFixed(1);
+}
+function poly(a){ return a.map(function(v,idx){return pt(v,idx)}).join(" "); }
+function rolById(id){ for(var z=0;z<ROLES.length;z++){ if(ROLES[z].id===id) return ROLES[z]; } return ROLES[0]; }
+function cobertura(rol){
+  var s=0;
+  for(var z=0;z<AXES.length;z++){ s+=Math.min(vals[z]/rol.perfil[z],1); }
+  return Math.round(s/AXES.length*100);
+}
+
+/* ---------- render del rol seleccionado ---------- */
+function pintaRol(){
+  var rol=rolById(rolSel);
+  $("legRol").textContent="Perfil "+rol.n;
+  $("thRol").textContent=rol.n;
+  $("rolNombre").textContent=rol.largo;
+  $("pRol").setAttribute("points",poly(rol.perfil));
+
+  Array.prototype.forEach.call(document.querySelectorAll(".rolbtn"),function(b){
+    b.setAttribute("aria-pressed", b.getAttribute("data-id")===rolSel ? "true":"false");
+  });
+
+  var tb=$("tbody"); tb.innerHTML="";
+  AXES.forEach(function(a,idx){
+    var v=vals[idx], req=rol.perfil[idx], d=v-req, cls, txt;
+    if(d>=0){ cls="ok"; txt="Cubierto"; }
+    else if(d>=-1.2){ cls="med"; txt="Cerca · faltan "+Math.abs(d).toFixed(1); }
+    else { cls="baja"; txt="Brecha · faltan "+Math.abs(d).toFixed(1); }
+    var tr=document.createElement("tr");
+    tr.innerHTML='<td><strong>'+a.n+'</strong></td><td class="n">'+v.toFixed(1)+'</td><td class="n">'+a.med.toFixed(1)+
+                 '</td><td class="n">'+req.toFixed(1)+'</td><td><span class="marca '+cls+'">'+txt+'</span></td>';
+    tb.appendChild(tr);
+  });
+
+  var order=AXES.map(function(a,idx){ return {k:a.k,n:a.n,gapv:vals[idx]-rol.perfil[idx]}; });
+  order.sort(function(x,y){return x.gapv-y.gapv});
+  var rc=$("recos"); rc.innerHTML="";
+  var tone=["coral","mango","cielo"];
+  var hay=false;
+  order.slice(0,3).forEach(function(o,idx){
+    if(o.gapv>=0) return;
+    hay=true;
+    var r=RECO[o.k];
+    var d=document.createElement("div");
+    d.className="card "+tone[idx];
+    d.innerHTML='<h3>'+o.n+' · '+r[0]+'</h3><p style="margin-bottom:0">'+r[1]+'</p>';
+    rc.appendChild(d);
+  });
+  if(!hay){
+    var d2=document.createElement("div");
+    d2.className="card menta";
+    d2.innerHTML='<h3>Ya cubres este perfil completo</h3><p style="margin-bottom:0">No hay brecha contra '+rol.largo+'. Tu siguiente movimiento no es formarte más en este oficio, sino buscar dónde ejercerlo o elegir otro de los cuatro para profundizar.</p>';
+    rc.appendChild(d2);
+  }
+}
+
+/* ---------- resultados ---------- */
+function finish(){
+  var byAxis={};
+  AXES.forEach(function(a){byAxis[a.k]=[]});
+  Q.forEach(function(q,idx){ byAxis[q.a].push(ans[idx]===null?0:ans[idx]); });
+  vals=AXES.map(function(a){
+    var arr=byAxis[a.k];
+    var s=arr.reduce(function(x,y){return x+y},0)/arr.length;
+    return Math.round(s*1.25*10)/10;
+  });
+  var overall=Math.round(vals.reduce(function(x,y){return x+y},0)/vals.length*10)/10;
+
+  $("score").innerHTML=overall.toFixed(1)+"<small> / 5</small>";
+  var band=BANDS[0];
+  BANDS.forEach(function(b){ if(overall>=b.min) band=b; });
+  $("band").textContent=band.t;
+
+  var g={EQUIPO:[],SISTEMA:[],NEGOCIO:[]};
+  AXES.forEach(function(a,idx){ g[GRUPO[a.k]].push(vals[idx]); });
+  function avg(x){ return x.reduce(function(p,c){return p+c},0)/x.length; }
+  var gs=[{k:"EQUIPO",v:avg(g.EQUIPO)},{k:"SISTEMA",v:avg(g.SISTEMA)},{k:"NEGOCIO",v:avg(g.NEGOCIO)}];
+  gs.sort(function(a,b){return b.v-a.v});
+  var archKey=(gs[0].v-gs[2].v)<0.6 ? "MIXTO" : gs[0].k;
+  $("arch").textContent=ARCH[archKey]+" "+band.d;
+
+  $("pYou").setAttribute("points",poly(vals));
+  $("pMed").setAttribute("points",poly(AXES.map(function(a){return a.med})));
+  var dots=$("dots"); dots.innerHTML="";
+  vals.forEach(function(v,idx){
+    var xy=pt(v,idx).split(",");
+    var c=document.createElementNS("http://www.w3.org/2000/svg","circle");
+    c.setAttribute("cx",xy[0]); c.setAttribute("cy",xy[1]); c.setAttribute("r","5.5");
+    var t=document.createElementNS("http://www.w3.org/2000/svg","title");
+    t.textContent=AXES[idx].n+" — "+v.toFixed(1);
+    c.appendChild(t); dots.appendChild(c);
+  });
+
+  /* diverging vs pares */
+  var dv=$("diverg"); dv.innerHTML="";
+  var MAXD=2.5, arriba=0, abajo=0, mejor=null, peor=null;
+  AXES.forEach(function(a,idx){
+    var d=Math.round((vals[idx]-a.med)*10)/10;
+    if(d>0.15){arriba++;} if(d<-0.15){abajo++;}
+    if(mejor===null||d>mejor.d) mejor={n:a.n,d:d};
+    if(peor===null||d<peor.d) peor={n:a.n,d:d};
+    var w=Math.min(Math.abs(d)/MAXD,1)*50;
+    var row=document.createElement("div");
+    row.className="div-fila";
+    var pos=d>=0;
+    row.innerHTML='<div class="div-nom">'+a.n+'</div>'+
+      '<div class="div-track"><div class="div-cero"></div>'+
+      '<div class="div-marca '+(pos?"mas":"menos")+'" style="'+(pos?"left:50%;width:":"right:50%;width:")+w.toFixed(1)+'%"></div></div>'+
+      '<div class="div-val '+(pos?"mas":"menos")+'">'+(d>0?"+":"")+d.toFixed(1)+'</div>';
+    dv.appendChild(row);
+  });
+  $("peerTitle").textContent="Vas por delante en "+arriba+" de 10 competencias";
+  $("peerTxt").textContent="Tu mayor ventaja sobre otros Scrum Masters está en "+mejor.n.toLowerCase()+
+    " ("+(mejor.d>0?"+":"")+mejor.d.toFixed(1)+"), y tu mayor rezago en "+peor.n.toLowerCase()+
+    " ("+(peor.d>0?"+":"")+peor.d.toFixed(1)+"). Donde vas por delante tienes un argumento que casi nadie más puede sostener; conviene hacerlo visible en vez de darlo por obvio.";
+
+  /* afinidad */
+  var af=$("afinidad"); af.innerHTML="";
+  var cobs=ROLES.map(function(r){ return {r:r,c:cobertura(r)}; });
+  var maxc=Math.max.apply(null,cobs.map(function(x){return x.c}));
+  cobs.forEach(function(x){
+    var faltas=AXES.map(function(a,idx){ return {n:a.n,g:vals[idx]-x.r.perfil[idx]}; })
+                   .filter(function(o){return o.g<0})
+                   .sort(function(p,q2){return p.g-q2.g}).slice(0,2)
+                   .map(function(o){return o.n}).join(" · ");
+    var d=document.createElement("div");
+    d.className="rolcard"+(x.c===maxc?" top":"");
+    d.innerHTML='<h4>'+x.r.largo+'</h4>'+
+      '<div class="pct">'+x.c+' %</div>'+
+      '<div class="med"><i style="width:'+x.c+'%"></i></div>'+
+      '<p>'+x.r.vive+'</p>'+
+      '<div class="falta"><b>'+(faltas?"Lo que más te falta":"Perfil cubierto")+'</b>'+(faltas||"No hay brechas contra este perfil.")+'</div>';
+    af.appendChild(d);
+  });
+
+  /* madurez en IA */
+  var iaArr=[];
+  for(var q2=0;q2<QIA.length;q2++){ var a2=ans[Q.length+q2]; iaArr.push(a2===null?0:a2); }
+  var iaProm=iaArr.reduce(function(x,y){return x+y},0)/iaArr.length;
+  var lvl = iaProm<0.75 ? 0 : iaProm<1.5 ? 1 : iaProm<2.5 ? 2 : iaProm<3.4 ? 3 : 4;
+  $("iaNivel").innerHTML=NIVELES[lvl].c+'<small>'+iaProm.toFixed(1)+' de 4</small>';
+  $("iaTitulo").textContent=NIVELES[lvl].t;
+  $("iaTexto").textContent=NIVELES[lvl].d;
+  var esc=$("escalera"); esc.innerHTML="";
+  NIVELES.forEach(function(nv,idx){
+    var d=document.createElement("div");
+    d.className="peldano"+(idx===lvl?" aqui":(idx<lvl?" previo":""));
+    d.innerHTML='<div class="lvl">'+nv.c+'</div><div><h4>'+nv.t+(idx===lvl?'<span class="tuaqui">Estás aquí</span>':'')+
+                '</h4><p>'+nv.d+'</p></div>';
+    esc.appendChild(d);
+  });
+
+  pintaRol();
+  $("quiz").hidden=true; $("intro").hidden=true; $("results").hidden=false;
+  window.scrollTo(0,0);
+}
+
+/* ---------- selector de rol ---------- */
+(function(){
+  var cont=$("roles");
+  ROLES.forEach(function(r){
+    var b=document.createElement("button");
+    b.type="button"; b.className="rolbtn"; b.setAttribute("data-id",r.id);
+    b.setAttribute("aria-pressed", r.id===rolSel ? "true":"false");
+    b.textContent=r.n;
+    b.addEventListener("click",function(){ rolSel=r.id; pintaRol(); });
+    cont.appendChild(b);
+  });
+})();
+
+$("start").addEventListener("click",function(){
+  $("intro").hidden=true; $("quiz").hidden=false; i=0; renderQ(); window.scrollTo(0,0);
+});
+$("back").addEventListener("click",function(){ if(i>0){ i--; renderQ(); } });
+$("print").addEventListener("click",function(){ window.print(); });
+$("again").addEventListener("click",function(){
+  ans=new Array(TOTAL).fill(null); i=0;
+  $("results").hidden=true; $("intro").hidden=false; window.scrollTo(0,0);
+});
+})();
+</script>
