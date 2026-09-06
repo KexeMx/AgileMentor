@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgileMentor · Herramientas</title>
+  <style>
+    :root {
+      --uva: #6C5CE7;
+      --menta: #12B886;
+      --mango: #F5A524;
+      --papel: #F3F1FD;
+      --carta: #FFFFFF;
+      --tinta: #1B2140;
+    }
+    * { box-sizing: border-box; }
+    body {
+      background: var(--papel);
+      color: var(--tinta);
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.62;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .contenedor {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 10px;
+      color: var(--uva);
+    }
+    .subtitulo {
+      text-align: center;
+      color: #666;
+      margin-bottom: 50px;
+      font-size: 1.1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: var(--carta);
+      border: 2px solid #ddd;
+      border-radius: 16px;
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 16px rgba(0,0,0,0.12);
+    }
+    .card.quiz {
+      border-left: 5px solid var(--menta);
+      border-top-color: var(--menta);
+    }
+    .card.manual {
+      border-left: 5px solid var(--mango);
+      border-top-color: var(--mango);
+    }
+    .etiqueta {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .etiqueta.quiz {
+      background: rgba(18, 184, 134, 0.15);
+      color: var(--menta);
+    }
+    .etiqueta.manual {
+      background: rgba(245, 165, 36, 0.15);
+      color: var(--mango);
+    }
+    .card h2 {
+      font-size: 1.5rem;
+      margin: 0 0 12px 0;
+      color: var(--tinta);
+    }
+    .card p {
+      margin: 0 0 16px 0;
+      color: #666;
+      line-height: 1.5;
+    }
+    .boton {
+      display: inline-block;
+      background: var(--uva);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin-top: 12px;
+    }
+    .boton:hover {
+      background: #5a4ac9;
+    }
+    .footer {
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h1>🎯 AgileMentor</h1>
+    <p class="subtitulo">Herramientas de diagnóstico y aprendizaje para liderazgo ágil</p>
+    
+    <div class="grid">
+      <!-- Quiz -->
+      <a href="quiz-validacion-comptencias-liderazgo-gestion.html" class="card quiz">
+        <span class="etiqueta quiz">Quiz</span>
+        <h2>Mapa de Perfil Ágil</h2>
+        <p>Veintiséis preguntas para validar tus competencias en liderazgo ágil. Descubre tu fortaleza en los cuatro oficios: Scrum Master, Agile Coach, Project Manager y PMO.</p>
+        <div class="boton">Ir al quiz →</div>
+      </a>
+
+      <!-- Manual -->
+      <a href="manual-feedback-efectivo.html" class="card manual">
+        <span class="etiqueta manual">Manual</span>
+        <h2>Manual de Feedback Efectivo</h2>
+        <p>Guía práctica para dar y recibir retroalimentación en equipos ágiles. Técnicas, marcos y ejemplos para conversaciones difíciles.</p>
+        <div class="boton">Leer manual →</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>AgileMentor © 2024 — Diagnósticos de autoconocimiento para profesionales en transformación ágil</p>
+    </div>
+  </div>
+</body>
+</html>
