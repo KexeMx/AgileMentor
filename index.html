@@ -12,6 +12,7 @@
       --papel: #F3F1FD;
       --carta: #FFFFFF;
       --tinta: #1B2140;
+      --tinta-suave: #4A5170;
     }
     * { box-sizing: border-box; }
     body {
@@ -24,7 +25,7 @@
       padding: 40px 20px;
     }
     .contenedor {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
     }
     h1 {
@@ -38,6 +39,14 @@
       color: #666;
       margin-bottom: 50px;
       font-size: 1.1rem;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 50px;
+      margin-bottom: 24px;
+      color: var(--tinta);
+      border-bottom: 3px solid var(--uva);
+      padding-bottom: 12px;
     }
     .grid {
       display: grid;
@@ -67,6 +76,15 @@
       border-left: 5px solid var(--mango);
       border-top-color: var(--mango);
     }
+    .card.libro {
+      border-left: 5px solid var(--cielo);
+      border-top-color: var(--cielo);
+      display: flex;
+      flex-direction: column;
+    }
+    :root {
+      --cielo: #3B9AE1;
+    }
     .etiqueta {
       display: inline-block;
       font-size: 0.8rem;
@@ -85,15 +103,25 @@
       background: rgba(245, 165, 36, 0.15);
       color: var(--mango);
     }
-    .card h2 {
-      font-size: 1.5rem;
-      margin: 0 0 12px 0;
+    .etiqueta.libro {
+      background: rgba(59, 154, 225, 0.15);
+      color: var(--cielo);
+    }
+    .card h2, .card h3 {
+      margin-top: 0;
+      border: none;
+      padding: 0;
+    }
+    .card h3 {
+      font-size: 1.3rem;
+      margin: 0 0 8px 0;
       color: var(--tinta);
     }
     .card p {
       margin: 0 0 16px 0;
       color: #666;
       line-height: 1.5;
+      flex-grow: 1;
     }
     .boton {
       display: inline-block;
@@ -105,17 +133,143 @@
       text-decoration: none;
       transition: background 0.2s;
       margin-top: 12px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
     }
     .boton:hover {
       background: #5a4ac9;
+    }
+    .boton.secundario {
+      background: white;
+      color: var(--uva);
+      border: 2px solid var(--uva);
+      padding: 10px 22px;
+      margin-left: 8px;
+    }
+    .boton.secundario:hover {
+      background: var(--uva);
+      color: white;
+    }
+    .botones-grupo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
     }
     .footer {
       text-align: center;
       color: #999;
       font-size: 0.9rem;
-      margin-top: 60px;
+      margin-top: 80px;
       padding-top: 30px;
       border-top: 1px solid #eee;
+    }
+    .intro-card {
+      background: linear-gradient(135deg, rgba(108,92,231,.1), rgba(18,184,134,.1));
+      border: 2px solid var(--uva);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .intro-card h2 {
+      margin-top: 0;
+      border: none;
+    }
+    .intro-card p {
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      animation: fadeIn 0.3s;
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-contenido {
+      background-color: var(--carta);
+      padding: 0;
+      border-radius: 12px;
+      max-width: 90%;
+      max-height: 90vh;
+      overflow: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .modal-header {
+      background: var(--uva);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 12px 12px 0 0;
+    }
+    .modal-header h2 {
+      margin: 0;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    .modal-body {
+      padding: 30px;
+    }
+    .modal-body iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 8px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .info-libro {
+      font-size: 0.9rem;
+      color: var(--tinta-suave);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #eee;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--menta-claro);
+      color: #0B7A5A;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    :root {
+      --menta-claro: #DFF6EE;
     }
   </style>
 </head>
@@ -124,27 +278,132 @@
     <h1>🎯 AgileMentor</h1>
     <p class="subtitulo">Herramientas de diagnóstico y aprendizaje para liderazgo ágil</p>
     
+    <!-- Intro -->
+    <div class="intro-card">
+      <h2>Bienvenido a AgileMentor</h2>
+      <p>Tu compañero de viaje en transformación ágil. Diagnósticos interactivos, manuales prácticos y resúmenes de libros clave para todo líder que quiera crecer.</p>
+    </div>
+
+    <!-- Herramientas Interactivas -->
+    <h2>🧪 Herramientas Interactivas</h2>
     <div class="grid">
       <!-- Quiz -->
       <a href="quiz-validacion-comptencias-liderazgo-gestion.html" class="card quiz">
         <span class="etiqueta quiz">Quiz</span>
-        <h2>Mapa de Perfil Ágil</h2>
-        <p>Veintiséis preguntas para validar tus competencias en liderazgo ágil. Descubre tu fortaleza en los cuatro oficios: Scrum Master, Agile Coach, Project Manager y PMO.</p>
+        <h3>Mapa de Perfil Ágil</h3>
+        <p>26 preguntas para validar tus competencias en liderazgo ágil. Descubre tu fortaleza en los cuatro oficios: Scrum Master, Agile Coach, Project Manager y PMO.</p>
+        <div>
+          <span class="badge">8 minutos</span>
+          <span class="badge">10 competencias</span>
+        </div>
         <div class="boton">Ir al quiz →</div>
       </a>
 
       <!-- Manual -->
       <a href="manual-feedback-efectivo.html" class="card manual">
         <span class="etiqueta manual">Manual</span>
-        <h2>Manual de Feedback Efectivo</h2>
+        <h3>Manual de Feedback Efectivo</h3>
         <p>Guía práctica para dar y recibir retroalimentación en equipos ágiles. Técnicas, marcos y ejemplos para conversaciones difíciles.</p>
+        <div>
+          <span class="badge">20 minutos</span>
+          <span class="badge">Interactivo</span>
+        </div>
         <div class="boton">Leer manual →</div>
       </a>
     </div>
 
+    <!-- Libros y Resúmenes -->
+    <h2>📚 Libros y Resúmenes Clave</h2>
+    <p style="color: var(--tinta-suave); margin-bottom: 24px;">Resúmenes ejecutivos de obras fundamentales para líderes ágiles. Descárgalos en PDF o visualiza en preview interactivo.</p>
+    <div class="grid" id="libros-grid">
+      <!-- Los libros se cargarán aquí dinámicamente -->
+    </div>
+
     <div class="footer">
       <p>AgileMentor — Diagnósticos de autoconocimiento para profesionales en transformación ágil</p>
+      <p style="font-size: 0.8rem; margin-top: 16px;"><a href="https://github.com/KexeMx/AgileMentor" style="color: var(--uva); text-decoration: none;">Ver en GitHub</a> | <a href="README.md" style="color: var(--uva); text-decoration: none;">Documentación</a></p>
     </div>
   </div>
+
+  <!-- Modal para preview de PDF -->
+  <div class="modal" id="pdfModal">
+    <div class="modal-contenido">
+      <div class="modal-header">
+        <h2 id="pdfTitle">Título del Libro</h2>
+        <button class="modal-close" onclick="cerrarModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdfViewer" src=""></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Datos de libros
+    const libros = [
+      {
+        id: 1,
+        titulo: "El Nuevo Manager al Minuto",
+        archivo: "guia_estudio_el_nuevo_manager_al_minuto.pdf",
+        descripcion: "Resumen ejecutivo de las tres técnicas fundamentales de gestión: objetivos claros, feedback oportuno y reconocimiento efectivo.",
+        autor: "Ken Blanchard & Spencer Johnson",
+        lectura: "30 min",
+        tipo: "Resumen de Estudio"
+      }
+    ];
+
+    // Cargar libros en el grid
+    function cargarLibros() {
+      const grid = document.getElementById('libros-grid');
+      grid.innerHTML = libros.map(libro => `
+        <div class="card libro">
+          <span class="etiqueta libro">📘 ${libro.tipo}</span>
+          <h3>${libro.titulo}</h3>
+          <p><strong>${libro.autor}</strong></p>
+          <p>${libro.descripcion}</p>
+          <div class="info-libro">
+            <span class="badge" style="background: rgba(59,154,225,0.15); color: var(--cielo);">⏱️ ${libro.lectura}</span>
+          </div>
+          <div class="botones-grupo">
+            <button class="boton" onclick="abrirPreview('${libro.archivo}', '${libro.titulo}')">
+              👁️ Ver Preview
+            </button>
+            <a href="Libros/${libro.archivo}" download class="boton secundario">
+              📥 Descargar
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Abrir preview del PDF
+    function abrirPreview(archivo, titulo) {
+      const modal = document.getElementById('pdfModal');
+      const viewer = document.getElementById('pdfViewer');
+      const titleElement = document.getElementById('pdfTitle');
+      
+      // Usar PDF.js para visualizar
+      viewer.src = `Libros/${archivo}`;
+      titleElement.textContent = titulo;
+      modal.classList.add('active');
+    }
+
+    // Cerrar modal
+    function cerrarModal() {
+      const modal = document.getElementById('pdfModal');
+      modal.classList.remove('active');
+      document.getElementById('pdfViewer').src = '';
+    }
+
+    // Cerrar modal al hacer clic fuera
+    document.getElementById('pdfModal').addEventListener('click', function(event) {
+      if (event.target === this) {
+        cerrarModal();
+      }
+    });
+
+    // Cargar libros al abrir la página
+    cargarLibros();
+  </script>
 </body>
 </html>
