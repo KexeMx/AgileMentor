@@ -14,8 +14,9 @@
 *{box-sizing:border-box}
 body{background:var(--papel);color:var(--tinta);font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.62;-webkit-text-size-adjust:100%}
 h1,h2,h3,h4{font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;line-height:1.18;margin:0 0 .5em}
-h1{font-size:2.5rem;letter-spacing:-.02em} h2{font-size:1.9rem;letter-spacing:-.01em} h3{font-size:1.25rem} h4{font-size:1.02rem}
-p{margin:0 0 1em;max-width:72ch}
+h1{font-size:clamp(1.75rem,7vw,2.5rem);letter-spacing:-.02em} h2{font-size:clamp(1.35rem,4.5vw,1.9rem);letter-spacing:-.01em} h3{font-size:1.25rem} h4{font-size:1.02rem}
+p{margin:0 0 1em;max-width:72ch;overflow-wrap:break-word}
+img,svg{max-width:100%}
 ul,ol{max-width:72ch;padding-left:1.15em} li{margin-bottom:.45em}
 strong{color:var(--tinta)}
 [hidden]{display:none!important}
@@ -40,14 +41,14 @@ main{max-width:1000px;margin:0 auto;padding:26px 20px 80px}
 .card.uva{border-color:var(--uva);background:var(--uva-claro)}
 .card.cielo{border-color:var(--cielo);background:var(--cielo-claro)}
 .card h3{margin-top:0}
-.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
 .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:6px}
 .chapa{width:42px;height:42px;flex:none;border-radius:14px;display:grid;place-items:center;font-weight:700;color:#fff;background:var(--uva);font-size:1.05rem;font-family:"Trebuchet MS",sans-serif}
 .chapa.menta{background:var(--menta)} .chapa.mango{background:var(--mango)} .chapa.coral{background:var(--coral)} .chapa.cielo{background:var(--cielo)}
 .cita{border-left:6px solid var(--mango);background:#fff;border-radius:0 var(--r-m) var(--r-m) 0;padding:14px 18px;margin:18px 0;font-style:italic}
 
 .btn{font:inherit;font-weight:600;background:var(--uva);color:#fff;border:none;border-radius:var(--r-l);padding:12px 24px;cursor:pointer;transition:transform .12s}
-.btn:hover{transform:translateY(-2px)}
+@media (hover:hover) and (pointer:fine){ .btn:hover{transform:translateY(-2px)} }
 .btn.fantasma{background:#fff;color:var(--uva);border:2px solid var(--uva)}
 .btn:focus-visible,.opcion:focus-visible,.rolbtn:focus-visible{outline:3px solid var(--mango);outline-offset:2px}
 .pie-nav{display:flex;justify-content:space-between;gap:12px;margin-top:30px;flex-wrap:wrap;align-items:center}
@@ -65,22 +66,27 @@ main{max-width:1000px;margin:0 auto;padding:26px 20px 80px}
 
 .practica{border:3px dashed var(--menta);border-radius:var(--r-l);padding:26px;margin:24px 0;background:#fff}
 .etq-eje{display:inline-block;font-size:.8rem;font-weight:700;padding:6px 14px;border-radius:99px;background:var(--uva-claro);border:2px solid var(--uva);color:var(--uva);margin-bottom:14px}
-.preg{font-family:"Trebuchet MS","Segoe UI",sans-serif;font-size:1.55rem;line-height:1.2;font-weight:700;margin:0 0 22px;max-width:26ch}
+.preg{font-family:"Trebuchet MS","Segoe UI",sans-serif;font-size:clamp(1.15rem,4.6vw,1.55rem);line-height:1.2;font-weight:700;margin:0 0 22px;max-width:26ch}
 .opciones{display:grid;gap:9px}
-.opcion{font:inherit;text-align:left;background:var(--papel);border:2px solid var(--linea);border-radius:var(--r-m);padding:13px 16px;cursor:pointer;transition:background .15s,border-color .15s;display:flex;align-items:center;gap:13px;color:var(--tinta)}
-.opcion:hover{background:var(--uva-claro);border-color:var(--uva)}
-.opcion.sel{background:var(--menta-claro);border-color:var(--menta)}
+.opcion{font:inherit;text-align:left;background:var(--papel);border:2px solid var(--linea);border-radius:var(--r-m);padding:13px 16px;cursor:pointer;transition:background .15s,border-color .15s;display:flex;align-items:center;gap:13px;color:var(--tinta);-webkit-tap-highlight-color:transparent;position:relative}
+/* el hover solo aplica donde hay un puntero real: en pantallas tactiles se queda pegado y parece seleccion */
+@media (hover:hover) and (pointer:fine){
+  .opcion:hover{border-color:var(--uva)}
+}
+.opcion.sel{background:var(--menta-claro);border-color:var(--menta);border-width:3px;padding:12px 15px;font-weight:700}
+.opcion.sel::after{content:"✓";margin-left:auto;font-weight:700;color:var(--menta-oscuro);font-size:1.15rem;line-height:1}
+.opciones.bloqueado .opcion{pointer-events:none}
 .opcion .k{width:28px;height:28px;flex:none;display:grid;place-items:center;border-radius:9px;background:#fff;border:2px solid var(--linea);font-weight:700;font-size:.85rem}
 .opcion.sel .k{background:var(--menta);border-color:var(--menta);color:#fff}
 
-.marcador{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
-.gran{font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:4.2rem;line-height:.9;color:var(--uva)}
+.marcador{display:flex;flex-wrap:wrap;gap:16px 22px;align-items:center}
+.gran{font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:clamp(2.6rem,11vw,4.2rem);line-height:.9;color:var(--uva)}
 .gran small{font-size:1.3rem;color:var(--tinta-suave)}
 
 /* selector de rol */
 .roles{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 16px}
 .rolbtn{font:inherit;font-size:.88rem;font-weight:700;border-radius:99px;padding:9px 17px;cursor:pointer;background:#fff;border:2px solid var(--linea);color:var(--tinta-suave);transition:transform .12s}
-.rolbtn:hover{transform:translateY(-2px)}
+@media (hover:hover) and (pointer:fine){ .rolbtn:hover{transform:translateY(-2px)} }
 .rolbtn[aria-pressed="true"]{background:var(--uva);border-color:var(--uva);color:#fff}
 
 .leyenda{display:flex;gap:18px;flex-wrap:wrap;font-size:.85rem;font-weight:600;color:var(--tinta-suave);margin-bottom:6px}
@@ -119,11 +125,11 @@ td.n{text-align:right;width:1%;white-space:nowrap;font-variant-numeric:tabular-n
 @media(min-width:640px){.div-escala{margin-left:204px;margin-right:76px}}
 
 /* tarjetas de rol */
-.rolgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.rolgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
 .rolcard{background:#fff;border:2px solid var(--linea);border-radius:var(--r-l);padding:18px;display:flex;flex-direction:column;gap:9px}
 .rolcard.top{border-width:3px;border-color:var(--menta);background:var(--menta-claro)}
 .rolcard h4{margin:0;font-size:1.06rem}
-.rolcard .pct{font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:2.5rem;line-height:1;color:var(--uva)}
+.rolcard .pct{font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:clamp(1.9rem,8vw,2.5rem);line-height:1;color:var(--uva)}
 .rolcard.top .pct{color:var(--menta-oscuro)}
 .rolcard .med{height:12px;background:var(--papel);border:2px solid var(--linea);border-radius:99px;overflow:hidden}
 .rolcard .med i{display:block;height:100%;background:var(--uva);border-radius:99px}
@@ -143,8 +149,8 @@ td.n{text-align:right;width:1%;white-space:nowrap;font-variant-numeric:tabular-n
 .peldano.aqui p{color:var(--tinta)}
 .peldano.previo{opacity:.9}
 .tuaqui{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--menta);color:#fff;border-radius:99px;padding:3px 10px;margin-left:8px;vertical-align:middle}
-.iabox{display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-bottom:6px}
-.ianivel{font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:3rem;line-height:1;color:var(--menta-oscuro)}
+.iabox{display:flex;flex-wrap:wrap;gap:16px 22px;align-items:center;margin-bottom:6px}
+.ianivel{font-family:"Trebuchet MS",sans-serif;font-weight:700;font-size:clamp(2.1rem,9vw,3rem);line-height:1;color:var(--menta-oscuro)}
 .ianivel small{display:block;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-suave);margin-top:4px}
 
 .barra-dato{position:relative;height:26px;background:var(--papel);border:2px solid var(--linea);border-radius:99px;overflow:hidden}
@@ -158,10 +164,38 @@ td.n{text-align:right;width:1%;white-space:nowrap;font-variant-numeric:tabular-n
 footer{text-align:center;padding:26px 20px 40px;color:var(--tinta-suave);font-size:.87rem;max-width:900px;margin:0 auto}
 footer ol{display:inline-block;text-align:left;max-width:70ch;margin-top:8px}
 
+@media (max-width:860px){
+  main,.avance{padding-left:16px;padding-right:16px}
+  .card{padding:20px;border-radius:20px}
+  .practica{padding:20px;border-radius:20px}
+  .card .card{padding:16px;border-radius:16px}
+}
 @media (max-width:600px){
-  body{font-size:16px} h1{font-size:1.95rem} h2{font-size:1.45rem}
-  .preg{font-size:1.3rem} .gran{font-size:3.2rem}
-  .portada{padding:38px 18px 34px} .card,.practica{padding:18px} main{padding:20px 14px 60px}
+  body{font-size:16px}
+  .portada{padding:34px 16px 30px}
+  .lema{font-size:.85rem;padding:9px 15px}
+  main{padding:16px 14px 56px}
+  .avance{padding:0 14px}
+  .card,.practica{padding:16px;border-radius:18px}
+  .card .card{padding:14px}
+  .eyebrow{gap:10px}
+  .chapa{width:36px;height:36px;border-radius:11px;font-size:.92rem}
+  .opcion{padding:12px 13px;gap:11px;font-size:.98rem}
+  .opcion.sel{padding:11px 12px}
+  .peldano{grid-template-columns:38px minmax(0,1fr);gap:11px;padding:12px 13px}
+  .peldano .lvl{width:38px;height:38px;border-radius:11px;font-size:.9rem}
+  .pie-nav{flex-direction:column;align-items:stretch;gap:10px}
+  .pie-nav span{text-align:center}
+  .btn{width:100%;padding:14px 20px}
+  .rolbtn{flex:1 1 44%;text-align:center}
+  .roles{gap:8px}
+  .leyenda{gap:10px 16px;font-size:.8rem}
+  .div-nom{font-size:.88rem}
+  footer{padding:22px 16px 36px}
+  footer ol{padding-left:16px}
+}
+@media (max-width:380px){
+  .rolbtn{flex:1 1 100%}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{.pie-nav,.avance,.no-print{display:none!important}body{background:#fff}.card{box-shadow:none;break-inside:avoid}}
@@ -178,31 +212,36 @@ footer ol{display:inline-block;text-align:left;max-width:70ch;margin-top:8px}
     <circle cx="26" cy="36" r="4.5" fill="#3B9AE1" stroke="#fff" stroke-width="2"/>
   </svg>
   <h1>Mapa de Perfil Ágil</h1>
-  <p>Veintiséis preguntas para saber qué habilidades tienes hoy, cómo te comparas con otros Scrum Masters, y a cuál de los cuatro oficios del liderazgo ágil se parece más tu perfil. Incluye un corte aparte sobre madurez real en el uso de IA.</p>
-  <div class="lema">Scrum Master · Agile Coach · Project Manager · PMO</div>
+  <p>Veintiséis preguntas para saber qué habilidades tienes hoy, cómo te comparas con otros Scrum Masters, y a cuál de los cinco oficios de la gestión y el liderazgo de entrega se parece más tu perfil. Incluye un corte aparte sobre madurez real en el uso de IA.</p>
+  <div class="lema">Scrum Master · Agile Coach · Project Manager · Delivery Manager · PMO</div>
 </header>
 
 <!-- ================== INTRO ================== -->
 <main id="intro">
 
   <div class="card">
-    <div class="eyebrow"><span class="chapa cielo">4</span><h2 style="margin:0">Los cuatro perfiles</h2></div>
+    <div class="eyebrow"><span class="chapa cielo">5</span><h2 style="margin:0">Los cinco oficios</h2></div>
+    <p>Comparten base y divergen en lo que exigen. Ninguno es una versión mejorada de otro: cada uno pide un repertorio distinto, y algunas competencias que un oficio necesita al máximo otro apenas las usa.</p>
     <div class="grid">
       <div class="card menta" style="margin:8px 0 0">
         <h3>Scrum Master</h3>
-        <p style="font-size:.94rem;margin-bottom:0"><strong>Vive en el equipo.</strong> Su fuerza es la facilitación y el desarrollo de las personas que tiene enfrente. Necesita poco músculo económico y mucha capacidad de hacer que un grupo funcione solo.</p>
+        <p style="font-size:.94rem;margin-bottom:0">Trabaja sobre <strong>el equipo</strong>. Su fuerza es la facilitación y el desarrollo de las personas que tiene enfrente. Necesita poco músculo económico y mucha capacidad de hacer que un grupo funcione y mejore solo.</p>
       </div>
       <div class="card cielo" style="margin:8px 0 0">
         <h3>Agile Coach</h3>
-        <p style="font-size:.94rem;margin-bottom:0"><strong>Vive en la organización.</strong> Trabaja sobre la cultura y el sistema, no sobre un equipo. Coaching profundo, gestión del cambio y credibilidad ante dirección son su terreno.</p>
+        <p style="font-size:.94rem;margin-bottom:0">Trabaja sobre <strong>la organización</strong>, no sobre un equipo. Coaching profundo, gestión del cambio y credibilidad ante dirección son su terreno; la entrega concreta no es su responsabilidad directa.</p>
       </div>
       <div class="card mango" style="margin:8px 0 0">
         <h3>Project Manager</h3>
-        <p style="font-size:.94rem;margin-bottom:0"><strong>Vive en el compromiso.</strong> Responde por alcance, fecha y costo. Su músculo es negociar, gestionar dependencias y pronosticar con datos.</p>
+        <p style="font-size:.94rem;margin-bottom:0">Trabaja sobre <strong>un compromiso acotado</strong>: alcance, plazo y presupuesto con inicio y fin. Su músculo es negociar, gestionar dependencias y pronosticar con datos.</p>
+      </div>
+      <div class="card uva" style="margin:8px 0 0">
+        <h3>Delivery Manager</h3>
+        <p style="font-size:.94rem;margin-bottom:0">Trabaja sobre <strong>el flujo continuo</strong> de entrega de un producto o servicio. Vive entre el equipo y el negocio: necesita métricas de flujo, proceso y salud del equipo a la vez.</p>
       </div>
       <div class="card coral" style="margin:8px 0 0">
-        <h3>PMO / Delivery Lead</h3>
-        <p style="font-size:.94rem;margin-bottom:0"><strong>Vive en el portafolio.</strong> Define cómo se gestionan todos los proyectos. Gobierno, métricas, proceso y lectura económica son innegociables.</p>
+        <h3>PMO / Portafolio</h3>
+        <p style="font-size:.94rem;margin-bottom:0">Trabaja sobre <strong>el conjunto</strong>: define cómo se gestionan todas las iniciativas. Gobierno, métricas, diseño de proceso y lectura económica son innegociables; la facilitación directa casi desaparece.</p>
       </div>
     </div>
   </div>
@@ -467,6 +506,7 @@ footer ol{display:inline-block;text-align:left;max-width:70ch;margin-top:8px}
 </div>
 
 <footer>
+  <p style="max-width:70ch;margin:0 auto 14px"><strong>Libre de usar, compartir y adaptar.</strong> Es un archivo HTML autocontenido: no requiere servidor, cuenta ni conexión. Los perfiles de cada oficio están en un arreglo <code>ROLES</code> al inicio del script, por si tu organización quiere calibrarlos a sus propias descripciones de puesto.</p>
   Instrumento indicativo de autodiagnóstico. No es una evaluación psicométrica validada ni sustituye un proceso formal de desempeño. Todo el cálculo ocurre en tu navegador; nada se transmite.
   <ol>
     <li><strong>Digital.ai — 18th State of Agile Report.</strong> Publicado el 28 de octubre de 2025. Cerca de 350 participantes. De aquí salen las cifras de 76 %, 79 %, 73 %, 29 %, 26 % y 49 %, además del dato de adopción de IA que pasó de 68 % a 84 %.</li>
@@ -495,49 +535,52 @@ var AXES=[
 ];
 
 var ROLES=[
- {id:"sm",    n:"Scrum Master",  largo:"Scrum Master",
-  vive:"Vive en el equipo.",
+ {id:"sm",    n:"Scrum Master",     largo:"Scrum Master",
+  vive:"Trabaja sobre el equipo: que funcione solo y mejore por sí mismo.",
   perfil:[4.5,4.0,3.0,3.5,3.5,3.0,3.0,3.0,3.0,2.0]},
- {id:"coach", n:"Agile Coach",   largo:"Agile Coach",
-  vive:"Vive en la organización.",
+ {id:"coach", n:"Agile Coach",      largo:"Agile Coach",
+  vive:"Trabaja sobre la organización: cultura, capacidades y forma de operar.",
   perfil:[4.5,5.0,5.0,3.0,4.0,4.0,4.5,4.0,4.0,3.0]},
- {id:"pm",    n:"Project Manager", largo:"Project Manager",
-  vive:"Vive en el compromiso.",
+ {id:"pm",    n:"Project Manager",  largo:"Project Manager",
+  vive:"Trabaja sobre un compromiso acotado: alcance, plazo y presupuesto.",
   perfil:[3.0,3.0,3.0,4.5,4.5,3.5,4.5,4.0,5.0,4.5]},
- {id:"pmo",   n:"PMO / Delivery", largo:"PMO / Delivery Lead",
-  vive:"Vive en el portafolio.",
+ {id:"dm",    n:"Delivery Manager", largo:"Delivery Manager",
+  vive:"Trabaja sobre el flujo continuo de entrega de un producto o servicio.",
+  perfil:[3.5,3.5,3.5,4.0,4.5,4.0,4.5,4.0,4.5,3.5]},
+ {id:"pmo",   n:"PMO",              largo:"PMO / Portafolio",
+  vive:"Trabaja sobre el conjunto: define cómo se gestionan todas las iniciativas.",
   perfil:[2.5,3.0,4.0,5.0,5.0,5.0,5.0,4.5,4.5,5.0]}
 ];
 
 var Q=[
- {a:"facilitacion", t:"Mis ceremonias terminan con acuerdos concretos: dueño y fecha, no solo estatus."},
- {a:"coaching",     t:"Dedico tiempo deliberado a conversaciones de desarrollo con cada persona de mi equipo."},
+ {a:"facilitacion", t:"Mis reuniones terminan con acuerdos concretos: dueño y fecha, no solo estatus."},
+ {a:"coaching",     t:"Dedico tiempo deliberado a conversaciones de desarrollo con las personas con las que trabajo."},
  {a:"cambio",       t:"He conseguido que otra área adopte una práctica nueva sin tener autoridad sobre ella."},
- {a:"trazabilidad", t:"Si abro cualquier tarea cerrada del último mes, encuentro evidencia de lo que se hizo."},
- {a:"metricas",     t:"Puedo decir el tiempo de ciclo de mi equipo sin ponerme a calcularlo."},
+ {a:"trazabilidad", t:"Si abro cualquier elemento de trabajo cerrado del último mes, encuentro evidencia de lo que se hizo."},
+ {a:"metricas",     t:"Puedo decir el tiempo de ciclo del equipo sin ponerme a calcularlo."},
  {a:"proceso",      t:"El trabajo repetitivo de mi gestión está automatizado, no lo rehago cada semana."},
  {a:"comunicacion", t:"Mis reportes a dirección dicen qué decisión necesito, no solo qué pasó."},
- {a:"delegacion",   t:"Si me ausento dos semanas, mis ceremonias y reportes siguen ocurriendo sin mí."},
+ {a:"delegacion",   t:"Si me ausento dos semanas, las reuniones y los reportes de los que respondo siguen ocurriendo sin mí."},
  {a:"negociacion",  t:"Cuando me llega una fecha inviable, la negocio con datos en vez de absorberla."},
- {a:"economico",    t:"Sé cuántas horas lleva consumidas cada proyecto contra lo estimado."},
- {a:"facilitacion", t:"Mi equipo levanta y resuelve sus impedimentos sin esperar a que yo los detecte."},
+ {a:"economico",    t:"Conozco el consumo real de mi iniciativa contra lo planeado, en esfuerzo o en costo."},
+ {a:"facilitacion", t:"El equipo levanta y resuelve sus impedimentos sin esperar a que yo los detecte."},
  {a:"coaching",     t:"Cuando alguien me trae un problema, le devuelvo preguntas antes que soluciones."},
  {a:"cambio",       t:"Sé identificar quién se resiste a un cambio y por qué, y trabajo esa resistencia."},
- {a:"trazabilidad", t:"El tiempo que registra mi equipo está atribuido al proyecto y cliente correctos."},
+ {a:"trazabilidad", t:"El esfuerzo que registra el equipo queda atribuido a la iniciativa correcta, no a un cajón genérico."},
  {a:"metricas",     t:"Cuando me preguntan cuándo estará algo, respondo con un rango basado en histórico."},
  {a:"proceso",      t:"Mis herramientas y criterios están documentados para que otro pueda operarlos."},
  {a:"comunicacion", t:"Cuando llevo un problema hacia arriba, llevo también la alternativa y su costo."},
  {a:"delegacion",   t:"Hay al menos una persona formándose para hacer lo que hoy solo hago yo."},
- {a:"negociacion",  t:"Cada dependencia externa de mi equipo tiene dueño con nombre y fecha comprometida."},
- {a:"economico",    t:"Puedo explicar en dinero lo que cuesta el retrabajo de mi equipo."}
+ {a:"negociacion",  t:"Cada dependencia externa que me afecta tiene dueño con nombre y fecha comprometida."},
+ {a:"economico",    t:"Puedo expresar en costo lo que produce el retrabajo o la deuda que arrastramos."}
 ];
 
 var QIA=[
- {t:"El uso de IA en mi operación está dentro de un flujo de trabajo definido, no depende de que cada quien se acuerde de abrirla."},
+ {t:"El uso de IA está dentro de un flujo de trabajo definido, no depende de que cada quien se acuerde de abrirla."},
  {t:"Existen reglas escritas sobre qué información se puede y qué no se puede pasar a una herramienta de IA."},
  {t:"Lo que produce la IA pasa por una verificación humana definida antes de usarse o entregarse."},
  {t:"Queda evidencia de lo hecho con IA: qué se generó, quién lo revisó y qué se cambió."},
- {t:"Puedo cuantificar qué ahorró o qué mejoró la IA en mi operación, con un número, no con una impresión."},
+ {t:"Puedo cuantificar qué ahorró o qué mejoró la IA, con un número, no con una impresión."},
  {t:"Si la IA se equivoca en algo que ya entregamos, sé cómo nos enteraríamos."}
 ];
 
@@ -552,16 +595,16 @@ var NIVELES=[
 var OPTS=["Nunca","Rara vez","A veces","Casi siempre","Siempre"];
 
 var RECO={
- facilitacion:["Cierra cada ceremonia con una tabla","Termina cada sesión leyendo en voz alta los acuerdos con dueño y fecha. Si no cabe en tres renglones, la sesión no produjo nada."],
+ facilitacion:["Cierra cada sesión con acuerdos leídos en voz alta","Dueño y fecha por cada uno. Si no cabe en tres renglones, la sesión no produjo nada."],
  coaching:["Cambia una respuesta por una pregunta","La próxima vez que alguien te traiga un problema resuelto por ti, devuélvelo con «¿qué opciones ves?». Incomoda al principio y es el músculo central del coaching."],
  cambio:["Elige un solo cambio y mapea resistencias","Antes de empujar una práctica nueva, escribe quién gana y quién pierde con ella. El cambio no falla por mal diseño, falla por resistencias no atendidas."],
- trazabilidad:["Audita diez folios cerrados","Toma diez tareas cerradas del último mes al azar y revisa si alguien externo entendería qué se hizo. El porcentaje que falle es tu punto de partida."],
- metricas:["Mide una sola cosa: tiempo de ciclo","Empieza por el tipo de trabajo más frecuente de tu equipo. Con ocho semanas de datos ya puedes dar rangos en vez de fechas inventadas."],
+ trazabilidad:["Audita diez elementos cerrados","Toma al azar diez tareas cerradas del último mes y revisa si alguien externo entendería qué se hizo. El porcentaje que falle es tu punto de partida."],
+ metricas:["Mide una sola cosa: tiempo de ciclo","Empieza por el tipo de trabajo más frecuente. Con ocho semanas de datos ya puedes dar rangos en vez de fechas inventadas."],
  proceso:["Automatiza lo que ya hiciste tres veces","Y documéntalo de forma que otro lo ejecute. Un proceso que solo tú sabes correr no es un proceso, es una dependencia."],
  comunicacion:["Añade dos renglones a tus reportes","«Impacto» y «Decisión que necesito». Es el cambio más barato de esta lista y el que más rápido nota tu jefe."],
- delegacion:["Cede una ceremonia este mes","Elige la de menor riesgo y no asistas. Lo que se rompa es exactamente lo que hoy solo vive en tu cabeza."],
+ delegacion:["Cede una reunión recurrente este mes","Elige la de menor riesgo y no asistas. Lo que se rompa es exactamente lo que hoy solo vive en tu cabeza."],
  negociacion:["Prepara un «sí, y esto cuesta»","La próxima fecha imposible: acéptala por escrito junto con las horas que implica y qué se desplaza. No es negarse; es hacer visible el precio."],
- economico:["Saca horas contra estimado de un proyecto","Uno solo, el más grande. Esa primera lectura suele ser incómoda y es la conversación que abre la puerta a roles de gestión."]
+ economico:["Compara consumo contra plan en una iniciativa","Una sola, la más grande. Esa primera lectura suele ser incómoda y es la conversación que abre la puerta a los oficios de gestión."]
 };
 
 var BANDS=[
@@ -580,6 +623,7 @@ var ARCH={
 var GRUPO={facilitacion:"EQUIPO",coaching:"EQUIPO",cambio:"EQUIPO",trazabilidad:"SISTEMA",metricas:"SISTEMA",proceso:"SISTEMA",comunicacion:"NEGOCIO",delegacion:"EQUIPO",negociacion:"NEGOCIO",economico:"NEGOCIO"};
 
 var TOTAL=Q.length+QIA.length;
+var bloqueado=false;
 var ans=new Array(TOTAL).fill(null), i=0, vals=null, rolSel="coach";
 function $(id){return document.getElementById(id)}
 
@@ -598,16 +642,25 @@ function renderQ(){
     et.style.background="var(--uva-claro)"; et.style.borderColor="var(--uva)"; et.style.color="var(--uva)";
   }
   $("preg").textContent=q.t;
-  var box=$("opciones"); box.innerHTML="";
+  var box=$("opciones"); box.innerHTML=""; box.classList.remove("bloqueado");
+  if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
   OPTS.forEach(function(label,v){
     var b=document.createElement("button");
     b.type="button";
     b.className="opcion"+(ans[i]===v?" sel":"");
     b.innerHTML='<span class="k">'+v+'</span><span>'+label+'</span>';
     b.addEventListener("click",function(){
+      if(bloqueado) return;
+      bloqueado=true;
       ans[i]=v;
-      if(i<TOTAL-1){ i++; renderQ(); window.scrollTo({top:0,behavior:"smooth"}); }
-      else { finish(); }
+      b.classList.add("sel");
+      b.blur();
+      box.classList.add("bloqueado");
+      setTimeout(function(){
+        bloqueado=false;
+        if(i<TOTAL-1){ i++; renderQ(); window.scrollTo({top:0,behavior:"smooth"}); }
+        else { finish(); }
+      },180);
     });
     box.appendChild(b);
   });
@@ -790,10 +843,10 @@ function finish(){
 $("start").addEventListener("click",function(){
   $("intro").hidden=true; $("quiz").hidden=false; i=0; renderQ(); window.scrollTo(0,0);
 });
-$("back").addEventListener("click",function(){ if(i>0){ i--; renderQ(); } });
+$("back").addEventListener("click",function(){ if(bloqueado) return; if(i>0){ i--; renderQ(); window.scrollTo({top:0,behavior:"smooth"}); } });
 $("print").addEventListener("click",function(){ window.print(); });
 $("again").addEventListener("click",function(){
-  ans=new Array(TOTAL).fill(null); i=0;
+  ans=new Array(TOTAL).fill(null); i=0; bloqueado=false;
   $("results").hidden=true; $("intro").hidden=false; window.scrollTo(0,0);
 });
 })();
